@@ -34,7 +34,6 @@ int main()
         cout << "erroe = " << e.what();
     }
 
-    cout << "aaaaa";
 
     
 

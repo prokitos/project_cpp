@@ -23,8 +23,18 @@ int main()
 
     debora deb;
     deb.say();
-    deb.say();
     
+    
+    try
+    {
+        throw std::runtime_error("Division by zero!");
+    }
+    catch(const std::exception& e)
+    {
+        cout << "erroe = " << e.what();
+    }
+
+    cout << "aaaaa";
 
     
 

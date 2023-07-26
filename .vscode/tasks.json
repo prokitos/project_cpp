@@ -9,7 +9,7 @@
                 "c++20",
                 "-g",
                 "${fileDirname}\\**.cpp",
-                "${fileDirname}\\chars\\**.cpp",
+                "${fileDirname}\\Tasks\\**.cpp",
                 "-o",
                 "${fileDirname}\\${fileBasenameNoExtension}.exe"
             ],

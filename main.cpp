@@ -7,6 +7,7 @@
 #include <iostream>
 #include <map>
 #include "Tasks/zaA.h"
+#include "Tasks/zaB.h"
 
 using std::cout;
 using std::string;
@@ -26,8 +27,8 @@ int main()
 {
     consoleClear();
 
-    zaMain();
-
+    //zaMain();
+    zaMainB();
     
     
 

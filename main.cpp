@@ -8,6 +8,7 @@
 #include <map>
 #include "Tasks/zaA.h"
 #include "Tasks/zaB.h"
+#include "Tasks/zaC.h"
 
 using std::cout;
 using std::string;
@@ -28,8 +29,8 @@ int main()
     consoleClear();
 
     //zaMain();
-    zaMainB();
-    
+    //zaMainB();
+    zaMainC();
     
 
     return 0;

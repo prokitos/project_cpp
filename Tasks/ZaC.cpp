@@ -2,6 +2,8 @@
 #include <vector>
 #include <algorithm>
 #include <math.h>
+#include <iterator>    
+#include <sstream>
 
 std::vector<int> VectorSortMerge(std::vector<int> vec1, std::vector<int> vec2)
 {
@@ -35,6 +37,53 @@ long zeros(long n)
     return output;
 }
 
+int rekursialPins(std::vector<std::string>& result, std::vector<int>& input, int curIter, std::string temp)
+{
+    if(curIter == input.size())
+    {
+        result.push_back(temp);
+        return 1;
+    }
+    else
+    {
+        int curNum = input[curIter];
+
+        if(curNum + 3 < 10 && curNum != 0)
+            rekursialPins(result, input, curIter + 1, temp + std::to_string(curNum + 3));
+        if(curNum - 3 > 0)
+            rekursialPins(result, input, curIter + 1, temp + std::to_string(curNum - 3));
+        if(curNum != 3 && curNum != 6 && curNum != 9 && curNum != 0)
+            rekursialPins(result, input, curIter + 1, temp + std::to_string(curNum + 1));
+        if(curNum != 1 && curNum != 4 && curNum != 7 && curNum != 0)
+            rekursialPins(result, input, curIter + 1, temp + std::to_string(curNum - 1));
+
+        if(curNum == 8)
+            rekursialPins(result, input, curIter + 1, temp + std::to_string(0));
+        if(curNum == 0)
+            rekursialPins(result, input, curIter + 1, temp + std::to_string(8));
+
+
+        return rekursialPins(result, input, curIter + 1, temp + std::to_string(curNum));
+
+    }
+}
+
+std::vector<std::string> get_pins(std::string observed)
+{
+    std::vector<std::string> output;
+    std::vector<int> input;
+    for (size_t i = 0; i < observed.size(); i++)
+    {
+        input.push_back(observed[i] - '0');
+    }
+    
+    int iterStart = 0;
+    std::string temp = "";
+    rekursialPins(output, input, iterStart, temp);
+
+    return output;
+}
+
 void zaMainC()
 {
     // зд 1
@@ -51,5 +100,11 @@ void zaMainC()
     //std:: cout << zeros(6) << std::endl;
     //std:: cout << zeros(30) << std::endl;
     //std:: cout << zeros(1000000000) << std::endl;
+
+    // зд 4 
+    std::vector<std::string> vec1 = get_pins("234");
+
+    for(const auto i : vec1)
+        std::cout << i << std::endl;
 
 }

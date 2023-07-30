@@ -9,6 +9,7 @@
 #include "Tasks/zaA.h"
 #include "Tasks/zaB.h"
 #include "Tasks/zaC.h"
+#include "Tasks/zaD.h"
 
 using std::cout;
 using std::string;
@@ -30,8 +31,8 @@ int main()
 
     //zaMain();
     //zaMainB();
-    zaMainC();
-    
+    //zaMainC();
+    zaMainD();
 
     return 0;
 }

@@ -4,6 +4,7 @@
 #include <math.h>
 #include <iterator>    
 #include <sstream>
+#include <map>
 
 std::vector<int> VectorSortMerge(std::vector<int> vec1, std::vector<int> vec2)
 {
@@ -68,6 +69,27 @@ int rekursialPins(std::vector<std::string>& result, std::vector<int>& input, int
     }
 }
 
+void rekursialPinCode(std::map <std::string, std::string>& Code, std::vector<std::string>& output, std::vector<int>& input, int curIter, std::string temp)
+{
+    if(curIter == input.size())
+    {
+        output.push_back(temp);
+        temp = "";
+        return;
+    }
+    else
+    {
+        std::string str = Code[std::to_string(input[curIter])];
+        for (size_t i = 0; i < str.length(); i++)
+        {
+            std::string bufer = temp + std::to_string(str[i] - '0');
+            rekursialPinCode(Code, output, input, curIter + 1, bufer);
+        }
+        
+    }
+
+}
+
 std::vector<std::string> get_pins(std::string observed)
 {
     std::vector<std::string> output;
@@ -77,9 +99,14 @@ std::vector<std::string> get_pins(std::string observed)
         input.push_back(observed[i] - '0');
     }
     
-    int iterStart = 0;
-    std::string temp = "";
-    rekursialPins(output, input, iterStart, temp);
+    //rekursialPins(output, input, 0, "");
+
+    std::map <std::string, std::string> pinCode;
+    pinCode["0"] = "08";  pinCode["1"] = "124";  pinCode["2"] = "2135"; pinCode["9"] = "986"; 
+    pinCode["3"] = "326";  pinCode["4"] = "4175"; pinCode["5"] = "52468"; 
+    pinCode["6"] = "6359";  pinCode["7"] = "748"; pinCode["8"] = "85790"; 
+
+    rekursialPinCode(pinCode, output, input, 0, "");
 
     return output;
 }

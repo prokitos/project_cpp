@@ -198,6 +198,8 @@ std::string Mix::mix(const std::string &s1, const std::string &s2)
 }
 
 
+
+
 void zaMainD()
 {
     // зд 1
@@ -216,9 +218,12 @@ void zaMainD()
     //    std::cout << i << "  ";
 
     // зд 3
-    Mix classess;
-    std::cout << classess.mix("Are they here", "yes, they are here");
+    //Mix classess;
+    //std::cout << classess.mix("Are they here", "yes, they are here");
     
+    // зд 4  через регекс лучше
+    //std::vector<std::string> input = { ":)", ";(", ";}", ":-D"}; 
+    //std::cout << countSmileys(input); 
 
 
 }

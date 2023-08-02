@@ -198,7 +198,48 @@ std::string Mix::mix(const std::string &s1, const std::string &s2)
 }
 
 
+std::string disemvowel(const std::string& str)
+{
+    std::string output {};
+    char mass[] = {'a','e','u','o','a','i'};
 
+    for (size_t j = 0; j < str.length(); j++)
+    {
+        bool cheker = false;
+        for (size_t i = 0; i < std::size(mass); i++)
+        {
+            if(std::tolower(str[j]) == mass[i])
+                cheker = true;
+        }
+        
+        if(cheker == false)
+        output += str[j];
+    }
+    return output;
+
+    //std::regex vowels("[aeiouAEIOU]");
+    //return std::regex_replace(str, vowels, "");
+}
+
+std::string longest(const std::string &s1, const std::string &s2)
+{
+    char mass[26] = {};
+    std::string multiSting = s1 + s2;
+    std::string str = {};
+
+    for(auto item : multiSting)
+    {
+        int charnum = item - 'a';
+        if(mass[charnum] == 0)
+            mass[charnum] = item;
+    }
+    
+    for(auto item : mass)
+        if(item != 0)
+        str += item;
+
+    return str;
+}
 
 void zaMainD()
 {
@@ -224,6 +265,12 @@ void zaMainD()
     // зд 4  через регекс лучше
     //std::vector<std::string> input = { ":)", ";(", ";}", ":-D"}; 
     //std::cout << countSmileys(input); 
+
+    // зд 5
+    //std::cout << disemvowel("This website is for losers LOL!");
+
+    // зд 6
+    //std::cout << longest("aretheyhere", "yestheyarehere");
 
 
 }

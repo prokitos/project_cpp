@@ -9,6 +9,54 @@
 #include <sstream>
 
 
+std::string likes(const std::vector<std::string> &names)
+{
+    std::string output {};
+
+    switch (names.size())
+    {
+    case 0:
+        output = "no one likes this";
+        break;
+    case 1:
+        output = names[0] + " likes this";
+        break;
+    case 2:
+        output = names[0] + " and " + names[1] + " like this";
+        break;
+    case 3:
+        output = names[0] + ", " + names[1] + " and " + names[2] + " like this";
+        break;
+    
+    default:
+        output = names[0] + ", " + names[1] + " and " + std::to_string(names.size() - 2) + " others like this";
+        break;
+    }
+
+    return output; 
+}
+
+std::vector<int> sortArray(std::vector<int> array)
+{
+    std::vector<int> tempOdd;
+
+    for (auto item : array)
+        if(item % 2 == 1)
+            tempOdd.push_back(item);
+    
+    std::sort(tempOdd.begin(),tempOdd.end());
+
+    for (size_t i = 0, j = 0; i < array.size(); i++)
+    {
+        if(array[i] % 2 == 1)
+        {
+            array[i] = tempOdd[j];
+            j ++;
+        }
+    }
+    
+    return array;
+}
 
 std::string highestScoringWord(const std::string &str)
 {
@@ -62,17 +110,20 @@ void zaMainE()
 
     // зд 2
     //std::vector<int> input = {3, 2, 3, 6, 4, 1, 2, 3, 2, 1, 2, 3};
-    std::vector<std::string> temp = towerBuilder(3);
-    for(auto items : temp)
-        std::cout << items << std::endl;
+    //std::vector<std::string> temp = towerBuilder(3);
+    //for(auto items : temp)
+    //    std::cout << items << std::endl;
 
     // зд 3
-    //Mix classess;
-    //std::cout << classess.mix("Are they here", "yes, they are here");
+    //std::vector<int> input = {0,5,2,3,1,4,7,8};
+    //input = sortArray(input);
+    //for(auto items : input)
+    //    std::cout << items << std::endl;
+
     
     // зд 4  через регекс лучше
-    //std::vector<std::string> input = { ":)", ";(", ";}", ":-D"}; 
-    //std::cout << countSmileys(input); 
+    std::vector<std::string> input = { "Max", "John", "Mark" }; 
+    std::cout << likes(input);
 
     // зд 5
     //std::cout << disemvowel("This website is for losers LOL!");

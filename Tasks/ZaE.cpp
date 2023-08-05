@@ -7,6 +7,7 @@
 #include <map>
 #include <iterator>    
 #include <sstream>
+#include <regex>
 
 
 std::string likes(const std::vector<std::string> &names)
@@ -103,6 +104,51 @@ std::vector<std::string> towerBuilder(unsigned nFloors)
     return output;
 }
 
+int persistence(long long n)
+{
+    int result = 0;
+    int tempInt = 0;
+    std::string stroka;
+
+    while(n > 9)
+    {
+        stroka = std::to_string(n);
+        tempInt = stroka[0] - '0';
+        for (int i = 1; i < stroka.length(); i++)
+        {
+            tempInt = tempInt * (stroka[i] - '0');
+        }
+        result ++;
+        n = tempInt;
+    }
+
+    return result;
+}
+
+
+std::vector <long long int> wheatFromChaff (std::vector <long long int> values)
+{
+
+    int i = 0;
+    int j = values.size() - 1;
+    while (i != j)
+    {
+        if(values[i] < 0)
+            i++;
+        else
+        {
+            if(values[j] > 0)
+                j--;
+            else
+                std::swap(values[i], values[j]);
+        }
+
+    }
+    
+    return values;
+}
+
+
 void zaMainE()
 {
     // зд 1
@@ -122,14 +168,17 @@ void zaMainE()
 
     
     // зд 4  через регекс лучше
-    std::vector<std::string> input = { "Max", "John", "Mark" }; 
-    std::cout << likes(input);
+    //std::vector<std::string> input = { "Max", "John", "Mark" }; 
+    //std::cout << likes(input);
 
     // зд 5
-    //std::cout << disemvowel("This website is for losers LOL!");
+    //std::cout << persistence(999);
 
     // зд 6
-    //std::cout << longest("aretheyhere", "yestheyarehere");
+    std::vector<long long int> vec = {7,-3,-10};
+    vec = wheatFromChaff(vec);
+    for(auto item : vec)
+        std::cout << item << std::endl;
 
 
 }

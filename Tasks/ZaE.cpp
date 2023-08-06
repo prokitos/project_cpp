@@ -148,6 +148,35 @@ std::vector <long long int> wheatFromChaff (std::vector <long long int> values)
     return values;
 }
 
+long long posOddReturn(long long input)
+{
+    return (input * 2) - 1;
+}
+
+long long rowSumOddNumbers(unsigned n)
+{
+    long long result = 0;
+
+    int nStart = 1;
+    int nEnd = 0;
+
+    if(n == 1)
+        return 1;
+
+    for (size_t i = 0; i < n; i++)
+    {
+        nStart += i;
+    }
+    nEnd = nStart + n;
+
+    for (size_t i = nStart; i < nEnd; i++)
+    {
+        result += posOddReturn(i);
+    }
+    
+    return result;
+}
+
 
 void zaMainE()
 {
@@ -175,10 +204,13 @@ void zaMainE()
     //std::cout << persistence(999);
 
     // зд 6
-    std::vector<long long int> vec = {7,-3,-10};
-    vec = wheatFromChaff(vec);
-    for(auto item : vec)
-        std::cout << item << std::endl;
+    //std::vector<long long int> vec = {7,-3,-10};
+    //vec = wheatFromChaff(vec);
+    //for(auto item : vec)
+    //    std::cout << item << std::endl;
+
+    // зд 7
+    std::cout << rowSumOddNumbers(4);
 
 
 }

@@ -3,7 +3,7 @@
 #include <map>
 
 
-
+long long rowSumOddNumbers(unsigned n);
 std::vector <long long int> wheatFromChaff (std::vector <long long int> values);
 int persistence(long long n);
 std::string likes(const std::vector<std::string> &names);

@@ -32,9 +32,9 @@ int main()
 
     //zaMain();
     //zaMainB();
-    //zaMainC();
+    zaMainC();
     //zaMainD();
-    zaMainE();
+    //zaMainE();
 
     return 0;
 }

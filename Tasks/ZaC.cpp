@@ -5,6 +5,9 @@
 #include <iterator>    
 #include <sstream>
 #include <map>
+#include <iterator>    
+#include <sstream>
+#include <regex>
 
 std::vector<int> VectorSortMerge(std::vector<int> vec1, std::vector<int> vec2)
 {
@@ -111,6 +114,52 @@ std::vector<std::string> get_pins(std::string observed)
     return output;
 }
 
+std::vector<std::vector<int>> multiplication_table(int n)
+{
+    std::vector<std::vector<int>> output;
+
+    for (size_t i = 1; i < n + 1; i++)
+    {
+        std::vector<int> temp;
+        for (size_t j = 1; j < n + 1; j++)
+        {
+            temp.push_back(j * i);
+        }
+        output.push_back(temp);
+    }
+    
+    return output;
+}
+
+std::string pig_it(std::string str)
+{
+  /* std::vector<std::string> inputs;     
+    std::string result {};
+    std::istringstream iss(str);
+    std::copy(std::istream_iterator<std::string>(iss), std::istream_iterator<std::string>(), std::back_inserter(inputs));
+
+    for (size_t i = 0; i < inputs.size(); i++)
+    {
+        if(inputs[i].length() > 1)
+        {
+            inputs[i] += inputs[i][0];
+            inputs[i].erase(0,1);
+            inputs[i] += "ay";
+        } 
+        if(i == inputs.size() - 1)
+            result += inputs[i];
+        else
+            result += inputs[i] + " ";
+    }
+    return result;
+    */
+    
+    std::regex reg("(\\w)(\\w*)");
+    return std::regex_replace(str, reg, "$2$1ay");
+
+
+}
+
 void zaMainC()
 {
     // зд 1
@@ -129,9 +178,20 @@ void zaMainC()
     //std:: cout << zeros(1000000000) << std::endl;
 
     // зд 4 
-    std::vector<std::string> vec1 = get_pins("234");
+    //std::vector<std::string> vec1 = get_pins("234");
+    //for(const auto i : vec1)
+    //    std::cout << i << std::endl;
 
-    for(const auto i : vec1)
-        std::cout << i << std::endl;
+    // зд 5
+    //std::vector<std::vector<int>> temp = multiplication_table(4);
+    //for(auto item : temp)
+    //{
+    //    for (size_t i = 0; i < temp.size(); i++)
+    //        std::cout << item[i];
+    //    std::cout << std::endl;
+    //}
+
+    // зд 6
+    std::cout << pig_it("Pig latin is cool");
 
 }

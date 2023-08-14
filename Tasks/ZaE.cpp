@@ -210,7 +210,7 @@ void zaMainE()
     //    std::cout << item << std::endl;
 
     // зд 7
-    std::cout << rowSumOddNumbers(4);
+    //std::cout << rowSumOddNumbers(4);
 
 
 }

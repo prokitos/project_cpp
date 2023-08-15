@@ -11,37 +11,22 @@
 
 
 
-
 void zaMainF()
 {
     // зд 1  переворот подстрок в строке
     //std::cout << reverse_words("apple apple  germers!");
 
     // зд 2  найти индекс где правые элементы массива равны левому
-    std::cout << find_even_index ({1,2,3,4,3,2,1}); 
+    //std::cout << find_even_index ({1,2,3,4,3,2,1}); 
 
-    // зд 3
-    //std::vector<int> input = {0,5,2,3,1,4,7,8};
-    //input = sortArray(input);
-    //for(auto items : input)
-    //    std::cout << items << std::endl;
-
+    // зд 3  вернуть из массива пары чисел, суммы которых равны 2
+    //std::vector<std::pair<int, int>> res = twos_difference({4, 1, 2, 3});
+    //for(auto item : res)
+    //    std::cout << item.first << "  " << item.second << std::endl;
     
-    // зд 4  через регекс лучше
-    //std::vector<std::string> input = { "Max", "John", "Mark" }; 
-    //std::cout << likes(input);
+    // зд 4  предложение не имеет повторяющихся букв
+    std::cout << is_isogram("moose");
 
-    // зд 5
-    //std::cout << persistence(999);
-
-    // зд 6
-    //std::vector<long long int> vec = {7,-3,-10};
-    //vec = wheatFromChaff(vec);
-    //for(auto item : vec)
-    //    std::cout << item << std::endl;
-
-    // зд 7
-    //std::cout << rowSumOddNumbers(4);
 
 
 }
@@ -92,5 +77,42 @@ int find_even_index (const std::vector <int> numbers)
     }
     
     // можно через аккумулейт, и тем самым убрать циклы внутри циклов
+    return result;
+}
+
+std::vector<std::pair<int, int>> twos_difference(const std::vector<int> &vec) 
+{
+    std::vector<int> vector = vec;
+    std::vector<std::pair<int, int>> result;
+    std::sort(vector.begin(), vector.end());
+
+    for (size_t i = 0; i < vector.size(); i++)
+    {
+        int temp = vector[i] + 2;
+        if(std::find(std::begin(vector), std::end(vector), temp) != std::end(vector))
+        {
+            auto pos = std::find(std::begin(vector), std::end(vector), temp);
+            int normPos = pos - vector.begin();
+            result.push_back({vector[i],vector[normPos]});
+        }
+    }
+    
+    return result;
+}
+
+bool is_isogram(std::string str)
+{
+    bool result = true;
+    bool mass[35] = {};
+
+    for (size_t i = 0; i < str.length(); i++)
+    {
+        int index = std::tolower(str[i]) - 'a';
+        if(mass[index] == false)
+            mass[index] = true;
+        else
+            result = false;
+    }
+    
     return result;
 }

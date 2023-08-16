@@ -9,8 +9,6 @@
 #include <sstream>
 #include <regex>
 
-
-
 void zaMainF()
 {
     // зд 1  переворот подстрок в строке
@@ -25,9 +23,15 @@ void zaMainF()
     //    std::cout << item.first << "  " << item.second << std::endl;
     
     // зд 4  предложение не имеет повторяющихся букв
-    std::cout << is_isogram("moose");
+    //std::cout << is_isogram("moose");
 
+    // зд 5  кот прыгает +1 или +3 шага, сколько минимально нужно прыжков
+    //std::cout << Cats(2,5);
 
+    // зд 6  Одинокие девушки и парни на острове. девушка выбирает только по внешности +, сколько парней осталось
+    std::list<int> output = guysAloneFromGroup(std::list<int>({2, 4, 5, 6, 3, 4, 3, 5, 5, 1, 3, 3, 4, 4, 4, 4, 4, 5, 6}), std::list<int>({8, 5, 5, 3, 5, 5, 4}));
+    for(auto i : output)
+        std::cout << i << std::endl;
 
 }
 
@@ -115,4 +119,85 @@ bool is_isogram(std::string str)
     }
     
     return result;
+}
+
+unsigned int Cats(unsigned int start, unsigned int finish) 
+{
+    int temp = finish - start;
+    int jump = 0;
+
+    if(temp > 2)
+    {
+        jump += temp / 3;
+        temp = temp % 3;
+        jump += temp;
+    }
+    else
+    {
+        jump = temp;
+    }
+
+    return jump;
+}
+
+
+
+
+std::list<int> guysAloneFromGroup(const std::list<int> & men, const std::list<int> & women)
+{
+    if (women.size() == 0)
+        return men;
+    if (men.size() == 0)
+        return men;
+
+    std::vector<int> vMan (men.begin(), men.end());
+    std::vector<int> vWoman{ std::begin(women), std::end(women) };
+
+    std::sort(vMan.begin(), vMan.end(), std::greater<>());
+    std::sort(vWoman.begin(), vWoman.end(), std::greater<>());
+
+    int MenDating[men.size()]{};
+    int WomanDating[women.size()]{};
+
+    for (size_t i = 0; i < men.size(); i++)
+    {
+        int menValue = vMan[i];
+        if( (menValue < 8 && MenDating[i] == 0) || (menValue > 7 && MenDating[i] == 0) )
+        for (size_t j = 0; j < women.size(); j++)
+        {
+            int womenValue = vWoman[j];
+            
+            if(menValue > 7 && MenDating[i] > 1)
+            break;
+            if(menValue < 8 && MenDating[i] > 0)
+            break;
+          
+            if(womenValue <= menValue - 2 || (menValue >= 7 && womenValue <= menValue))
+            if(WomanDating[j] == 0)
+            {
+                MenDating[i] += 1;
+                WomanDating[j] += 1;
+
+                if(vMan[i + 1] == menValue && menValue > 7)
+                break;
+
+            }
+        }
+            
+    }
+
+    // получение результата
+    std::vector<int> guysTemp;
+    for (size_t i = 0; i < men.size(); i++)
+    {
+        if(MenDating[i] == 0)
+            guysTemp.push_back(vMan[i]);
+    } 
+
+
+    std::sort(guysTemp.begin(), guysTemp.end());
+    std::list<int> guysLone (guysTemp.begin(), guysTemp.end());
+    
+    return guysLone;
+    // 1, 2, 2, 3, 4, 4, 4, 4, 5, 6, 7, 7, 7
 }

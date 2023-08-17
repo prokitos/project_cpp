@@ -27,6 +27,8 @@ void consoleClear()
 }
 
 
+
+
 int main()
 {
     consoleClear();

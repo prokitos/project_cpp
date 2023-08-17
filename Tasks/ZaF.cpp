@@ -29,8 +29,14 @@ void zaMainF()
     //std::cout << Cats(2,5);
 
     // зд 6  Одинокие девушки и парни на острове. девушка выбирает только по внешности +, сколько парней осталось
-    std::list<int> output = guysAloneFromGroup(std::list<int>({2, 4, 5, 6, 3, 4, 3, 5, 5, 1, 3, 3, 4, 4, 4, 4, 4, 5, 6}), std::list<int>({8, 5, 5, 3, 5, 5, 4}));
-    for(auto i : output)
+    //std::list<int> output = guysAloneFromGroup(std::list<int>({9, 5, 9, 2, 2, 1, 9, 10, 8, 9, 1, 7, 6, 5, 6, 2, 9}), std::list<int>({4, 1, 8, 9, 8, 3, 9, 8, 3, 7, 9}));
+    //for(auto i : output)
+    //    std::cout << i << std::endl;
+
+    // Зд 7 Трибоначи. как фибоначи только из 3. нужно вернуть весь массив цифр, начальные 3 числа могут меняться.
+    std::vector<int> signature = { 1, 1, 1 };
+    std::vector<int> result = tribonacci(signature,30);
+    for(auto i : result)
         std::cout << i << std::endl;
 
 }
@@ -159,10 +165,16 @@ std::list<int> guysAloneFromGroup(const std::list<int> & men, const std::list<in
     int MenDating[men.size()]{};
     int WomanDating[women.size()]{};
 
+    bool nulator = false;
     for (size_t i = 0; i < men.size(); i++)
     {
+        if(nulator == true)
+        {
+            i = 0;
+            nulator = false;
+        }
         int menValue = vMan[i];
-        if( (menValue < 8 && MenDating[i] == 0) || (menValue > 7 && MenDating[i] == 0) )
+        if( (menValue < 8 && MenDating[i] == 0) || (menValue > 7 && MenDating[i] < 2) )
         for (size_t j = 0; j < women.size(); j++)
         {
             int womenValue = vWoman[j];
@@ -172,11 +184,17 @@ std::list<int> guysAloneFromGroup(const std::list<int> & men, const std::list<in
             if(menValue < 8 && MenDating[i] > 0)
             break;
           
-            if(womenValue <= menValue - 2 || (menValue >= 7 && womenValue <= menValue))
+            if(womenValue <= menValue - 2 || (menValue > 7 && womenValue <= menValue))
             if(WomanDating[j] == 0)
             {
                 MenDating[i] += 1;
                 WomanDating[j] += 1;
+
+                if(vMan[i + 1] < menValue)
+                {
+                    nulator = true;
+                    break;
+                }
 
                 if(vMan[i + 1] == menValue && menValue > 7)
                 break;
@@ -199,5 +217,37 @@ std::list<int> guysAloneFromGroup(const std::list<int> & men, const std::list<in
     std::list<int> guysLone (guysTemp.begin(), guysTemp.end());
     
     return guysLone;
-    // 1, 2, 2, 3, 4, 4, 4, 4, 5, 6, 7, 7, 7
+    // 8, 8, 8, 8, 8
+}
+
+
+std::vector<int> tribonachiNormal(std::vector<int> output, int max, int cur)
+{
+    if(max == cur)
+    {
+        return output;
+    }
+    else
+    {
+        int res = output[cur] + output[cur + 1] + output[cur + 2];
+        output.push_back(res);
+        return tribonachiNormal(output, max, cur + 1);
+    }
+}
+
+
+std::vector<int> tribonacci(std::vector<int> signature, int n)
+{
+    if(n == 3)
+    return signature;
+
+    if(n < 3)
+    {
+        signature.resize(n);
+        return signature;
+    }
+
+    std::vector<int> result = tribonachiNormal(signature, n - 3, 0);
+    return result;
+    
 }

@@ -34,10 +34,13 @@ void zaMainF()
     //    std::cout << i << std::endl;
 
     // Зд 7 Трибоначи. как фибоначи только из 3. нужно вернуть весь массив цифр, начальные 3 числа могут меняться.
-    std::vector<int> signature = { 1, 1, 1 };
-    std::vector<int> result = tribonacci(signature,30);
-    for(auto i : result)
-        std::cout << i << std::endl;
+    //std::vector<int> signature = { 1, 1, 1 };
+    //std::vector<int> result = tribonacci(signature,30);
+    //for(auto i : result)
+    //    std::cout << i << std::endl;
+
+    // Зд 8 свдиг гласных в тексте
+    std::cout << vowelShift("This is a test!", 3);
 
 }
 
@@ -249,5 +252,51 @@ std::vector<int> tribonacci(std::vector<int> signature, int n)
 
     std::vector<int> result = tribonachiNormal(signature, n - 3, 0);
     return result;
+    
+}
+
+std::string vowelShift(std::string text, int n)
+{
+    if(n == 0)
+    return text;
+
+    char mass[] = {'a','e','i','o','u','A','E','I','O','U'};
+    std::string vowels = {};
+
+    // набрать в массив всех гласных из текста
+    for (size_t i = 0; i < text.length(); i++)
+    {
+        for (size_t j = 0; j < std::size(mass); j++)
+        {
+            if(text[i] == mass[j])
+            vowels += text[i];
+        }
+    }
+
+    // поменять местами гласные в массиве
+    std::string newVowels = vowels;
+    for (size_t i = 0; i < vowels.length(); i++)
+    {
+        int newPos = (i + n) % vowels.length();
+        newVowels[newPos] = vowels[i];
+    }   
+    
+    // вставка гласных обратно в текст
+    int iterator = 0;
+    for (size_t i = 0; i < text.length(); i++)
+    {
+        for (size_t j = 0; j < std::size(mass); j++)
+        {
+            if(text[i] == mass[j])
+            {
+                text[i] = newVowels[iterator];
+                iterator ++;
+                break;
+            }
+            
+        }
+    }
+
+    return text;
     
 }

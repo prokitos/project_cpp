@@ -8,6 +8,7 @@
 #include <iterator>    
 #include <sstream>
 #include <regex>
+#include <numeric>
 
 void zaMainF()
 {
@@ -40,7 +41,10 @@ void zaMainF()
     //    std::cout << i << std::endl;
 
     // Зд 8 свдиг гласных в тексте
-    std::cout << vowelShift("This is a test!", 3);
+    //std::cout << vowelShift("This is a test!", 3);
+
+    // Зд 9 очереди
+    std::cout << queueTime(std::vector<int>{1,2,3,3},1);
 
 }
 
@@ -299,4 +303,28 @@ std::string vowelShift(std::string text, int n)
 
     return text;
     
+}
+
+long queueTime(std::vector<int> customers,int n)
+{
+    if(customers.size() < 1)
+        return 0;
+    
+    auto iter = std::max_element(customers.begin(), customers.end());
+    int max = *iter;
+
+    if(n >= customers.size())
+        return max;
+
+    std::vector<int> mass(n, 0);
+    
+    for (size_t i = 0; i < customers.size(); i++)
+    {
+        *std::min_element(mass.begin(), mass.end()) += customers[i];
+    }
+
+    iter = std::max_element(mass.begin(), mass.end());
+    max = *iter;
+
+    return max;
 }

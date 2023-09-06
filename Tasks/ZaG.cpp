@@ -20,7 +20,14 @@ void zaMainG()
     //    std::sprintf(result, "%02X", num)
 
     // зд 2  суммирование цифр, пока не станет одна цифра
-    std::cout << digital_root(942);
+    //std::cout << digital_root(942);
+
+    // зд 3  польская нотация?  (3+6) * (1*2*3)
+    std::string text = "(*(+3 6)(*1 2 3))";
+    PolNotationClass test;
+    test.solveAll(text);
+
+
 
 };
 
@@ -108,4 +115,81 @@ int digital_root(int n)
     }
 
     return result;
+};
+
+
+
+
+// вычисление всех скобок
+void PolNotationClass::solveAll(std::string stroka)
+{   
+
+std::string result {};
+
+// позиции первой и второй скобки
+int fBracket = -1;
+int sBracket = -1;
+
+// если в строке есть скобки то перебираем дальше
+while (sBracket == -1)
+{
+    sBracket = 0;
+    // перебор всей строки
+    for (size_t i = 0; i < stroka.length(); i++)
+    {
+
+        // нахождение позиции первой и второй скобки (внутренние)
+        if(stroka[i] == '(')
+            fBracket = i;
+        if(stroka[i] == ')')
+        {
+            sBracket = i;
+            
+            // получаем строку внутренней скобки
+            std::string temp = stroka.substr(fBracket,sBracket - fBracket + 1);
+            result = solveCurrent(temp);
+
+            // замена строки
+            stroka.replace(fBracket,sBracket - fBracket + 1, result);
+
+            sBracket = -1;
+            break;
+        }
+
+    }
+
+}
+
+std::cout << stroka;
+
+};
+
+
+// вычисление одной скобки.
+std::string PolNotationClass::solveCurrent(std::string stroka)
+{
+    // получение чисел и знака
+    std::string newString {};
+    char znak = stroka[1];
+    newString = stroka.substr(2, stroka.length() - 3);
+    
+    // отдельно числа в вектор
+    std::vector<std::string> chisla;  
+    std::istringstream iss(newString);
+    std::copy(std::istream_iterator<std::string>(iss), std::istream_iterator<std::string>(), std::back_inserter(chisla));
+
+    // перевод в инт и вычисление
+    int result = std::stoi(chisla[0]);
+
+    for (size_t i = 1; i < chisla.size(); i++)
+    {
+        if(znak == '+')
+            result = result + std::stoi(chisla[i]);
+        if(znak == '-')
+            result = result - std::stoi(chisla[i]);
+        if(znak == '*')
+            result = result * std::stoi(chisla[i]);
+    }
+    
+    return " " + std::to_string(result) + " ";
 };

@@ -11,3 +11,12 @@ std::string numberRgb(int num);
 int digitSum(int chislo);
 int digital_root(int n);
 
+class PolNotationClass
+{
+public:
+    PolNotationClass(){};
+    void solveAll(std::string stroka);
+
+private:
+    std::string solveCurrent(std::string stroka);
+};

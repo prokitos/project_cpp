@@ -23,13 +23,52 @@ void zaMainG()
     //std::cout << digital_root(942);
 
     // зд 3  польская нотация?  (3+6) * (1*2*3)
-    std::string text = "(*(+3 6)(*1 2 3))";
-    PolNotationClass test;
-    test.solveAll(text);
+    // std::string text = "(*(+3 6)(*1 2 3))";
+    // PolNotationClass test;
+    // test.solveAll(text);
 
+    // Зд 4 вернет правильный ли порядок скобок в строке.
+    std::cout << valid_braces("([{}])");
 
 
 };
+
+
+bool valid_braces(std::string braces)
+{
+    bool result = true;
+
+    int len = 3;
+    char massOpen[len] = {'(','{','['};
+    char massClos[len] = {')','}',']'};
+
+    // перебо по всем символам, и сравнение со скобками
+    for (size_t i = 1; i < braces.length(); i++)
+    {
+        for (size_t j = 0; j < 3; j++)
+        {   
+            //если две скобки рядом, то убрать их, и потом начать цикл заново
+            if(braces[i - 1] == massOpen[j] && braces[i] == massClos[j])
+            {
+                braces.replace(i - 1,2,"");
+                i = 0;
+                break;
+            }
+        }
+        
+
+        
+    }
+    
+    // если в итоговой строке остались скобки, то фолс
+    if(braces.length() > 0)
+        result = false;
+
+    return result;
+};
+
+
+
 
 // превращение из 10 системы в 16
 std::string rgb(int r, int g, int b)

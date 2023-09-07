@@ -20,3 +20,5 @@ public:
 private:
     std::string solveCurrent(std::string stroka);
 };
+
+bool valid_braces(std::string braces);

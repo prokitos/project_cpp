@@ -22,3 +22,4 @@ private:
 };
 
 bool valid_braces(std::string braces);
+std::string correct_it(std::string str);

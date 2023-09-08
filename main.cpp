@@ -17,6 +17,7 @@
 using std::cout;
 using std::string;
 
+
 void consoleClear()
 {
 

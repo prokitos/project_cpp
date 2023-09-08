@@ -11,6 +11,12 @@
 #include <numeric>
 
 
+#define isParenthesized() false
+
+bool (isParenthesized)() {
+  return true;
+}
+
 void zaMainG()
 {
     // зд 1  перевод 0-255 в 00-FF
@@ -28,10 +34,83 @@ void zaMainG()
     // test.solveAll(text);
 
     // Зд 4 вернет правильный ли порядок скобок в строке.
-    std::cout << valid_braces("([{}])");
+    //std::cout << valid_braces("([{}])");
 
+    // зд 5 вернуть 0 если в функция вызывается из скобок.
+    // компилятор игнорит если в скобках?
+    //bool first =  isParenthesized();
+    //bool second = (isParenthesized)();
+    //std::cout << first << "   " << second;
 
+    // зд 6 убрать множественные пробелы, сделать большие буквы и добавить точки.
+    //std::string stroka = "David holds a kite.  the salaryman kept the wallet.you   sell a chair.";
+    //std::cout << correct_it(stroka);
 };
+
+std::string correct_it(std::string str) 
+{
+    std::string newString {};
+
+    if(str[0] != ' ')
+    newString += str[0];
+
+    bool isBig = false;  // для toUpper
+    bool isUpperExist = false; // если уже была большая буква
+    for (size_t i = 1; i < str.length(); i++)
+    {
+        // добавить точки перед заглавными буквам
+        if(str[i] == std::toupper(str[i]) && (str[i] - 'A' > 0))
+        {
+            // в первый раз при заходе проигнорится, значит уже первая буква была.
+            if(isUpperExist == true)
+                newString += ". ";
+            isUpperExist = true;
+        }
+
+        // добавить заглавные буквы после точек. потом если найдена любая буква то она большая.
+        if(isBig == true && (str[i] - 'A' > 0 || str[i] - 'a' > 0))
+        {
+            if(str[i - 1] != ' ')
+                 newString += ' ';
+
+            newString += std::toupper(str[i]);
+            isBig = false; 
+            continue;
+        }
+        // если данный символ точка, то переключатель на тру, и следующая буква большая.
+        if(str[i] == '.')
+        {
+            isBig = true;
+        }
+
+        // убрать возможность добавлять пустоту первым символом
+        if(str[i] == ' ' && newString == "")
+            continue;
+
+        if(newString == "" && (str[i] - 'A' > 0 || str[i] - 'a' > 0))
+        {
+            newString += std::toupper(str[i]);
+            continue;
+        }
+
+        newString += str[i];
+    }
+
+    // убираем множественные пробелы, и пробелы перед точками
+    std::regex vowels(" \\.");
+    newString = std::regex_replace(newString, vowels, ".");
+    vowels = (" +");
+    newString = std::regex_replace(newString, vowels, " ");
+    vowels = ("\\.+");
+    newString = std::regex_replace(newString, vowels, ".");
+    vowels = (" $");
+    newString = std::regex_replace(newString, vowels, "");
+
+    if(newString[newString.length() - 1] != '.')
+    newString += '.';
+
+    return newString;
+}
 
 
 bool valid_braces(std::string braces)

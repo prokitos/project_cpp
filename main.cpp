@@ -13,6 +13,7 @@
 #include "Tasks/zaE.h"
 #include "Tasks/ZaF.h"
 #include "Tasks/ZaG.h"
+#include "Tasks/ZaH.h"
 
 using std::cout;
 using std::string;

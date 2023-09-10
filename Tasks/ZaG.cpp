@@ -43,11 +43,37 @@ void zaMainG()
     //std::cout << first << "   " << second;
 
     // зд 6 убрать множественные пробелы, сделать большие буквы и добавить точки.
-    std::string stroka = "David holds a kite.  the salaryman kept the wallet.you   sell a chair You want end this.  ";
-    std::cout << correct_it(stroka) << "!!";    // проверка на пробелы в конце строки
+    //std::string stroka = "David holds a kite.  the salaryman kept the wallet.you   sell a chair You want end this.  ";
+    //std::cout << correct_it(stroka) << "!!";    // проверка на пробелы в конце строки
+
+    // зд 7 повторение числа в массиве только N раз.
+
+    std::vector<int> temp;
+    temp = deleteNth({1,1,3,3,7,2,2,2,2}, 3);
+    for(auto i : temp)
+        std::cout << i << " ";
+
 
 
 };
+
+
+std::vector<int> deleteNth(std::vector<int> arr, int n)
+{
+    std::map<char,int> slovar = {};
+    std::vector<int> newVec = {}; // через erase долго удаляется, поэтому новым вектором.
+
+    for (auto i : arr)
+    {
+        if(slovar[i] < n)
+        {
+            slovar[i] ++;
+            newVec.push_back(i);
+        }
+    }
+
+    return newVec;
+}
 
 std::string correct_it(std::string str) 
 {

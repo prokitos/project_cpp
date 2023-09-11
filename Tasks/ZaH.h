@@ -5,7 +5,7 @@
 
 void zaMainH();
 
-//https://www.codewars.com/kata/59f6a855bee845d3cd000046/cpp
+//
 struct Milk 
 {
   float fat;
@@ -27,7 +27,7 @@ class CoffeeBuilder
 {
   public:
     CoffeeBuilder() {}
-  
+
     CoffeeBuilder set_black_coffee() 
     {
       _coffee.sort = "Black";

@@ -47,15 +47,46 @@ void zaMainG()
     //std::cout << correct_it(stroka) << "!!";    // проверка на пробелы в конце строки
 
     // зд 7 повторение числа в массиве только N раз.
+    // std::vector<int> temp;
+    // temp = deleteNth({1,1,3,3,7,2,2,2,2}, 3);
+    // for(auto i : temp)
+    //     std::cout << i << " ";
 
-    std::vector<int> temp;
-    temp = deleteNth({1,1,3,3,7,2,2,2,2}, 3);
-    for(auto i : temp)
+    // зд 8 получить только по одной букве/цифре из стоящих рядом одинаковых букв/цифр. вводятся строки и вектора.
+    //std::vector<int> input = {1,22,3,3};
+    //std::vector<int> vec = uniqueInOrder(input);
+    std::vector<char> vec = uniqueInOrder("AAAABBBCCDAABBB");
+    for(auto i : vec)
         std::cout << i << " ";
 
 
-
 };
+
+
+// для строк
+std::vector<char> uniqueInOrder(const std::string& iterable)
+{
+    std::vector<char> vec {};
+
+    for(auto i : iterable)
+        if(vec.size() == 0 || vec.back() != i)
+            vec.push_back(i);
+
+    return vec;
+}
+
+// для векторов
+template<typename Type>
+std::vector<Type> uniqueInOrder(const std::vector<Type>& iterable)
+{
+    std::vector<Type> vec {};
+
+    for(auto i : iterable)
+        if(vec.size() == 0 || vec.back() != i)
+            vec.push_back(i);
+
+    return vec;
+}
 
 
 std::vector<int> deleteNth(std::vector<int> arr, int n)

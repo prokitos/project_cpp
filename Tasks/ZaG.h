@@ -24,3 +24,7 @@ private:
 bool valid_braces(std::string braces);
 std::string correct_it(std::string str);
 std::vector<int> deleteNth(std::vector<int> arr, int n);
+
+template<typename Type>
+std::vector<Type> uniqueInOrder(const std::vector<Type>& iterable);
+std::vector<char> uniqueInOrder(const std::string& iterable);

@@ -41,8 +41,8 @@ int main()
     //zaMainD();
     //zaMainE();
     //zaMainF();
-    zaMainG();
-    //zaMainH();
+    //zaMainG();
+    zaMainH();
 
     return 0;
 }

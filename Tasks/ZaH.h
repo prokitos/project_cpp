@@ -5,61 +5,91 @@
 
 void zaMainH();
 
-//
-struct Milk 
+std::vector<int> fibonachiFast(int max);
+
+// класс для создания коффе
+struct Milk
 {
   float fat;
 };
-
-struct Sugar 
+struct Sugar
 {
   std::string sort;
 };
 
-struct Coffee 
+class Coffe
 {
+public:
+  Coffe(){};
+  void showCoffe()
+  {
+    // вывод типа кофе
+    std::cout << "Сорт кофе = " << sort << std::endl;
+    
+    // вывод жирности молока
+    std::cout << " Молоко = ";
+    for(auto i: milk)
+      std::cout << i.fat << " ";
+    std::cout << std::endl;
+
+    // вывод сортов сахара
+    std::cout << " Вид сахара = ";
+    for(auto i: sugar)
+      std::cout << i.sort << " ";
+    std::cout << std::endl;
+
+  };
+
   std::string sort;
   std::vector<Milk> milk;
   std::vector<Sugar> sugar;
 };
 
-class CoffeeBuilder 
+class CoffeeBuilder
 {
-  public:
-    CoffeeBuilder() {}
+public:
+  CoffeeBuilder() {};
 
-    CoffeeBuilder set_black_coffee() 
-    {
-      _coffee.sort = "Black";
-      return *this;
-    }
-    CoffeeBuilder set_cubano_coffee() 
-    {
-      _coffee.sort = "Cubano";
-      with_sugar("Brown");
-      return *this;
-    }
-    CoffeeBuilder set_antoccino_coffee() 
-    {
-      _coffee.sort = "Americano";
-      with_milk(0.5);
-      return *this;
-    }
-    CoffeeBuilder with_milk(float fat) 
-    {
-      _coffee.milk.push_back({fat});
-      return *this;
-    }
-    CoffeeBuilder with_sugar(const std::string &sort) 
-    {
-      _coffee.sugar.push_back({sort});
-      return *this;
-    }
-  
-    Coffee build() 
-    {
-      return _coffee;
-    }
-  private:
-    Coffee _coffee;
+  // у всех функций тип класса, чтобы они возвращали тот же объект, и можно было дальше обращаться к нему в одну строку.
+
+  // добавление видов кофе
+  CoffeeBuilder set_black_coffee() 
+  {
+    _coffe.sort = "Черный";
+    return *this;
+  }
+  CoffeeBuilder set_cubano_coffee() 
+  {
+    _coffe.sort = "Кубанский";
+    with_sugar("Серый");
+    return *this;
+  }
+  CoffeeBuilder set_antoccino_coffee() 
+  {
+    _coffe.sort = "Американо";
+    with_milk(0.5);
+    return *this;
+  }
+
+  // добавление молока и сахара
+  CoffeeBuilder with_milk(float fat) 
+  {
+    _coffe.milk.push_back({fat});
+    return *this;
+  }
+  CoffeeBuilder with_sugar(const std::string &sort) 
+  {
+    _coffe.sugar.push_back({sort});
+    return *this;
+  }
+
+  // возвращает созданный объект кофе, который записывается в экземпляр.
+  Coffe build() 
+  {
+    return _coffe;
+  }
+
+private:
+  Coffe _coffe; // объект кофе, который хранит сахар тип и тд
 };
+

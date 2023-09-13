@@ -16,8 +16,8 @@ void zaMainH()
 {
       
       // функция создания кофе
-      Coffe cofe = CoffeeBuilder().set_cubano_coffee().with_sugar("Обычный").with_milk(3.5).build();
-      cofe.showCoffe();
+      //Coffe cofe = CoffeeBuilder().set_cubano_coffee().with_sugar("Обычный").with_milk(3.5).build();
+      //cofe.showCoffe();
 
       // быстрая функция фибоначи
       //std::vector<int> vec = fibonachiFast(40);
@@ -25,7 +25,34 @@ void zaMainH()
       //      std::cout << i << " ";
 
 
+      // вернуть строки из 1 вектора, если они являются частью строк второго вектора.
+      std::vector<std::string> arr1 = {"arp", "tarp", "mice", "bull"};
+      std::vector<std::string> arr2 = {"lively", "alive", "harp", "sharp", "armstrong", "bully"};
+      std::vector<std::string> res = inArray(arr1,arr2);
+      for(auto i : res)
+            std::cout << i << " ";
+
 };
+
+std::vector<std::string> inArray(std::vector<std::string> &array1, std::vector<std::string> &array2)
+{
+      std::vector<std::string> res {};
+
+      for (size_t i = 0; i < array1.size(); i++)
+      {
+            for (size_t j = 0; j < array2.size(); j++)
+            {
+                  if ( array2[j].find(array1[i]) != std::string::npos )
+                  {
+                        res.push_back(array1[i]);
+                        break;
+                  }
+            }
+            
+      }
+      
+      return res;
+}
 
 std::vector<int> fibonachiFast(int max)
 {

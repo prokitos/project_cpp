@@ -7,6 +7,8 @@ void zaMainH();
 
 std::vector<int> fibonachiFast(int max);
 
+std::vector<std::string> inArray(std::vector<std::string> &array1, std::vector<std::string> &array2);
+
 // класс для создания коффе
 struct Milk
 {

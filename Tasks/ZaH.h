@@ -5,6 +5,8 @@
 
 void zaMainH();
 
+char findMissingLetter(const std::vector<char>& chars);
+
 std::vector<int> fibonachiFast(int max);
 
 std::vector<std::string> inArray(std::vector<std::string> &array1, std::vector<std::string> &array2);

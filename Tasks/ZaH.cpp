@@ -26,13 +26,59 @@ void zaMainH()
 
 
       // вернуть строки из 1 вектора, если они являются частью строк второго вектора.
-      std::vector<std::string> arr1 = {"arp", "tarp", "mice", "bull"};
-      std::vector<std::string> arr2 = {"lively", "alive", "harp", "sharp", "armstrong", "bully"};
-      std::vector<std::string> res = inArray(arr1,arr2);
-      for(auto i : res)
-            std::cout << i << " ";
+      //std::vector<std::string> arr1 = {"arp", "tarp", "mice", "bull"};
+      //std::vector<std::string> arr2 = {"lively", "alive", "harp", "sharp", "armstrong", "bully"};
+      //std::vector<std::string> res = inArray(arr1,arr2);
+      //for(auto i : res)
+      //      std::cout << i << " ";
+
+      // найти пропущенную букву в массиве. O(n)
+      char temp = findMissingLetter({'l', 'm', 'n', 'p', 'q', 'r', 's', 't'});
+      std::cout << temp;
 
 };
+
+char findMissingLetter(const std::vector<char>& chars)
+{
+      char mass[27] = {'a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z'};
+      char output {};
+
+      int j = 0;
+      bool matchedCheck = false;
+      bool isUpperCase = false;
+
+      // перебор по массиву всех букв алфавита
+      for (auto i : mass)
+      {     
+            // если буквы начали совпадать
+            int lower = std::tolower(chars[j]);
+            if(i == lower)
+            {
+                  matchedCheck = true;
+                  
+                  // большие буквы
+                  if(chars[j] < 97)
+                        isUpperCase = true;
+
+                  j++;
+            }
+
+            // если буквы уже совпали и перестали совпадать
+            if(matchedCheck == true && i != lower)
+            {
+                  output = i;
+                  break;
+            }
+
+      }
+
+
+      // если был верхний регист
+      if(isUpperCase == true)
+            output = std::toupper(output);
+      
+      return output;
+}
 
 std::vector<std::string> inArray(std::vector<std::string> &array1, std::vector<std::string> &array2)
 {

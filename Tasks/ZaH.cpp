@@ -33,10 +33,46 @@ void zaMainH()
       //      std::cout << i << " ";
 
       // найти пропущенную букву в массиве. O(n)
-      char temp = findMissingLetter({'l', 'm', 'n', 'p', 'q', 'r', 's', 't'});
-      std::cout << temp;
+      //char temp = findMissingLetter({'l', 'm', 'n', 'p', 'q', 'r', 's', 't'});
+      //std::cout << temp;
+
+      // 12 часовой вид в 24 часовой.
+      std::cout << to24HourTime( 12, 0, "am");
 
 };
+
+std::string to24HourTime(int hour, int minute, const std::string& period) 
+{
+      std::string out {};
+
+      if(hour == 12)
+            hour -= 12;
+
+      if(period == "pm")
+      {
+            hour += 12;
+      }
+
+      if(hour > 9)
+      {
+            out += std::to_string(hour);
+      }
+      else
+      {
+            out += "0" + std::to_string(hour);
+      }
+
+      if(minute > 9)
+      {
+            out += std::to_string(minute);
+      }
+      else
+      {
+            out += "0" + std::to_string(minute);
+      }
+
+      return out;
+}
 
 char findMissingLetter(const std::vector<char>& chars)
 {

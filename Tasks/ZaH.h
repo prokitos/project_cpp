@@ -11,6 +11,8 @@ std::vector<int> fibonachiFast(int max);
 
 std::vector<std::string> inArray(std::vector<std::string> &array1, std::vector<std::string> &array2);
 
+std::string to24HourTime(int hour, int minute, const std::string& period);
+
 // класс для создания коффе
 struct Milk
 {

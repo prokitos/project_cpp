@@ -99,3 +99,53 @@ private:
   Coffe _coffe; // объект кофе, который хранит сахар тип и тд
 };
 
+
+class InstCopy
+{
+public:
+  InstCopy(int x, std::string name)
+  {
+    this->name = name;  
+    money = new int;
+    *money = x;
+  }
+  void change()
+  {
+    *money -= 50;
+  }
+  void show()
+  {
+    std::cout << name << " " << *money << std::endl;
+  }
+protected:
+  int* money {};
+  std::string name {};
+};
+
+class InstDeepCopy
+{
+public:
+  InstDeepCopy(int x, std::string name)
+  {
+    this->name = name;  
+    money = new int;
+    *money = x;
+  }
+  InstDeepCopy(InstDeepCopy& sample)
+  {
+    name = sample.name;
+    money = new int;
+    *money = *sample.money;
+  }
+  void change()
+  {
+    *money -= 50;
+  }
+  void show()
+  {
+    std::cout << name << " " << *money << std::endl;
+  }
+protected:
+  int* money {};
+  std::string name {};
+};

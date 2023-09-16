@@ -37,9 +37,28 @@ void zaMainH()
       //std::cout << temp;
 
       // 12 часовой вид в 24 часовой.
-      std::cout << to24HourTime( 12, 0, "am");
+      //std::cout << to24HourTime( 12, 0, "am");
+
+      // глубокое и поверхностное копирование
+            // поверхностное. указатели в классе просто копируют адрес старого указателя
+            InstCopy inst1 = InstCopy(100,"TEST");    
+            inst1.show();
+            InstCopy inst2 = inst1;
+            inst1.change();   // меняется значение у указателя в первом классе.
+            inst2.show();     // значение указателя второго класса сменилось тоже, т.к. они указывают на оду область.
+
+            // глубокое. в указателях класса выделяется новая память.
+            InstDeepCopy inst3 = InstDeepCopy(100,"lol");
+            inst3.show();
+            InstDeepCopy inst4 = inst3;
+            inst3.change();   // меняется значение указателя в первом классе.
+            inst4.show();     // указателю во втором классе пофигу.
+   
+
 
 };
+
+
 
 std::string to24HourTime(int hour, int minute, const std::string& period) 
 {

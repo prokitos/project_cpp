@@ -5,6 +5,8 @@
 
 void zaMainH();
 
+float find_uniq(const std::vector<float> &v);
+
 char findMissingLetter(const std::vector<char>& chars);
 
 std::vector<int> fibonachiFast(int max);

@@ -41,24 +41,45 @@ void zaMainH()
 
       // глубокое и поверхностное копирование
             // поверхностное. указатели в классе просто копируют адрес старого указателя
-            InstCopy inst1 = InstCopy(100,"TEST");    
-            inst1.show();
-            InstCopy inst2 = inst1;
-            inst1.change();   // меняется значение у указателя в первом классе.
-            inst2.show();     // значение указателя второго класса сменилось тоже, т.к. они указывают на оду область.
+            //InstCopy inst1 = InstCopy(100,"TEST");    
+            //inst1.show();
+            //InstCopy inst2 = inst1;
+            //inst1.change();   // меняется значение у указателя в первом классе.
+            //inst2.show();     // значение указателя второго класса сменилось тоже, т.к. они указывают на оду область.
 
             // глубокое. в указателях класса выделяется новая память.
-            InstDeepCopy inst3 = InstDeepCopy(100,"lol");
-            inst3.show();
-            InstDeepCopy inst4 = inst3;
-            inst3.change();   // меняется значение указателя в первом классе.
-            inst4.show();     // указателю во втором классе пофигу.
+            //InstDeepCopy inst3 = InstDeepCopy(100,"lol");
+            //inst3.show();
+            //InstDeepCopy inst4 = inst3;
+            //inst3.change();   // меняется значение указателя в первом классе.
+            //inst4.show();     // указателю во втором классе пофигу.
    
+      // найти уникальное число в векторе
+      std::cout << find_uniq(std::vector<float>{1, 1, 1, 2, 1, 1});
 
 
 };
 
+float find_uniq(const std::vector<float> &v)
+{
+      float res = v[0]; 
 
+      // если первое число отличается от двух следующих, то выкидываем его
+      if(res != v[1] && res != v[2])
+            return res;
+
+      // иначе первое число как и все, значит отличные от него выкидываем.
+      for (size_t i = 1; i < v.size(); i++)
+      {
+            if(res != v[i])
+            {
+                  res = v[i];
+                  break;
+            }
+      }
+      
+      return res;
+};
 
 std::string to24HourTime(int hour, int minute, const std::string& period) 
 {

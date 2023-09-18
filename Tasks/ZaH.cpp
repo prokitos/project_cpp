@@ -55,10 +55,67 @@ void zaMainH()
             //inst4.show();     // указателю во втором классе пофигу.
    
       // найти уникальное число в векторе
-      std::cout << find_uniq(std::vector<float>{1, 1, 1, 2, 1, 1});
+      //std::cout << find_uniq(std::vector<float>{1, 1, 1, 2, 1, 1});
+      
 
+      // получить 1-2 средних символа в строке
+      //std::cout << get_middle("test");
+
+      // число нарцистичное? кадая цифра возведена в степень, равная количеству цифр в числе.
+      std::cout << narcissistic(371);
 
 };
+
+// возведение одеой цифры в степень
+int narcisSum(int x, int y)
+{
+      return std::pow(x,y);
+};
+
+bool narcissistic( int value )
+{
+      bool res = false;
+      int summary {};
+
+      std::string tempConvert = std::to_string(value);
+      int lenNumber = tempConvert.length();
+
+      // перебор каждого символа (цифры)
+      for(auto i : tempConvert)
+            summary += narcisSum(i - '0', lenNumber);
+
+      if(summary == value)
+            res = true;
+
+      return res;
+};
+
+std::string get_middle(std::string input)
+{
+      std::string result {};
+
+      if(input.length() < 3)
+      {
+            return input;
+      }
+
+      if(input.length() % 2)
+      {
+
+            int temp = input.length() / 2;
+            result += input[temp];
+      }
+      else
+      {
+            int temp = input.length() / 2;
+            result += input[temp - 1];
+            result += input[temp];
+      }
+
+      return result;
+};
+
+
 
 float find_uniq(const std::vector<float> &v)
 {

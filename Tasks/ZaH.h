@@ -5,6 +5,10 @@
 
 void zaMainH();
 
+bool narcissistic( int value );
+
+std::string get_middle(std::string input);
+
 float find_uniq(const std::vector<float> &v);
 
 char findMissingLetter(const std::vector<char>& chars);

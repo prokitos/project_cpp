@@ -16,12 +16,34 @@ void zaMainL()
 {
 
       // являются ли элементы вектора 1, подэлементами вектора 2 (возведенные в степень).
-      std::vector<int> a = {121, 144, 19, 161, 19, 144, 19, 11};
-      std::vector<int> b = {14641, 20736, 361, 25921, 361, 20736, 361, 121};
-      std::cout << comp(a,b);
+      //std::vector<int> a = {121, 144, 19, 161, 19, 144, 19, 11};
+      //std::vector<int> b = {14641, 20736, 361, 25921, 361, 20736, 361, 121};
+      //std::cout << comp(a,b);
+
+      // мяч бросается с крыши, отскакивает на высоту, сколько раз мяч увидят на Н этаже.
+      std::cout << bouncingBall(30, 0.66, 1.5);
 
 };
 
+
+int bouncingBall(double h, double bounce, double window)
+{     
+      // проверка некорректных введеных данных
+      if(h <= 0 || bounce >= 1 || bounce <= 0 || window >= h)
+            return -1;
+      
+      int result = {};
+
+      // мяч пролетает из окна в одну и вдругую сторону
+      while (h > window)
+      {
+            h = h * bounce;
+            result += 2;
+      }
+      result --;
+
+      return result;
+};
 
 
 bool comp(std::vector<int>&a, std::vector<int>&b)

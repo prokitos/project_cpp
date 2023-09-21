@@ -11,7 +11,6 @@
 #include <numeric>
 
 
-
 void zaMainL()
 {
 
@@ -21,10 +20,62 @@ void zaMainL()
       //std::cout << comp(a,b);
 
       // мяч бросается с крыши, отскакивает на высоту, сколько раз мяч увидят на Н этаже.
-      std::cout << bouncingBall(30, 0.66, 1.5);
+      //std::cout << bouncingBall(30, 0.66, 1.5);
 
+      // передвинуть нули в конец вектора.
+      //std::vector<int> input = {1, 2, 1, 1, 3, 1, 0, 0, 0, 0};
+      //std::vector<int> output = move_zeroes(input);
+      //for(auto i : output)
+      //      std::cout << i;
+
+      // мексиканская волна. Заглавная буква в слове будет смещаться в право
+      //std::vector<std::string> output = wave("hello");
+      //for(auto i : output)
+      //      std::cout << i << " ";
 };
 
+std::vector<std::string> wave(std::string y)
+{
+      std::vector<std::string> result {};
+
+      if(y.empty())
+            return result;
+
+      for (size_t i = 0; i < y.length(); i++)
+      {
+            if(y[i] != ' ')
+            {
+                  y[i] = std::toupper(y[i]);
+                  result.push_back(y);
+                  y[i] = std::tolower(y[i]);
+            }
+      }
+      
+      return result;
+}
+
+std::vector<int> move_zeroes(const std::vector<int>& input) 
+{
+      std::vector<int> output {};
+      int zeroCount {};
+
+      // перенос в новый вектор всех чисел
+      for(auto i : input)
+      {
+            if(i == 0)
+                  zeroCount ++;
+            else
+                  output.push_back(i);      
+      }
+
+      // в конце добавление нулей
+      for (size_t i = 0; i < zeroCount; i++)
+      {
+            output.push_back(0);
+      }
+
+      return output;
+}
 
 int bouncingBall(double h, double bounce, double window)
 {     

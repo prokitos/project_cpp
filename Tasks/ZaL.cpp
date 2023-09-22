@@ -32,7 +32,44 @@ void zaMainL()
       //std::vector<std::string> output = wave("hello");
       //for(auto i : output)
       //      std::cout << i << " ";
+
+
+      // если умножение двух подряд идущих чисел фибоначи дают это число, то вернуть 2 эти числа и тру, иначе фолс.
+      std::vector<unsigned long long> output = productFib(714);
+      for(auto i : output)
+            std::cout << i << " ";
+
 };
+
+typedef unsigned long long BigLong;
+std::vector<BigLong> productFib(BigLong prod)
+{
+      std::vector<BigLong> exitVec {};
+
+      BigLong First = 0;
+      BigLong Second = 1;
+      BigLong Temp {};
+      BigLong CurMax {};
+      
+
+      while(CurMax < prod)
+      {
+            Temp = First + Second;
+            First = Second;
+            Second = Temp;
+            CurMax = First * Second;
+      }
+
+      exitVec.push_back(First);
+      exitVec.push_back(Second);
+
+      if(CurMax == prod)
+             exitVec.push_back(1);
+      else
+             exitVec.push_back(0);
+
+      return  exitVec;
+}
 
 std::vector<std::string> wave(std::string y)
 {

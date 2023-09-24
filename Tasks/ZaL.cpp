@@ -10,6 +10,12 @@
 #include <regex>
 #include <numeric>
 
+class deb
+{
+public:
+      deb(){};
+      int x;
+};
 
 void zaMainL()
 {
@@ -35,11 +41,50 @@ void zaMainL()
 
 
       // если умножение двух подряд идущих чисел фибоначи дают это число, то вернуть 2 эти числа и тру, иначе фолс.
-      std::vector<unsigned long long> output = productFib(714);
-      for(auto i : output)
-            std::cout << i << " ";
+      // для сокращения кода можно убрать внутренний вектор и return {first,second,1} , а в while проверять First * Second, и убрать CurMax.
+      //std::vector<unsigned long long> output = productFib(714);
+      //for(auto i : output)
+      //      std::cout << i << " ";
+      
+
+      // ROT13 шифр. вроде переставляет буквы на 13 вперед.
+      // можно индексы 64 91 96 123 поменять на a A z Z
+      std::cout << rot13("EBG13 rknzcyr.");
+
 
 };
+
+
+std::string rot13(const std::string& str)
+{     
+      std::string out = str;
+
+      for (size_t i = 0; i < str.length(); i++)
+      {
+            int index = str[i];
+            
+            // большие английские
+            if(index > 64 && index < 91)
+            {
+                  index +=  13;
+                  index = index % 91;
+                  if(index < 65)
+                        index += 65;
+            }
+            // маленькие английские
+            if(index > 96 && index < 123)
+            {
+                  index +=  13;
+                  index = index % 123;
+                  if(index < 97)
+                        index += 97;
+            }
+
+            out[i] = index;
+      }
+
+      return out;
+}
 
 typedef unsigned long long BigLong;
 std::vector<BigLong> productFib(BigLong prod)

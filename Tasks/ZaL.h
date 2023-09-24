@@ -13,3 +13,5 @@ std::vector<int> move_zeroes(const std::vector<int>& input);
 std::vector<std::string> wave(std::string y);
 
 std::vector<unsigned long long> productFib(unsigned long long prod);
+
+std::string rot13(const std::string& str);

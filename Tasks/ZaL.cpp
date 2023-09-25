@@ -49,11 +49,89 @@ void zaMainL()
 
       // ROT13 шифр. вроде переставляет буквы на 13 вперед.
       // можно индексы 64 91 96 123 поменять на a A z Z
-      std::cout << rot13("EBG13 rknzcyr.");
+      //std::cout << rot13("EBG13 rknzcyr.");
 
+      // все числа от 1 до 2 числа, состоят из цифр   2 3 5 7  и не являются простыми.
+      std::vector<unsigned> outer;
+      outer = not_primes(2,  222);
+
+      for(auto i : outer)
+            std::cout << i << " ";
 
 };
 
+// проверка что число состоит из 2 3 5 7
+bool checkDigits(unsigned x)
+{
+      bool checker = true;
+
+      std::string temp = std::to_string(x);
+      for(auto i : temp)
+      {     
+            // если попалось ни одно из этих чисел то выкинуть
+            if(i != '2' && i != '3' && i != '5' && i != '7')
+            {
+                  checker = false;
+                  break;
+            }
+      }
+
+      return checker;
+}
+
+// проверка что число НЕ простое
+bool checkPrimal(unsigned x)
+{
+      bool checker = false;
+
+      if(x == 25)
+      std::cout << "this 22  ";
+
+      for (size_t i = 2; i <= sqrt(x); i++)
+      {     
+            // если попадает, то число не простое
+            if(x % i == 0)
+            {
+                  checker = true;
+                  break;
+            }
+                  
+      }
+      
+      return checker;
+}
+
+std::vector<unsigned> not_primes(unsigned a, unsigned b)
+{
+      std::vector<unsigned> result;
+
+      while(a < b)
+      {
+            bool checkers = false;
+
+            // сначала проверка что число состоит из 2 3 5 7
+            checkers = checkDigits(a);
+            if(checkers == false)
+            {
+                  a++;
+                  continue;
+            }
+                  
+            // потом проверка что число не простое
+            checkers = checkPrimal(a);
+            if(checkers == false)
+            {
+                  a++;
+                  continue;
+            }
+                  
+            // если все условия выполняются то добавление в массив
+            result.push_back(a);
+            a++;
+      }
+
+      return result;
+}
 
 std::string rot13(const std::string& str)
 {     

@@ -17,3 +17,5 @@ std::vector<unsigned long long> productFib(unsigned long long prod);
 std::string rot13(const std::string& str);
 
 std::vector<unsigned> not_primes(unsigned a, unsigned b);
+
+std::vector<std::string> solution(const std::string &s);

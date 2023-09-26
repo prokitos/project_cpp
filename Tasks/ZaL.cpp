@@ -52,13 +52,47 @@ void zaMainL()
       //std::cout << rot13("EBG13 rknzcyr.");
 
       // все числа от 1 до 2 числа, состоят из цифр   2 3 5 7  и не являются простыми.
-      std::vector<unsigned> outer;
-      outer = not_primes(2,  222);
+      //std::vector<unsigned> outer;
+      //outer = not_primes(2,  222);
+      //for(auto i : outer)
+      //      std::cout << i << " ";
 
+
+      // разделить строку на вектор с элементами по 2 символа.
+      std::vector<std::string> outer = solution("abc");
       for(auto i : outer)
             std::cout << i << " ";
-
 };
+
+
+std::vector<std::string> solution(const std::string &s)
+{
+      std::vector<std::string> result;
+
+      int iterator = 0;
+      std::string tempStroka = "";
+
+      for (size_t i = 0; i < s.length(); i++)
+      {
+            iterator ++;
+            tempStroka += s[i];
+            if(iterator == 2)
+            {
+                  result.push_back(tempStroka);
+                  tempStroka = "";
+                  iterator = 0;
+            }
+      }
+      
+      if(iterator == 1)
+      {
+            tempStroka += '_';
+            result.push_back(tempStroka);
+      }
+
+      return result;
+}
+
 
 // проверка что число состоит из 2 3 5 7
 bool checkDigits(unsigned x)

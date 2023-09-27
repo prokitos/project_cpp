@@ -9,6 +9,7 @@
 #include <sstream>
 #include <regex>
 #include <numeric>
+#include <chrono>
 
 class deb
 {
@@ -59,11 +60,104 @@ void zaMainL()
 
 
       // разделить строку на вектор с элементами по 2 символа.
-      std::vector<std::string> outer = solution("abc");
-      for(auto i : outer)
-            std::cout << i << " ";
+      //std::vector<std::string> outer = solution("abc");
+      //for(auto i : outer)
+      //      std::cout << i << " ";
+
+
+      // MERGE sort и BUBBLE sort
+      auto start = std::chrono::steady_clock::now();
+            
+            int mass[22]{4,2,6,1,7,15,9,14,6,12,11,3,67,12,87,34,6,1,5,1,2,4};
+            int massSize = std::size(mass);
+
+            // сравнение пузырьковой и мердж сортировки.  при 20 элементах скорость равная.
+            //testBubbleSort(mass,massSize);     // быстрее если меньше 20 элементов.  1800ns при 22
+            testMergeSort(mass,massSize);      // быстрее если больше 20 элементов.  1700ns при 22
+
+      auto end = std::chrono::steady_clock::now();
+      std::cout << std::chrono::duration_cast<std::chrono::nanoseconds>(end - start).count();
+
+            // вывод элементов не учитывается, т.к. input/output занимает много времени.
+            std::cout << std::endl;
+            for(auto i : mass)
+                  std::cout << i << " ";
+            
+
+
+
+
 };
 
+
+// пузырьковая сортировка
+void testBubbleSort(int input[], int sizeMass)
+{
+      for (size_t i = 0; i < sizeMass; i++)
+      for (size_t j = 0; j < sizeMass; j++)
+      {
+            if(input[i] < input[j])
+            {
+                  int temp = input[i];
+                  input[i] = input[j];
+                  input[j] = temp;
+            }
+      }
+}
+
+// сортировка слиянием
+void testMergeSort(int input[], int sizeMass)
+{
+      // определение длинны двух подМассивов. (чет/нечет число элементов)
+      int sizeOne = sizeMass / 2;
+      int sizeTwo {};
+      if(sizeMass % 2)
+            sizeTwo = (sizeMass / 2) + 1;
+      else
+            sizeTwo = sizeMass / 2;
+
+      int massChapOne[sizeOne] {};
+      int massChapTwo[sizeTwo] {};
+
+      // вставка элементов из общего массива в подмассивы
+      int counter = 0;
+      for (size_t i = 0; i < sizeMass; i++)
+      {    
+            if(i == sizeMass / 2)
+                  counter = 0;
+
+            if(i >= sizeMass / 2)
+                  massChapTwo[counter] = input[i];
+            else
+                  massChapOne[counter] = input[i];
+
+            counter ++;
+      }
+
+      // пузырьковая сортировка подмассивов
+      testBubbleSort(massChapOne,sizeOne);
+      testBubbleSort(massChapTwo,sizeTwo);
+
+      // собираем обратно в общий массив. сравниваем числа в обоих массивах и вставляем меньшее
+      // затем прибавляем итератор у массива, из которого выбрали число и сравниваем дальше
+      int firstIterator = 0;
+      int secondIterator = 0;
+      for (size_t i = 0; i < sizeMass; i++)
+      {     
+            if( (massChapOne[firstIterator] <= massChapTwo[secondIterator] && firstIterator < sizeOne) || secondIterator == sizeTwo)
+            {
+                  input[i] = massChapOne[firstIterator];
+                  firstIterator ++;
+            }
+            else
+            {
+                 input[i] = massChapTwo[secondIterator]; 
+                 secondIterator ++;
+            }
+                  
+      }
+      
+}
 
 std::vector<std::string> solution(const std::string &s)
 {

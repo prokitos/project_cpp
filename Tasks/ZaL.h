@@ -19,3 +19,6 @@ std::string rot13(const std::string& str);
 std::vector<unsigned> not_primes(unsigned a, unsigned b);
 
 std::vector<std::string> solution(const std::string &s);
+
+void testBubbleSort(int input[], int sizeMass);
+void testMergeSort(int input[], int sizeMass);

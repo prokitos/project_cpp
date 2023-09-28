@@ -22,3 +22,5 @@ std::vector<std::string> solution(const std::string &s);
 
 void testBubbleSort(int input[], int sizeMass);
 void testMergeSort(int input[], int sizeMass);
+
+std::string highAndLow(const std::string& numbers);

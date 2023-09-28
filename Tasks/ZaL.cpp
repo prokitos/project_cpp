@@ -66,29 +66,47 @@ void zaMainL()
 
 
       // MERGE sort и BUBBLE sort
-      auto start = std::chrono::steady_clock::now();
+      // auto start = std::chrono::steady_clock::now();
             
-            int mass[22]{4,2,6,1,7,15,9,14,6,12,11,3,67,12,87,34,6,1,5,1,2,4};
-            int massSize = std::size(mass);
+      //       int mass[22]{4,2,6,1,7,15,9,14,6,12,11,3,67,12,87,34,6,1,5,1,2,4};
+      //       int massSize = std::size(mass);
 
-            // сравнение пузырьковой и мердж сортировки.  при 20 элементах скорость равная.
-            //testBubbleSort(mass,massSize);     // быстрее если меньше 20 элементов.  1800ns при 22
-            testMergeSort(mass,massSize);      // быстрее если больше 20 элементов.  1700ns при 22
+      //       // сравнение пузырьковой и мердж сортировки.  при 20 элементах скорость равная.
+      //       //testBubbleSort(mass,massSize);     // быстрее если меньше 20 элементов.  1800ns при 22
+      //       testMergeSort(mass,massSize);      // быстрее если больше 20 элементов.  1700ns при 22
 
-      auto end = std::chrono::steady_clock::now();
-      std::cout << std::chrono::duration_cast<std::chrono::nanoseconds>(end - start).count();
+      // auto end = std::chrono::steady_clock::now();
+      // std::cout << std::chrono::duration_cast<std::chrono::nanoseconds>(end - start).count();
 
-            // вывод элементов не учитывается, т.к. input/output занимает много времени.
-            std::cout << std::endl;
-            for(auto i : mass)
-                  std::cout << i << " ";
+      //       // вывод элементов не учитывается, т.к. input/output занимает много времени.
+      //       std::cout << std::endl;
+      //       for(auto i : mass)
+      //             std::cout << i << " ";
             
 
-
-
+      // получить максимальный и минимальный элемент
+      std::cout << highAndLow("8 3 -5 42 -1 0 0 -9 4 7 4 -4");
 
 };
 
+std::string highAndLow(const std::string& numbers)
+{
+      std::vector<std::string> inputs;     
+      std::vector<int> output;   
+      std::istringstream iss(numbers);
+      std::copy(std::istream_iterator<std::string>(iss), std::istream_iterator<std::string>(), std::back_inserter(inputs));
+
+      for(auto i : inputs)
+            output.push_back(std::stoi(i));
+
+      std::sort(output.begin(),output.end());
+
+      std::string result {};
+      result += std::to_string(output[output.size() - 1]);
+      result += " " + std::to_string(output[0]);
+
+      return result;
+}
 
 // пузырьковая сортировка
 void testBubbleSort(int input[], int sizeMass)
@@ -156,7 +174,7 @@ void testMergeSort(int input[], int sizeMass)
             }
                   
       }
-      
+
 }
 
 std::vector<std::string> solution(const std::string &s)

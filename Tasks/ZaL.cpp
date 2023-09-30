@@ -10,6 +10,7 @@
 #include <regex>
 #include <numeric>
 #include <chrono>
+#include <bitset>
 
 class deb
 {
@@ -85,15 +86,62 @@ void zaMainL()
             
 
       // получить максимальный и минимальный элемент
-      std::cout << highAndLow("8 3 -5 42 -1 0 0 -9 4 7 4 -4");
+      //std::cout << highAndLow("8 3 -5 42 -1 0 0 -9 4 7 4 -4");
+
+      // получить двоичную форму суммы чисел
+      //std::cout << add_binary(2, 2);
+
+      // сколько нужно лет чтобы население страны выросло до Н количества
+      std::cout << nbYear(1500, 5, 100, 5000);
 
 };
+
+// население, процент роста в год, приезжее население , сколько нужно населения
+int nbYear(int p0, double percent, int aug, int p)
+{
+      int needYears = 0;
+      percent = percent / 100;
+
+      while(p0 < p)
+      {     
+            p0 += p0 * percent;
+            p0 += aug;
+            needYears ++;
+      }
+
+      return needYears;
+}
+
+std::string add_binary(uint64_t a, uint64_t b) {
+
+      uint64_t summy = a + b;
+      std::string res = std::bitset<16>(summy).to_string();
+      std::string finalResult {};
+
+      bool checker = false;
+      for(auto i : res)
+      {     
+            if(checker == true)
+                  finalResult += i;
+            else
+            {
+                  if(i == '1')
+                  {
+                        checker = true;
+                        finalResult += i;
+                  }
+            }
+      }
+
+      return finalResult;
+}
 
 std::string highAndLow(const std::string& numbers)
 {
       std::vector<std::string> inputs;     
       std::vector<int> output;   
       std::istringstream iss(numbers);
+      // сразу в инт будет эффективнее чем в стриг а потом в инт.
       std::copy(std::istream_iterator<std::string>(iss), std::istream_iterator<std::string>(), std::back_inserter(inputs));
 
       for(auto i : inputs)

@@ -24,3 +24,7 @@ void testBubbleSort(int input[], int sizeMass);
 void testMergeSort(int input[], int sizeMass);
 
 std::string highAndLow(const std::string& numbers);
+
+std::string add_binary(uint64_t a, uint64_t b);
+
+int nbYear(int p0, double percent, int aug, int p);

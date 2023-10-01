@@ -28,3 +28,7 @@ std::string highAndLow(const std::string& numbers);
 std::string add_binary(uint64_t a, uint64_t b);
 
 int nbYear(int p0, double percent, int aug, int p);
+
+unsigned long long numPrimorial (unsigned short int number );
+
+std::string accum(const std::string &s);

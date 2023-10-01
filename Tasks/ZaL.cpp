@@ -92,9 +92,57 @@ void zaMainL()
       //std::cout << add_binary(2, 2);
 
       // сколько нужно лет чтобы население страны выросло до Н количества
-      std::cout << nbYear(1500, 5, 100, 5000);
+      //std::cout << nbYear(1500, 5, 100, 5000);
 
+      // умножение N количества простых чисел подряд, от 2
+      //std::cout << numPrimorial(5);
+
+      // вывод последовательности из букв. accum(abcq) = A-Bb-Ccc-Qqqq
+      std::cout << accum("abcd");
 };
+
+std::string accum(const std::string &s)
+{
+      std::string result {};
+
+      // перебор каждого символа с троке
+      int iterator = 1;
+      for (size_t i = 0; i < s.length(); i++)
+      {     
+            // каждый символ добавляется iterator раз
+            for (size_t j = 0; j < iterator; j++)
+            {
+                  if(j == 0)
+                        result += std::toupper(s[i]);
+                  else
+                        result += std::tolower(s[i]);
+            }
+
+            // если не последний, то печатать тире
+            if(i + 1 != s.length())
+                  result += '-';
+
+            // увеличивать iterator после добавления символа.
+            iterator ++;
+      }
+      
+      return result;
+}
+
+unsigned long long numPrimorial (unsigned short int number )
+{     
+      // массив первых 20 простых чисел
+      int mass[20] = {2,3,5,7,11,13,17,19,23,29,31,37,41,43,47,53,59,61,67,71};
+      unsigned long long sum = mass[0];
+
+      // умножение простых чисел по очереди
+      for (size_t i = 1; i < number; i++)
+      {
+            sum = sum * mass[i];
+      }
+      
+      return sum;
+}
 
 // население, процент роста в год, приезжее население , сколько нужно населения
 int nbYear(int p0, double percent, int aug, int p)

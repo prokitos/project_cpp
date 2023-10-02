@@ -32,3 +32,5 @@ int nbYear(int p0, double percent, int aug, int p);
 unsigned long long numPrimorial (unsigned short int number );
 
 std::string accum(const std::string &s);
+
+std::string createPhoneNumber(const int arr [10]);

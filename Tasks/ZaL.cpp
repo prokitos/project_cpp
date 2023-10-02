@@ -98,8 +98,28 @@ void zaMainL()
       //std::cout << numPrimorial(5);
 
       // вывод последовательности из букв. accum(abcq) = A-Bb-Ccc-Qqqq
-      std::cout << accum("abcd");
+      //std::cout << accum("abcd");
+
+      // создать строку в виде номера телефона
+      int mass[10] = {1, 2, 3, 4, 5, 6, 7, 8, 9, 0};
+      std::cout << createPhoneNumber(mass);
 };
+
+
+std::string createPhoneNumber(const int arr [10])
+{
+
+      std::string input {};
+      for (size_t i = 0; i < 10; i++)
+      {
+            input += std::to_string(arr[i]);
+      }
+
+      std::regex vowels("(...)(...)(....)");
+
+      return std::regex_replace(input, vowels, "($1) $2-$3");
+
+}
 
 std::string accum(const std::string &s)
 {

@@ -101,10 +101,42 @@ void zaMainL()
       //std::cout << accum("abcd");
 
       // создать строку в виде номера телефона
-      int mass[10] = {1, 2, 3, 4, 5, 6, 7, 8, 9, 0};
-      std::cout << createPhoneNumber(mass);
+      //int mass[10] = {1, 2, 3, 4, 5, 6, 7, 8, 9, 0};
+      //std::cout << createPhoneNumber(mass);
+
+      // вывести тру если человек вернется на свое место ровно через 10 минут.
+      std::cout << isValidWalk({'e','w','e','w','n','s','n','s','e','w'});
+
 };
 
+bool isValidWalk(std::vector<char> walk) 
+{
+      // позиция и время
+      int pos_x = 0;
+      int pos_y = 0;
+      int time = 0;
+
+      // каждую итерацию человек движется на 1, и проходит 1 минута
+      for(auto i : walk)
+      {
+            if(i == 'n')
+                  pos_x ++;
+            if(i == 's')
+                  pos_x --;
+            if(i == 'w')
+                  pos_y --;
+            if(i == 'e')
+                  pos_y ++;
+
+            time ++;
+      }
+
+      // если прошло 10 минут и человек в начальной позиции
+      if(time == 10 && pos_x == 0 && pos_y == 0)
+            return true;
+      else
+            return false;
+}
 
 std::string createPhoneNumber(const int arr [10])
 {

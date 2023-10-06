@@ -36,3 +36,7 @@ std::string accum(const std::string &s);
 std::string createPhoneNumber(const int arr [10]);
 
 bool isValidWalk(std::vector<char> walk);
+
+int opposite(int number);
+
+int square_digits(int num);

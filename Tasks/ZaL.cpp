@@ -105,9 +105,37 @@ void zaMainL()
       //std::cout << createPhoneNumber(mass);
 
       // вывести тру если человек вернется на свое место ровно через 10 минут.
-      std::cout << isValidWalk({'e','w','e','w','n','s','n','s','e','w'});
+      //std::cout << isValidWalk({'e','w','e','w','n','s','n','s','e','w'});
+
+      // возврат обатного числа
+      //std::cout << opposite(-5);
+
+      // сумма квадратов каждой цифры в числе.
+      std::cout << square_digits(3212);
 
 };
+
+int square_digits(int num)
+{
+      std::string input = std::to_string(num);
+      std::string result {};
+
+      for (size_t i = 0; i < input.length(); i++)
+      {
+            // перевод одного символа в цифру
+            int temp = input[i] - '0';
+            // квадрат цифры записываем строкой
+            result += std::to_string(temp * temp);
+      }
+      
+      // возврат результата числом, а не строкой
+      return std::stoi(result);
+}
+
+int opposite(int number) 
+{
+  return - number;
+}
 
 bool isValidWalk(std::vector<char> walk) 
 {

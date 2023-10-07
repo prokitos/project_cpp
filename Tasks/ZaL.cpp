@@ -111,9 +111,52 @@ void zaMainL()
       //std::cout << opposite(-5);
 
       // сумма квадратов каждой цифры в числе.
-      std::cout << square_digits(3212);
+      //std::cout << square_digits(3212);
+
+      // суммировать цифры в числе, вычесть сумму и получить строку из справочника.
+      std::cout << SubtractSum(10);
 
 };
+
+std::string SubtractSum(int n)
+{     
+      // проверка условий
+      if(n < 10 || n > 9999)
+            return "";
+
+      // получение суммы цифры в числе
+      int dictionaryDigit = n;
+      std::string stroka = std::to_string(n);
+
+      // по кругу уменьшение значения, пока не станет меньше 100
+      do
+      {
+            int sumInt = 0;
+            for (size_t i = 0; i < stroka.length(); i++)
+            {
+                  sumInt += stroka[i] - '0';
+            }
+            dictionaryDigit = dictionaryDigit - sumInt;
+      }
+      while (dictionaryDigit > 100);
+
+      dictionaryDigit --;
+      std::vector<std::string> fruits {
+      "kiwi", "pear", "kiwi", "banana", "melon", "banana", "melon", "pineapple", "apple", "pineapple",
+      "cucumber", "pineapple", "cucumber", "orange", "grape", "orange", "grape", "apple", "grape", "cherry",
+      "pear", "cherry", "pear", "kiwi", "banana", "kiwi", "apple", "melon", "banana", "melon",
+      "pineapple", "melon", "pineapple", "cucumber", "orange", "apple", "orange", "grape", "orange", "grape",
+      "cherry", "pear", "cherry", "pear", "apple", "pear", "kiwi", "banana", "kiwi", "banana",
+      "melon", "pineapple", "melon", "apple", "cucumber", "pineapple", "cucumber", "orange", "cucumber", "orange",
+      "grape", "cherry", "apple", "cherry", "pear", "cherry", "pear", "kiwi", "pear", "kiwi",
+      "banana", "apple", "banana", "melon", "pineapple", "melon", "pineapple", "cucumber", "pineapple", "cucumber",
+      "apple", "grape", "orange", "grape", "cherry", "grape", "cherry", "pear", "cherry", "apple",
+      "kiwi", "banana", "kiwi", "banana", "melon", "banana", "melon", "pineapple", "apple", "pineapple"
+      };
+
+      std::string result = fruits[dictionaryDigit];
+      return result;
+}
 
 int square_digits(int num)
 {

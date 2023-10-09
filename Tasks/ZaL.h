@@ -42,3 +42,5 @@ int opposite(int number);
 int square_digits(int num);
 
 std::string SubtractSum(int n);
+
+bool solve(std::string s);

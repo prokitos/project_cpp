@@ -114,9 +114,90 @@ void zaMainL()
       //std::cout << square_digits(3212);
 
       // суммировать цифры в числе, вычесть сумму и получить строку из справочника.
-      std::cout << SubtractSum(10);
+      //std::cout << SubtractSum(10);
 
+      // тру если последовательность букв в алфавитном порядке, и встречаются всего 1 раз.
+            // легче было просто отсортить входную строку, и если следующий элемент равен предыдущему + 1 то все хорошо
+      //std::cout << solve("abd");
+      std::cout << solve("dabc");
+      //std::cout << solve("abccd");
 };
+
+bool solve(std::string s)
+{
+      if(s.length() < 2)
+            return true;
+
+      int AlphLen = 26;
+      int mass[AlphLen] {};  // Для подсчета количества букв
+      bool countLetter = true; // для проверки что количество букв 1
+
+      //bool orderCheck = true;  // проверка порядка
+      // mass[s[0] - 'a'] = 1;   // добавить +1 к первой букве в строке.
+      // проверка порядка
+      // for (size_t i = 1; i < s.length(); i++)
+      // {
+      //       char curLetter = s[i];
+      //       char prevLetter = s[i-1];
+
+      //       mass[curLetter - 'a'] ++;     //добавление 1 к колву букв
+
+      //       // если текущая буква минус 1 не равна прошлой букве то фолс
+      //       if(curLetter - 1 != prevLetter)
+      //       {
+      //             orderCheck = false;
+      //             break;
+      //       }
+      // }
+
+      // добавление в массив количество букв
+      for (size_t i = 0; i < s.length(); i++)
+      {
+            mass[s[i] - 'a'] ++;     //добавление 1 к колву букв
+      }
+
+      bool orderCheck = false;  // проверка порядка
+      bool localOrderCheck = false; // проверка что уже была последовательность
+      // буквы могут быть в любом порядке, главное чтобы можно было составить алфавитную последовательность
+      for (size_t i = 0; i < AlphLen; i++)
+      {     
+            // проверка количества элементов
+            if(mass[i] > 1)
+            {
+                  countLetter = false;
+            }
+
+            // проверка последовательности
+            if(orderCheck == false)
+            {
+                  if(mass[i] == 1)
+                  {
+                        orderCheck = true;
+                  }
+            }
+            else
+            {
+                  // если уже была последовательность, и после нулей снова единицы
+                  if(localOrderCheck == true && mass[i] == 1)
+                  {
+                        orderCheck = false;
+                        break;
+                  }
+                  // последовательность закончилась
+                  if(mass[i] == 0)
+                  {
+                        localOrderCheck = true;
+                  }     
+            }
+
+      }
+      
+      if(orderCheck == true && countLetter == true)
+            return true;
+      else
+            return false;
+      
+}
 
 std::string SubtractSum(int n)
 {     

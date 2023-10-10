@@ -119,9 +119,50 @@ void zaMainL()
       // тру если последовательность букв в алфавитном порядке, и встречаются всего 1 раз.
             // легче было просто отсортить входную строку, и если следующий элемент равен предыдущему + 1 то все хорошо
       //std::cout << solve("abd");
-      std::cout << solve("dabc");
+      //std::cout << solve("dabc");
       //std::cout << solve("abccd");
+
+      // вернуть массив, только все элементы удвоить
+      // std::vector<int> temp = {1,2,3};
+      // temp = maps(temp);
+      // for(auto i : temp)
+      //       std::cout << i << " ";
+
+      // вернуть длинну самого короткого слова в строке
+      std::cout << find_short("Let's travel abroad shall we"); // 2
 };
+
+int find_short(std::string str)
+{
+      if(str.length() < 1)
+            return 0;
+
+      // перевод всех слов в вектора (без пробелов)
+	std::vector<std::string> inputs;     
+	std::istringstream iss(str);
+	std::copy(std::istream_iterator<std::string>(iss), std::istream_iterator<std::string>(), std::back_inserter(inputs));
+
+      // перебор вектора, и просмотр длинны каждого слова. если меньше чем было то перезаписать.
+      int minElem = INT32_MAX;
+      for(auto i : inputs)
+      {
+            if(i.length() < minElem)
+                  minElem = i.length();
+      }
+
+      return minElem;
+}
+
+std::vector<int> maps(const std::vector<int> & values) 
+{
+      std::vector<int> output = values;
+      for (size_t i = 0; i < values.size(); i++)
+      {
+            output[i] *= 2;
+      }
+      
+      return output;
+}
 
 bool solve(std::string s)
 {

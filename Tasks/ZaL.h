@@ -48,3 +48,5 @@ bool solve(std::string s);
 std::vector<int> maps(const std::vector<int> & values);
 
 int find_short(std::string str);
+
+uint64_t descendingOrder(uint64_t a);

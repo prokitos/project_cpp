@@ -129,7 +129,32 @@ void zaMainL()
       //       std::cout << i << " ";
 
       // вернуть длинну самого короткого слова в строке
-      std::cout << find_short("Let's travel abroad shall we"); // 2
+      //std::cout << find_short("Let's travel abroad shall we"); // 2
+
+      // принимает число, выводит отсортированные цифры в обратном порядке
+      std::cout << descendingOrder(1021);
+};
+
+uint64_t descendingOrder(uint64_t a)
+{
+      std::string strNumber = std::to_string(a);
+      std::vector<uint64_t> result {};
+
+      for (size_t i = 0; i < strNumber.length(); i++)
+      {
+            result.push_back(strNumber[i] - '0');
+      }
+      
+      std::sort(result.begin(),result.end(),std::greater<>());
+      strNumber = "";
+
+      for(auto i : result)
+      {
+            strNumber += std::to_string(i);
+      }
+            
+      uint64_t output = std::stoi(strNumber);
+      return output;
 };
 
 int find_short(std::string str)

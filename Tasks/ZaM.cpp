@@ -24,9 +24,65 @@ void zaMainM()
 
       // дан набор букв алфавита, или нескольких алфовитов (в нижнем регистре)
       // вывести пропущенные буквы
-      std::cout << missing_alphabets("aabbccddeeffgghhiijjkkllmmnnooppqqrrssttuuvvwwxxyy"); // zz
+      //std::cout << missing_alphabets("aabbccddeeffgghhiijjkkllmmnnooppqqrrssttuuvvwwxxyy"); // zz
+
+      // вернуть строку чисел по возрастанию, если несколько чисел по порядку то написать их через тире. 1 2 3 4 5 = 1-5
+      std::cout << range_extraction({-6,-3,-2,-1,0,1,3,4,5,7,8,9,10,11,14,15,17,18,19,20});
 
 };
+
+std::string range_extraction(std::vector<int> args)
+{
+      std::string result {};
+      std::sort(args.begin(), args.end());
+
+      int startValue = 0;
+      bool startSeq = false;
+
+      for (size_t i = 0; i < args.size(); i++)
+      {     
+
+            // если два числа идут подряд, а третье другое, то не надо писать их через тире. также если начата последовательность сюда не заходить.
+            if(i + 2 < args.size() && args[i] + 1 == args[i + 1] && args[i] + 2 != args[i + 2] && startSeq == false)
+            {
+                  result += std::to_string(args[i]) + ",";
+                  continue;
+            }
+
+            // если элемент не последний, и текущий элемент + 1 равен следующему
+            if(i + 1 < args.size() && args[i] + 1 == args[i + 1])
+            {
+                  // если последовательность ещё не началась
+                  if(startSeq == false)
+                  {
+                        startValue = args[i];
+                        startSeq = true;
+                  }
+
+                  // так как мы внутри последовательности, нам не надо выводить текущее число, => скипаем эту итерацию
+                  continue;
+            }
+            
+            // если последовательность закончилась
+            if(startSeq == true)
+            {
+                  result += std::to_string(startValue) + "-" + std::to_string(args[i]) + ",";
+
+                  startSeq = false;
+                  startValue = 0;
+
+                  // так как мы уже сделали кастомный вывод, нам не нужен обычный => скипаем эту итерацию
+                  continue;
+            }
+
+            // если обычное число без последовательности
+            result += std::to_string(args[i]) + ",";
+      }
+      
+      // убрать последнюю запятую
+      result.pop_back();
+      return result;
+}
 
 std::string missing_alphabets(const std::string &s)
 {

@@ -11,6 +11,7 @@
 #include <numeric>
 #include <chrono>
 #include <bitset>
+#include <iomanip>
 
 void zaMainM()
 {
@@ -27,8 +28,32 @@ void zaMainM()
       //std::cout << missing_alphabets("aabbccddeeffgghhiijjkkllmmnnooppqqrrssttuuvvwwxxyy"); // zz
 
       // вернуть строку чисел по возрастанию, если несколько чисел по порядку то написать их через тире. 1 2 3 4 5 = 1-5
-      std::cout << range_extraction({-6,-3,-2,-1,0,1,3,4,5,7,8,9,10,11,14,15,17,18,19,20});
+      //std::cout << range_extraction({-6,-3,-2,-1,0,1,3,4,5,7,8,9,10,11,14,15,17,18,19,20});
 
+      // вернуть сумму N чисел (1 + 1/4 + 1/7 + 1/10...), округ до 2 после запятой
+      std::cout << seriesSum(5);
+
+};
+
+
+
+std::string seriesSum(int n)
+{
+      if(n < 1)
+      {
+            return "0.00";
+      }
+
+      double summ = 1.00;
+
+      for (size_t i = 0; i < n - 1; i++)
+      {
+            summ +=  1.0 / (4.0 + 3.0 * i); 
+      }
+      
+      std::stringstream converter;
+      converter << std::setprecision(2) << std::fixed << summ;
+      return converter.str();
 };
 
 std::string range_extraction(std::vector<int> args)

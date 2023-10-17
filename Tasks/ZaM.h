@@ -14,3 +14,7 @@ std::string missing_alphabets(const std::string &s);
 std::string range_extraction(std::vector<int> args);
 
 std::string seriesSum(int n);
+
+std::vector<unsigned int> removeSmallest(const std::vector<unsigned int>& numbers);
+
+std::string autoMorphic (int number);

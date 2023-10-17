@@ -31,11 +31,70 @@ void zaMainM()
       //std::cout << range_extraction({-6,-3,-2,-1,0,1,3,4,5,7,8,9,10,11,14,15,17,18,19,20});
 
       // вернуть сумму N чисел (1 + 1/4 + 1/7 + 1/10...), округ до 2 после запятой
-      std::cout << seriesSum(5);
+      //std::cout << seriesSum(5);
+
+      // убрать минимум из вектора, и не менять позиции элементов
+      // std::vector<unsigned int> temp = removeSmallest({ 5, 3, 2, 1, 4 });
+      // for(auto i: temp)
+      //       std::cout << i << " ";
+
+      // автоморфичное число или нет. (если квадрат числа заканчивается на то же число)
+      std::cout << autoMorphic(25);
 
 };
 
+std::string autoMorphic (int number)
+{
+      bool answer = false;
 
+      int quad = number * number;
+      int lenNumber = std::to_string(number).length();
+      std::string StrNumb = std::to_string(number);
+      std::string StrQuad = std::to_string(quad);
+      
+      
+      for (size_t i = StrQuad.length() - 1; i >= 0; i--)
+      {     
+            // если каждый символ у входной строки совпал, то выкидываем и говорим что морф
+            if(lenNumber == 0)
+            {
+                  answer = true;
+                  break;
+            }
+            
+            // если символ у квардрата и у числа совпадают то продолжать и снизить количество оставшихся символов
+            if(StrQuad[i] == StrNumb[lenNumber - 1])
+            {
+                  lenNumber --;
+            }
+            // иначе выкинуть и сказать что число не морф
+            else
+            {
+                  answer = false;
+                  break;
+            }
+            
+      }
+
+      // вывод ответа
+      std::string yesAnswer = "Automorphic";
+      std::string noAnswer = "Not!!";
+      if(answer == true)
+            return yesAnswer;
+      else
+            return noAnswer;
+}
+
+std::vector<unsigned int> removeSmallest(const std::vector<unsigned int>& numbers) 
+{
+      std::vector<unsigned int> temp = numbers;
+      auto min = std::min_element(temp.begin(),temp.end());
+
+      // min_element содержит указатель на минимальный элемент, и мы его удаляем по указателю
+      temp.erase(min);
+      
+      return temp;
+}
 
 std::string seriesSum(int n)
 {

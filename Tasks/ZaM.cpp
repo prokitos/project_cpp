@@ -13,6 +13,7 @@
 #include <bitset>
 #include <iomanip>
 
+
 void zaMainM()
 {
       // приходит строка. нужно добавить в конце цифру 1, или увеличить на 1 уже существующую цифру.
@@ -39,9 +40,40 @@ void zaMainM()
       //       std::cout << i << " ";
 
       // автоморфичное число или нет. (если квадрат числа заканчивается на то же число)
-      std::cout << autoMorphic(25);
+      //std::cout << autoMorphic(25);
+
+      // найти самый часто повторящийся элемент в листе
+      std::forward_list<int> l = {1,2,3,4,2,3,2};
+      std::pair<int,int> temp = findMostFrequent(l);
+      std::cout << temp.first << "  " << temp.second;
 
 };
+
+std::pair<int,int> findMostFrequent(std::forward_list<int> l)
+{
+      std::pair<int,int> output = {0,0};
+      std::map<int,int> counters;
+
+      // Запись элементов в справочник, получаем количество цифр
+      for(auto i : l)
+      {
+            counters[i] ++;   
+      }
+
+      // перебираем элементы из полученного списка (чтобы найти именно первое макс количество по списку)
+      // и если количество цифр больше старого то записываем в вывод количество и цифру.
+      for(auto a : l)
+      {
+            auto i = counters[a];
+            if(i > output.second)
+            {
+                  output.first = a;
+                  output.second = i;
+            }
+      }
+      
+      return output;
+}
 
 std::string autoMorphic (int number)
 {

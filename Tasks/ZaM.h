@@ -2,6 +2,7 @@
 #include <vector>
 #include <map>
 #include <list>
+#include <forward_list>
 
 void zaMainM();
 
@@ -18,3 +19,5 @@ std::string seriesSum(int n);
 std::vector<unsigned int> removeSmallest(const std::vector<unsigned int>& numbers);
 
 std::string autoMorphic (int number);
+
+std::pair<int,int> findMostFrequent(std::forward_list<int> l);

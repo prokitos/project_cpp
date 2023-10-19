@@ -21,3 +21,5 @@ std::vector<unsigned int> removeSmallest(const std::vector<unsigned int>& number
 std::string autoMorphic (int number);
 
 std::pair<int,int> findMostFrequent(std::forward_list<int> l);
+
+bool solution(const std::vector<std::string>& words);

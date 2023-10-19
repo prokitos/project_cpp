@@ -43,11 +43,51 @@ void zaMainM()
       //std::cout << autoMorphic(25);
 
       // найти самый часто повторящийся элемент в листе
-      std::forward_list<int> l = {1,2,3,4,2,3,2};
-      std::pair<int,int> temp = findMostFrequent(l);
-      std::cout << temp.first << "  " << temp.second;
+      // std::forward_list<int> l = {1,2,3,4,2,3,2};
+      // std::pair<int,int> temp = findMostFrequent(l);
+      // std::cout << temp.first << "  " << temp.second;
+
+      // вернуть true если слова в списке начинаются с окончания другого слова
+      // excavate - endure - excess = true
+      // trade - pole - view = false 
+      std::cout << solution({"excavate", "endure", "screen", "desire", "theater", "excess", "night"});
 
 };
+
+bool tempSolution(std::string word, const std::vector<std::string>& words)
+{
+      // если вектор пришел пустым то вернет тру
+      if(words.empty())
+      {
+            return true;
+      }
+
+      // перебор по всем словам
+      for (size_t i = 0; i < words.size(); i++)
+      {
+            // если последняя буква пришедшего слова совпадает с первой буквой слова из вектора
+            // то создаем временный вектор, удаляем это слово и заходим снова в рекурсию
+            if(word.back() == words[i].front() || word == "")
+            {
+                  std::vector<std::string> temp = words;
+                  temp.erase(temp.begin() + i);
+
+                  if(tempSolution(words[i], temp))
+                  {
+                        return true;
+                  }
+            }
+      }
+
+      // если мы не смогли ничего удалить и остался вектор, то возвращаем фолс
+      return false;
+}
+
+bool solution(const std::vector<std::string>& words) 
+{
+      // вызов рекурсии
+      return tempSolution("",words);
+}
 
 std::pair<int,int> findMostFrequent(std::forward_list<int> l)
 {

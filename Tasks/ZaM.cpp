@@ -50,9 +50,58 @@ void zaMainM()
       // вернуть true если слова в списке начинаются с окончания другого слова
       // excavate - endure - excess = true
       // trade - pole - view = false 
-      std::cout << solution({"excavate", "endure", "screen", "desire", "theater", "excess", "night"});
+      //std::cout << solution({"excavate", "endure", "screen", "desire", "theater", "excess", "night"});
 
+      // сумма двух строк
+      //std::cout << sum_strings("123", "456");
+
+      // вернуть строку, написав четные и нечетные буквы в разном регистре
+      std::pair<std::string, std::string> temp = capitalize("abcdef");
+      std::cout << temp.first << " " << temp.second;
 };
+
+std::pair<std::string, std::string> capitalize(const std::string &s)
+{
+      std::string first {};
+      std::string second {};
+      std::pair<std::string, std::string> result;
+
+      bool odd = true;
+      for(auto i: s)
+      {
+            if(odd)
+            {
+                  first += std::tolower(i);
+                  second += std::toupper(i);
+            }
+            else
+            {
+                  second += std::tolower(i);
+                  first += std::toupper(i);
+            }
+
+            if(odd == true)
+            {
+                  odd = false;
+            }
+            else
+            {
+                  odd = true;
+            }
+      }
+
+      result.first = first;
+      result.second = second;
+      return result;
+}
+
+std::string sum_strings(const std::string& a, const std::string& b)
+{
+      uint64_t temp1 = std::stoull(a);
+      uint64_t temp2 = std::stoull(b);
+      uint64_t summary = temp1 + temp2;
+      return std::to_string(summary);
+}
 
 bool tempSolution(std::string word, const std::vector<std::string>& words)
 {

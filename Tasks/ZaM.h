@@ -23,3 +23,7 @@ std::string autoMorphic (int number);
 std::pair<int,int> findMostFrequent(std::forward_list<int> l);
 
 bool solution(const std::vector<std::string>& words);
+
+std::string sum_strings(const std::string& a, const std::string& b);
+
+std::pair<std::string, std::string> capitalize(const std::string &s);

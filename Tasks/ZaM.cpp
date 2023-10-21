@@ -56,9 +56,74 @@ void zaMainM()
       //std::cout << sum_strings("123", "456");
 
       // вернуть строку, написав четные и нечетные буквы в разном регистре
-      std::pair<std::string, std::string> temp = capitalize("abcdef");
-      std::cout << temp.first << " " << temp.second;
+      // std::pair<std::string, std::string> temp = capitalize("abcdef");
+      // std::cout << temp.first << " " << temp.second;
+
+      // псевдо шифрование. объединяет четные и нечетные числа в строке N раз.
+      std::cout << encrypt("This is a test!", 2) << std::endl;
+      std::cout << decrypt("s eT ashi tist!", 2) << std::endl;      
+
 };
+
+std::string encrypt(std::string text, int n)
+{
+      std::string temp = text;
+
+      if(n < 1)
+            n = 0;
+
+      // n раз шифрует
+      for (size_t i = 0; i < n; i++)
+      {
+
+            std::string temp1 {};
+            std::string temp2 {};
+
+            // добавляет четные и нечетные символы в temp1 и temp2
+            for (size_t a = 0; a < temp.length(); a++)
+            {
+                 if(a % 2)
+                 {
+                        temp1 += temp[a];
+                 }
+                 else
+                 {
+                        temp2 += temp[a];
+                 }
+            }
+            
+            // объединяет четные и нечетные символы, и новая итерация будет идти по ним
+            temp = temp1 + temp2;
+      }
+      
+      return temp;
+}
+
+std::string decrypt(std::string encryptedText, int n)
+{
+      int len = encryptedText.length();
+      int a = 0;
+
+      if(n < 1)
+            n = 0;
+
+      // у четных и нечетных строк разнок макс-количество итераций до возвращения к стандартной строке
+      if(len % 2)
+      {
+            a = 4;
+      }
+      else
+      {
+            a = 5;
+      }
+
+      // вычисление кол-ва итераций до возвращения к строке
+      a = (a - n) % a;
+      std::string temp = encrypt(encryptedText,a);
+
+      return temp;
+}
+
 
 std::pair<std::string, std::string> capitalize(const std::string &s)
 {

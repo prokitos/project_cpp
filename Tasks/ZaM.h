@@ -30,3 +30,5 @@ std::pair<std::string, std::string> capitalize(const std::string &s);
 
 std::string encrypt(std::string text, int n);
 std::string decrypt(std::string encryptedText, int n);
+std::pair<int,int> rowWeights (const std::vector <int> &weights);
+unsigned long long minValue (std::vector <int> values);

@@ -60,10 +60,58 @@ void zaMainM()
       // std::cout << temp.first << " " << temp.second;
 
       // псевдо шифрование. объединяет четные и нечетные числа в строке N раз.
-      std::cout << encrypt("This is a test!", 2) << std::endl;
-      std::cout << decrypt("s eT ashi tist!", 2) << std::endl;      
+      //std::cout << encrypt("This is a test!", 2) << std::endl;
+      //std::cout << decrypt("s eT ashi tist!", 2) << std::endl;      
+
+      // есть вектор чисел, нужно разделить их на первый-второй, и просуммировать.
+      // std::pair<int,int> rowWs = rowWeights({50,60,70,80});
+      // std::cout << rowWs.first << "  " << rowWs.second;
+
+      // дан вектор чисел, вернуть самое минимальное число которое можно составить из этих чисел (без повторений)
+      std::cout << minValue({4,8,1,4});
 
 };
+
+unsigned long long minValue (std::vector <int> values)
+{
+      std::sort(values.begin(), values.end());
+      std::string txtResult {};
+
+      char last {};
+      for (size_t i = 0; i < values.size(); i++)
+      {
+            if(last != values[i])
+            {
+                  last = values[i];
+                  txtResult += std::to_string(last);
+            }
+      }
+      
+      unsigned long long result = std::stoull(txtResult);
+      return result;
+}
+
+std::pair<int,int> rowWeights (const std::vector <int> &weights)
+{
+      std::pair<int,int> result {0,0};
+
+      bool checker = false;
+      for(auto i : weights)
+      {
+            if(checker == false)
+            {
+                  result.first += i;
+                  checker = true;
+            }
+            else
+            {
+                  result.second += i;
+                  checker = false;
+            }
+      }
+
+      return result;
+}
 
 std::string encrypt(std::string text, int n)
 {

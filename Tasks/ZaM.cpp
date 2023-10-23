@@ -68,9 +68,85 @@ void zaMainM()
       // std::cout << rowWs.first << "  " << rowWs.second;
 
       // дан вектор чисел, вернуть самое минимальное число которое можно составить из этих чисел (без повторений)
-      std::cout << minValue({4,8,1,4});
+      //std::cout << minValue({4,8,1,4});
+
+      // case fixer. если большинство букв в ловер кейсе, то все слово в ловер кейс, иначе в аппер кейс, если равно то в ловер кейс.
+      //std::cout << solve("CODe");
+
+      // Дан путь в словах, сократить его (N S S W = S W)
+      std::vector<std::string> res;
+      std::vector<std::string> d1 = {"NORTH", "SOUTH", "SOUTH", "EAST", "WEST", "NORTH", "WEST"};
+      res = DirReduction::dirReduc(d1);
+      for(auto i : res)
+            std::cout << i << " ";
 
 };
+
+std::vector<std::string> DirReduction::dirReduc(std::vector<std::string> &arr)
+{
+      std::vector<std::string> result = arr;
+
+            // перебор всего массива начиная со 2 элемента, чтобы сравнивать текущий и предидущий, и не словить выход за пределы вектора
+            for (size_t i = 1; i < result.size(); i++)
+            {     
+                  // если подряд верх-низ
+                  if( (result[i] == "NORTH" && result[i - 1] == "SOUTH") || (result[i - 1] == "NORTH" && result[i] == "SOUTH") )
+                  {
+                        // удаление этих двух элементов
+                        result.erase(result.begin() + i);
+                        result.erase(result.begin() + i - 1);
+                        
+                        // начинаем фор заново
+                        i = 0;
+                        continue;
+                  }
+                  // если подряд лево-право
+                  if( (result[i] == "EAST" && result[i - 1] == "WEST") || (result[i - 1] == "EAST" && result[i] == "WEST") )
+                  {     
+                        // удаление этих двух элементов
+                        result.erase(result.begin() + i);
+                        result.erase(result.begin() + i - 1);
+
+                        // начинаем фор заново
+                        i = 0;
+                        continue;
+                  }
+            }
+      
+      return result;
+}
+
+std::string solve(const std::string& str)
+{
+      int lCase = 0;
+      int uCase = 0;
+
+      // подсчет кол-во кейсов
+      for(auto i : str)
+      {
+            if(std::tolower(i) == i)
+                  lCase ++;
+            else
+                  uCase ++;
+      }
+
+      std::string result = str;
+      bool lowerCase = false;
+
+      if(lCase >= uCase)
+            lowerCase = true;
+      
+      // перевод строки в ловер кейс или аппер кейс
+      for (size_t i = 0; i < result.length(); i++)
+      {
+            if(lowerCase == true)
+                  result[i] = std::tolower(result[i]);
+            else
+                  result[i] = std::toupper(result[i]);
+      }
+      
+      return result;
+}
 
 unsigned long long minValue (std::vector <int> values)
 {

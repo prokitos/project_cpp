@@ -32,3 +32,11 @@ std::string encrypt(std::string text, int n);
 std::string decrypt(std::string encryptedText, int n);
 std::pair<int,int> rowWeights (const std::vector <int> &weights);
 unsigned long long minValue (std::vector <int> values);
+
+std::string solve(const std::string& str);
+
+class DirReduction
+{
+public:
+    static std::vector<std::string> dirReduc(std::vector<std::string> &arr);
+};

@@ -84,32 +84,10 @@ void zaMainM()
       //std::cout << reverse_letter("krish21an");
 
       // найти в строке последовательность согласных букв, и вывести наибольшую сумму из всех последовательностей
-      std::cout << solveStr("B.CODIACg"); // c + g = 10;
+      std::cout << solveStr("k.ZODIACg"); // c + g = 10;
 
 };
 
-// проверка на гласную и согласную букву
-bool isVowel(char tmp)
-{
-      tmp = std::tolower(tmp);
-
-      // легче сделать цикл по 6 гласным, но тогда будут трудности с проверкой спец символов по типу пустоты и точек.
-      bool result = true;  // по стандарту согласная
-      int glasLen = 20;
-      int glas[glasLen]{'b','c','d','f','g','h','j','k','l','m','n','p','q','r','s','t','v','w','x','z'};
-
-      // перебор по всем гласным, и сравнение с пришедшей буквой
-      for (size_t i = 0; i < glasLen; i++)
-      {     
-            // если хоть раз совпадет, то вернет что буква гласная
-            if(tmp == glas[i])
-            {
-                  result = false;
-            }
-      }
-      
-      return result;
-}
 
 // вывод суммы позиций последовательности
 int solveStr(const std::string &s)
@@ -117,37 +95,27 @@ int solveStr(const std::string &s)
       int sum = 0;
       int sumMax = 0;
 
+      // более быстрое решение, но не работает со спец символами (точка будет считаться -70 или типо того)
+      // а делать условие на 20 согласных букв не очень круто, поэтому прошлое решение лучше
       for(auto i : s)
       {
-            // проверяем является ли буква согласной, или это гласная/спец.символ
-            bool chker = isVowel(i);
+           char curChar = std::tolower(i);
 
-            // если буква гласная
-            if(chker == true)
-            {
-                  // записываем максимальное значение, и обнуляем временный макс.
+           if(curChar == 'i' || curChar == 'a' || curChar == 'e' || curChar == 'o' || curChar == 'u' || curChar == 'y')
+           {
                   if(sum > sumMax)
                   {
                         sumMax = sum;
                   }
-
                   sum = 0;
-            }
-            // если буква согласная
-            else
-            {     
-                  // Добавляем индекс к временной сумме
-                  sum += std::tolower(i) - 'a' + 1; // +1 так как у нас индексы начинаются с 1 вместо 0.
-            }
+           }
+           else
+           {
+                  sum += curChar - 'a' + 1;
+           }
       }
 
-      // если последняя буква была согласной, после цикла снова проверяем текущую и максимальную сумму
-      if(sum > sumMax)
-      {
-            sumMax = sum;
-      }
-
-      return sumMax;
+      return std::max(sum,sumMax);
 }
 
 std::string reverse_letter(const std::string &str)

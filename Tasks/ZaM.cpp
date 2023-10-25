@@ -74,13 +74,104 @@ void zaMainM()
       //std::cout << solve("CODe");
 
       // Дан путь в словах, сократить его (N S S W = S W)
-      std::vector<std::string> res;
-      std::vector<std::string> d1 = {"NORTH", "SOUTH", "SOUTH", "EAST", "WEST", "NORTH", "WEST"};
-      res = DirReduction::dirReduc(d1);
-      for(auto i : res)
-            std::cout << i << " ";
+      // std::vector<std::string> res;
+      // std::vector<std::string> d1 = {"NORTH", "SOUTH", "SOUTH", "EAST", "WEST", "NORTH", "WEST"};
+      // res = DirReduction::dirReduc(d1);
+      // for(auto i : res)
+      //       std::cout << i << " ";
+
+      // перевернуть строку, и оставить только буквы
+      //std::cout << reverse_letter("krish21an");
+
+      // найти в строке последовательность согласных букв, и вывести наибольшую сумму из всех последовательностей
+      std::cout << solveStr("B.CODIACg"); // c + g = 10;
 
 };
+
+// проверка на гласную и согласную букву
+bool isVowel(char tmp)
+{
+      tmp = std::tolower(tmp);
+
+      // легче сделать цикл по 6 гласным, но тогда будут трудности с проверкой спец символов по типу пустоты и точек.
+      bool result = true;  // по стандарту согласная
+      int glasLen = 20;
+      int glas[glasLen]{'b','c','d','f','g','h','j','k','l','m','n','p','q','r','s','t','v','w','x','z'};
+
+      // перебор по всем гласным, и сравнение с пришедшей буквой
+      for (size_t i = 0; i < glasLen; i++)
+      {     
+            // если хоть раз совпадет, то вернет что буква гласная
+            if(tmp == glas[i])
+            {
+                  result = false;
+            }
+      }
+      
+      return result;
+}
+
+// вывод суммы позиций последовательности
+int solveStr(const std::string &s)
+{
+      int sum = 0;
+      int sumMax = 0;
+
+      for(auto i : s)
+      {
+            // проверяем является ли буква согласной, или это гласная/спец.символ
+            bool chker = isVowel(i);
+
+            // если буква гласная
+            if(chker == true)
+            {
+                  // записываем максимальное значение, и обнуляем временный макс.
+                  if(sum > sumMax)
+                  {
+                        sumMax = sum;
+                  }
+
+                  sum = 0;
+            }
+            // если буква согласная
+            else
+            {     
+                  // Добавляем индекс к временной сумме
+                  sum += std::tolower(i) - 'a' + 1; // +1 так как у нас индексы начинаются с 1 вместо 0.
+            }
+      }
+
+      // если последняя буква была согласной, после цикла снова проверяем текущую и максимальную сумму
+      if(sum > sumMax)
+      {
+            sumMax = sum;
+      }
+
+      return sumMax;
+}
+
+std::string reverse_letter(const std::string &str)
+{
+      std::string temp = str;
+      std::reverse(temp.begin(),temp.end());
+
+      for (size_t i = 0; i < temp.length(); i++)
+      {     
+            // если буква то пропустить
+            if(temp[i] >= 'a' && temp[i] <= 'z')
+            {
+                  continue;
+            }
+            // иначе удалить символ, и уменьшить итерацию на 1
+            else
+            {
+                  temp.erase(temp.begin() + i);
+                  i --;
+            }
+      }
+
+      return temp;
+}
 
 std::vector<std::string> DirReduction::dirReduc(std::vector<std::string> &arr)
 {

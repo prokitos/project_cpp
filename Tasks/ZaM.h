@@ -40,3 +40,8 @@ class DirReduction
 public:
     static std::vector<std::string> dirReduc(std::vector<std::string> &arr);
 };
+
+std::string reverse_letter(const std::string &str);
+
+int solveStr(const std::string &s);
+bool isVowel(char tmp);

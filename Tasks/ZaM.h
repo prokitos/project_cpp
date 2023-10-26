@@ -45,3 +45,6 @@ std::string reverse_letter(const std::string &str);
 
 int solveStr(const std::string &s);
 bool isVowel(char tmp);
+
+int get_sum(int a, int b);
+std::string is_sorted_and_how(std::vector<int> array);

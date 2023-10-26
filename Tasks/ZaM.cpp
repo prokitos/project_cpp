@@ -84,9 +84,54 @@ void zaMainM()
       //std::cout << reverse_letter("krish21an");
 
       // найти в строке последовательность согласных букв, и вывести наибольшую сумму из всех последовательностей
-      std::cout << solveStr("k.ZODIACg"); // c + g = 10;
+      //std::cout << solveStr("k.ZODIACg"); // c + g = 10;
 
+      // сумма чисел от а до b
+      //std::cout << get_sum(-1,2);
+
+      // проверка отсортирован ли массив
+      std::cout << is_sorted_and_how({15, 7, 3, -8});
 };
+
+std::string is_sorted_and_how(std::vector<int> array)
+{
+      std::vector<int> asc = array;
+      std::sort(asc.begin(), asc.end());
+
+      std::vector<int> desc = array;
+      std::sort(desc.begin(), desc.end(), std::greater());
+
+      if(array == asc)
+            return "yes, ascending";
+      if(array == desc)
+            return "yes, descending";
+
+      return "no";
+}
+
+int get_sum(int a, int b)
+{
+      int sum = 0;
+      int min, max;
+
+      if(a >= b)  
+      {
+            min = b;
+            max = a;
+      }
+      else
+      {
+            min = a;
+            max = b; 
+      }
+
+      for (int i = min; i <= max; i++)
+      {
+            sum += i;
+      }
+      
+      return sum;
+}
 
 
 // вывод суммы позиций последовательности

@@ -48,3 +48,6 @@ bool isVowel(char tmp);
 
 int get_sum(int a, int b);
 std::string is_sorted_and_how(std::vector<int> array);
+
+int adjacentElementsProduct(std::vector<int> inputArray);
+bool small_enough(std::vector<int> arr, int limit);

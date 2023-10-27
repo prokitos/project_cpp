@@ -90,8 +90,40 @@ void zaMainM()
       //std::cout << get_sum(-1,2);
 
       // проверка отсортирован ли массив
-      std::cout << is_sorted_and_how({15, 7, 3, -8});
+      // std::cout << is_sorted_and_how({15, 7, 3, -8});
+
+      // массив чисел. умножить 2 числа подряд, и найти самое большое такое значение.
+      // std::cout << adjacentElementsProduct({5,1,2,3,1,4});  // 5*1 = 5,  2*3 = 6!!!
+
+      // дан вектор чисел, и лимитированое число. если все значения в векторе меньше или равны лимиту то тру, иначе фолс.
+      std::cout << small_enough(std::vector<int>{78, 117, 110, 99, 104, 117, 107, 115}, 100);
 };
+
+bool small_enough(std::vector<int> arr, int limit)
+{
+      std::sort(arr.begin(),arr.end(),std::greater());
+
+      if(arr[0] > limit)
+            return false;
+      else
+            return true;
+}
+
+int adjacentElementsProduct(std::vector<int> inputArray) 
+{
+      int max = INT32_MIN;
+
+      for (size_t i = 1; i < inputArray.size(); i++)
+      {
+            int temp = inputArray[i - 1] * inputArray[i];
+            if(temp > max)
+            {
+                  max = temp;
+            }
+      }
+      
+      return max;
+}
 
 std::string is_sorted_and_how(std::vector<int> array)
 {

@@ -96,8 +96,38 @@ void zaMainM()
       // std::cout << adjacentElementsProduct({5,1,2,3,1,4});  // 5*1 = 5,  2*3 = 6!!!
 
       // дан вектор чисел, и лимитированое число. если все значения в векторе меньше или равны лимиту то тру, иначе фолс.
-      std::cout << small_enough(std::vector<int>{78, 117, 110, 99, 104, 117, 107, 115}, 100);
+      // std::cout << small_enough(std::vector<int>{78, 117, 110, 99, 104, 117, 107, 115}, 100);
+
+      // приходит строка со словами. перевенуть слова которые длинной 5+ символов
+      std::cout << spinWords("Hey fellow warriors");
 };
+
+
+std::string spinWords(const std::string &str)
+{     
+      // строку в вектор, разделяя пробелами
+      std::stringstream temp(str);
+      std::vector<std::string> vecStr(std::istream_iterator<std::string>(temp),{});
+
+      // смотрим каждое слово, и если больше 4 символов то разворачиваем
+      for (size_t i = 0; i < vecStr.size(); i++)
+      {
+            if(vecStr[i].length() > 4)
+            {
+                  std::reverse(vecStr[i].begin(),vecStr[i].end());
+            }
+      }
+
+      // добавляем в строку каждое слово из вектора, и добавляем пробелы. в конце убираем лишний пробел.
+      std::string result {};
+      for(auto i : vecStr)
+      {
+            result += i + " ";
+      }
+      result.pop_back();
+
+      return result;
+}
 
 bool small_enough(std::vector<int> arr, int limit)
 {

@@ -99,9 +99,39 @@ void zaMainM()
       // std::cout << small_enough(std::vector<int>{78, 117, 110, 99, 104, 117, 107, 115}, 100);
 
       // приходит строка со словами. перевенуть слова которые длинной 5+ символов
-      std::cout << spinWords("Hey fellow warriors");
+      // std::cout << spinWords("Hey fellow warriors");
+
+      // найти четное среди нечетных, или наоборот
+      std::cout << FindOutliers({2,6,8,10,5});
+
 };
 
+int FindOutliers(std::vector<int> arr)
+{
+      int temp1 {};
+      int temp2 {};
+
+      // сравниваем два числа подряд, если одно из них четное а другое нет - записываем в переменную
+      for (size_t i = 1; i < arr.size(); i++)
+      {
+            if( (arr[i - 1] % 2) != (arr[i] % 2) )
+            {
+                  temp1 = arr[i];
+                  temp2 = arr[i - 1];
+                  break;
+            }
+      }
+
+      // если первое и последнее число в массиве по четности равны TEMP1, то значит TEMP2 отличается по четности, и вернуть его. иначе temp1
+      if( (temp1 % 2) == (arr[0] % 2) == (arr[arr.size()] % 2) )
+      {
+            return temp2;
+      }
+      else
+      {
+            return temp1;
+      }
+}
 
 std::string spinWords(const std::string &str)
 {     

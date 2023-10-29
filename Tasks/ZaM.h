@@ -52,3 +52,5 @@ std::string is_sorted_and_how(std::vector<int> array);
 int adjacentElementsProduct(std::vector<int> inputArray);
 bool small_enough(std::vector<int> arr, int limit);
 std::string spinWords(const std::string &str);
+
+int FindOutliers(std::vector<int> arr);

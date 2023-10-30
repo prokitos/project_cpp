@@ -102,12 +102,51 @@ void zaMainM()
       // std::cout << spinWords("Hey fellow warriors");
 
       // найти четное среди нечетных, или наоборот
-      std::cout << FindOutliers({2,6,8,10,5});
+      //std::cout << FindOutliers({2,6,8,10,5});
 
+      // отсортировать нечетные числа, а четные оставить на своих местах
+      std::vector<int> res = sortArrayOdd({9, 8, 7, 6, 5, 4, 3, 2, 1, 0});
+      for(auto i : res)
+            std::cout << i << " ";
+      
 };
+
+
+std::vector<int> sortArrayOdd(std::vector<int> array)
+{
+      // O(2 n)
+      std::vector<int> oddVec;
+
+      // добавляем в новый вектор все нечетные
+      for(auto i : array)
+      {
+            if(i % 2)
+            {
+                  oddVec.push_back(i);
+            }
+      }
+      
+      // отсортировать нечетные числа в новом векторе
+      std::sort(oddVec.begin(), oddVec.end());
+
+      // нечетные числа в обычном векторе меняем на числа из нового вектора по одной штуке.
+      int j = 0;
+      for (size_t i = 0; i < array.size(); i++)
+      {
+            if(array[i] % 2)
+            {
+                  array[i] = oddVec[j];
+                  j ++;
+            }
+      }
+      
+      return array;
+}
 
 int FindOutliers(std::vector<int> arr)
 {
+      // сравнивать числа от второго элемента по четности, и если все равны = значит первый элемент отличался, и пишем его
+      // иначе сравниваем разные числа с самым первым
       int temp1 {};
       int temp2 {};
 

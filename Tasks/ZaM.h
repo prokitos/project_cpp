@@ -54,3 +54,5 @@ bool small_enough(std::vector<int> arr, int limit);
 std::string spinWords(const std::string &str);
 
 int FindOutliers(std::vector<int> arr);
+
+std::vector<int> sortArrayOdd(std::vector<int> array);

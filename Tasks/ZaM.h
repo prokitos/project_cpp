@@ -56,3 +56,5 @@ std::string spinWords(const std::string &str);
 int FindOutliers(std::vector<int> arr);
 
 std::vector<int> sortArrayOdd(std::vector<int> array);
+
+std::vector<int> sortOddEven(std::vector<int> input);

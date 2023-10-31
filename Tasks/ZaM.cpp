@@ -105,12 +105,35 @@ void zaMainM()
       //std::cout << FindOutliers({2,6,8,10,5});
 
       // отсортировать нечетные числа, а четные оставить на своих местах
-      std::vector<int> res = sortArrayOdd({9, 8, 7, 6, 5, 4, 3, 2, 1, 0});
-      for(auto i : res)
+      // std::vector<int> res = sortArrayOdd({9, 8, 7, 6, 5, 4, 3, 2, 1, 0});
+      // for(auto i : res)
+      //       std::cout << i << " ";
+
+      // отсортировать вектор, чтобы сначала шли четные а потом нечетные цифры (в изначальном порядке).
+      std::vector<int> mass = sortOddEven({2,1,0,3,4,5,6});
+      for(auto i : mass)
             std::cout << i << " ";
       
 };
 
+std::vector<int> sortOddEven(std::vector<int> input)
+{
+      std::vector<int> result;
+      std::vector<int> odd;
+      std::vector<int> even;
+
+      // вставка только четных или нечетных чисел в нужные вектора
+      std::copy_if(input.begin(), input.end(), std::back_inserter(odd),  [](int x){return x % 2 ? true : false;});
+      std::copy_if(input.begin(), input.end(), std::back_inserter(even), [](int x){return x % 2 ? false : true;});
+
+      // если нужна сортировка внутри мини векторов, то обычный сорт ODD и EVEN тут.
+      
+      // Добавление в итоговый вектор четных а потом нечетных чисел
+      result.insert(result.end(),even.begin(),even.end());
+      result.insert(result.end(),odd.begin(),odd.end());
+
+      return result;
+}
 
 std::vector<int> sortArrayOdd(std::vector<int> array)
 {

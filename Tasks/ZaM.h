@@ -58,3 +58,5 @@ int FindOutliers(std::vector<int> arr);
 std::vector<int> sortArrayOdd(std::vector<int> array);
 
 std::vector<int> sortOddEven(std::vector<int> input);
+
+std::string orderWeightStr(const std::string &strng);

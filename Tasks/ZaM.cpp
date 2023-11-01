@@ -110,11 +110,55 @@ void zaMainM()
       //       std::cout << i << " ";
 
       // отсортировать вектор, чтобы сначала шли четные а потом нечетные цифры (в изначальном порядке).
-      std::vector<int> mass = sortOddEven({2,1,0,3,4,5,6});
-      for(auto i : mass)
-            std::cout << i << " ";
+      // std::vector<int> mass = sortOddEven({2,1,0,3,4,5,6});
+      // for(auto i : mass)
+      //       std::cout << i << " ";
+
+      // строка с числами. отсортировать по сумме цифр в числе.
+      std::cout << orderWeightStr("56 65 74 100 99 68 86 180 90");
       
 };
+
+std::string orderWeightStr(const std::string &strng)
+{
+      // проверка что пришла не пустота
+      if(strng == "")
+            return "";
+
+      // строка в вектор
+      std::stringstream temp(strng);
+      std::vector<std::string> strVec(std::istream_iterator<std::string>(temp),{});
+
+      // кастомная сортировка через лямбда функцию
+      std::sort(strVec.begin(),strVec.end(), [](std::string x, std::string y)
+      {
+            // считаем сумму цифр у двух чисел
+            int temp1 = 0;
+            for(auto i : x)
+                  temp1 += i - '0';
+            int temp2 = 0;
+            for(auto i : y)
+                  temp2 += i - '0';
+            
+            // сравниваем суммы цифр для сортировки. если равны то сортируется по алфавитному порядку.
+            if(temp1 == temp2)
+            {
+                  return x > y ? false : true;
+            }
+            if(temp1 > temp2)
+                  return false;
+            else
+                  return true;
+      });
+
+      // сборк строки из вектора
+      std::string result {};
+      for(auto i : strVec)
+            result += i + " ";
+      result.pop_back();
+
+      return result;
+}
 
 std::vector<int> sortOddEven(std::vector<int> input)
 {

@@ -115,9 +115,34 @@ void zaMainM()
       //       std::cout << i << " ";
 
       // строка с числами. отсортировать по сумме цифр в числе.
-      std::cout << orderWeightStr("56 65 74 100 99 68 86 180 90");
+      //std::cout << orderWeightStr("56 65 74 100 99 68 86 180 90");
       
+
+      // найти число которое встречается нечетное количество раз
+      std::cout << findOdder({1,1,2,-2,5,2,4,4,-1,-2,5});
 };
+
+int findOdder(const std::vector<int>& numbers)
+{
+      std::map<int,int> dictionary;
+      int result {};
+
+      for(auto i : numbers)
+      {
+            dictionary[i] ++;
+      }
+
+      for(auto i : dictionary)
+      {
+            if(i.second % 2 == true)
+            {
+                  result = i.first;
+                  break;
+            }
+      }
+      
+      return result;
+}
 
 std::string orderWeightStr(const std::string &strng)
 {

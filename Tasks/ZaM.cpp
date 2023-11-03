@@ -116,10 +116,32 @@ void zaMainM()
 
       // строка с числами. отсортировать по сумме цифр в числе.
       //std::cout << orderWeightStr("56 65 74 100 99 68 86 180 90");
-      
 
       // найти число которое встречается нечетное количество раз
-      std::cout << findOdder({1,1,2,-2,5,2,4,4,-1,-2,5});
+      //std::cout << findOdder({1,1,2,-2,5,2,4,4,-1,-2,5});
+
+      // удалить элемент если он встречается больше чем N раз. порядок элементов должен соблюдаться.
+      std::vector<int> temp = deleteElements({20,37,20,21},1);
+      for(auto i : temp)
+            std::cout << i << " ";
+};
+
+std::vector<int> deleteElements(std::vector<int> arr, int n)
+{
+      std::vector<int> temp;
+      std::map<int,int> dictionary;
+
+      for(auto i : arr)
+      {
+            dictionary[i] ++;
+
+            if(dictionary[i] <= n)
+            {
+                  temp.push_back(i);
+            }
+      }
+
+      return temp;
 };
 
 int findOdder(const std::vector<int>& numbers)

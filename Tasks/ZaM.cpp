@@ -121,10 +121,53 @@ void zaMainM()
       //std::cout << findOdder({1,1,2,-2,5,2,4,4,-1,-2,5});
 
       // удалить элемент если он встречается больше чем N раз. порядок элементов должен соблюдаться.
-      std::vector<int> temp = deleteElements({20,37,20,21},1);
-      for(auto i : temp)
-            std::cout << i << " ";
+      // std::vector<int> temp = deleteElements({20,37,20,21},1);
+      // for(auto i : temp)
+      //       std::cout << i << " ";
+
+      std::cout << vowelShiftText(";jibOTBPrak0i72M2DlkNAZ?", 3);
 };
+
+std::string vowelShiftText(std::string text, int n)
+{
+      std::string vowels {};
+
+      // добавление всех гласных в строку
+      for(auto i : text)
+      {
+            if(std::tolower(i) == 'i' || std::tolower(i) == 'a' || std::tolower(i) == 'o' || std::tolower(i) == 'e' || std::tolower(i) == 'u')
+            vowels += i; 
+      }
+
+      // вычисление позиции с которой начниается последовательность гласных.
+      int counter = vowels.length() - n;
+      // вставка вместо старых гласных - новых.
+      for (size_t i = 0; i < text.length(); i++)
+      {
+            char temp = text[i];
+            if(std::tolower(temp) == 'i' || std::tolower(temp) == 'a' || std::tolower(temp) == 'o' || std::tolower(temp) == 'e' || std::tolower(temp) == 'u')
+            {     
+                  // вычисление позиций если ушло за пределы массива.
+                  int len = vowels.length();
+                  if(counter >= len)
+                  {
+                        counter = counter % vowels.length();
+                  }
+                  if(counter < 0)
+                  {
+                        counter = counter % vowels.length();
+                        if(counter < 0)
+                        counter = vowels.length() + counter;
+                  }
+                  
+                  // старая гласная меняется на новую, по указанной позиции из строки.
+                  text[i] = vowels[counter];
+                  counter ++;
+            }
+      }     
+      
+      return text;
+}
 
 std::vector<int> deleteElements(std::vector<int> arr, int n)
 {

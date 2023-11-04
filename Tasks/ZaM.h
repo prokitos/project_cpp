@@ -64,3 +64,5 @@ std::string orderWeightStr(const std::string &strng);
 int findOdder(const std::vector<int>& numbers);
 
 std::vector<int> deleteElements(std::vector<int> arr, int n);
+
+std::string vowelShiftText(std::string text, int n);

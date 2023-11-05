@@ -2,8 +2,6 @@
 #include <vector>
 #include <algorithm>
 #include <math.h>
-#include <iterator>    
-#include <sstream>
 #include <map>
 #include <iterator>    
 #include <sstream>
@@ -125,8 +123,34 @@ void zaMainM()
       // for(auto i : temp)
       //       std::cout << i << " ";
 
-      std::cout << vowelShiftText(";jibOTBPrak0i72M2DlkNAZ?", 3);
+      // сдвинуть гласные буквы в слове на N
+      // std::cout << vowelShiftText(";jibOTBPrak0i72M2DlkNAZ?", 3);
+
+      // посчитать и вывести кол-во разных букв в слове
+      // std::map<char, unsigned> temp = countChars("abaddon");
+      // for(auto i : temp)
+      //       std::cout << i.first << "  " << i.second << std::endl;
+
+      // посчитать сумму положительных чисел в строке.
+      std::cout << sumPositiv("0 4 12 -10 -40 4");
 };
+
+int sumPositiv(std::string text)
+{
+      std::stringstream sstream(text);
+      std::vector<int> temp(std::istream_iterator<int>(sstream),{});
+      auto summ = std::accumulate(temp.begin(),temp.end(),0,[](int x, int y){return x + (y > 0 ? y : 0);});
+      return summ;
+}
+
+std::map<char, unsigned> countChars(const std::string& string) 
+{
+      std::map<char, unsigned> dictionary;
+      for(auto i : string)
+            dictionary[i] ++;
+
+      return dictionary;
+}
 
 std::string vowelShiftText(std::string text, int n)
 {

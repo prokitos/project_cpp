@@ -132,8 +132,38 @@ void zaMainM()
       //       std::cout << i.first << "  " << i.second << std::endl;
 
       // посчитать сумму положительных чисел в строке.
-      std::cout << sumPositiv("0 4 12 -10 -40 4");
+      //std::cout << sumPositiv("0 4 12 -10 -40 4");
+
+      // строку текста в строку чисел с номерами букв алфавита
+      std::cout << alphabet_position_print("babai ka");
 };
+
+std::string alphabet_position_print(const std::string &text)
+{
+      std::string result {};
+      std::map<char,int> dict;
+      dict['a'] = 1; dict['b'] = 2; dict['c'] = 3; dict['d'] = 4; dict['e'] = 5; dict['f'] = 6; dict['g'] = 7; 
+      dict['h'] = 8; dict['i'] = 9; dict['j'] = 10; dict['k'] = 11; dict['l'] = 12; dict['m'] = 13; dict['n'] = 14; 
+      dict['o'] = 15; dict['p'] = 16; dict['q'] = 17; dict['r'] = 18; dict['s'] = 19; dict['t'] = 20; dict['u'] = 21; 
+      dict['v'] = 22; dict['w'] = 23; dict['x'] = 24; dict['y'] = 25; dict['z'] = 26;
+
+      for(auto i : text)
+      {
+            int temp = dict[std::tolower(i)];
+            if(temp > 0)
+            {
+                  result += std::to_string(temp);
+                  result += " ";
+            }
+      }
+
+      if(result.empty() == false)
+      {
+            result.pop_back();
+      }
+
+      return result;
+}
 
 int sumPositiv(std::string text)
 {

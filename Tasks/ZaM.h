@@ -69,3 +69,5 @@ std::string vowelShiftText(std::string text, int n);
 
 std::map<char, unsigned> countChars(const std::string& string);
 int sumPositiv(std::string text);
+
+std::string alphabet_position_print(const std::string &text);

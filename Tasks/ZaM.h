@@ -71,3 +71,6 @@ std::map<char, unsigned> countChars(const std::string& string);
 int sumPositiv(std::string text);
 
 std::string alphabet_position_print(const std::string &text);
+
+unsigned long long numPrimorialMultiple (unsigned short int number);
+bool primalCheckMultiple(unsigned long long numPrimor);

@@ -135,8 +135,57 @@ void zaMainM()
       //std::cout << sumPositiv("0 4 12 -10 -40 4");
 
       // строку текста в строку чисел с номерами букв алфавита
-      std::cout << alphabet_position_print("babai ka");
+      // std::cout << alphabet_position_print("babai ka");
+
+      // функция принимает числовое значение. Умножить N количество первых простых чисел начиная с 1.
+      std::cout << numPrimorialMultiple(3);
 };
+
+unsigned long long numPrimorialMultiple (unsigned short int number)
+{
+      // начальный значения
+      unsigned long long result = 2; 
+      int counter = 1;
+      int curNumber = 2;
+
+      // проверка если пришел 0 или минус.
+      if(number < 1)
+            return 0;
+
+      // в цикле проверка, чтобы умножилось N простых чисел.
+      while(counter < number)
+      {
+            curNumber ++;
+
+            // если это число простое, то умножается, иначе просто идет на следующий круг
+            if(primalCheckMultiple(curNumber))
+            {
+                  result *= curNumber;
+                  counter ++;
+            }
+
+      }
+      
+      return result;
+}
+
+// проверка на простое число
+bool primalCheckMultiple(unsigned long long numPrimor)
+{
+      // по стандарту число простое.
+      bool result = true;
+      // цикл начинается с 2, потомучто на 1 делится любое положительное число. и до корня пришедшего числа.
+      for (size_t i = 2; i <= std::sqrt(numPrimor); i++)
+      {
+            // если наше число делится на i без остатка, то оно не простое. говорим фолс и выкидываем.
+            if(numPrimor % i == 0)
+            {
+                  result = false;
+                  break;
+            }
+      }
+      return result;
+}
 
 std::string alphabet_position_print(const std::string &text)
 {

@@ -74,3 +74,5 @@ std::string alphabet_position_print(const std::string &text);
 
 unsigned long long numPrimorialMultiple (unsigned short int number);
 bool primalCheckMultiple(unsigned long long numPrimor);
+
+std::vector<std::pair<int, int>> twos_difference_pair(const std::vector<int> &vec);

@@ -138,8 +138,44 @@ void zaMainM()
       // std::cout << alphabet_position_print("babai ka");
 
       // функция принимает числовое значение. Умножить N количество первых простых чисел начиная с 1.
-      std::cout << numPrimorialMultiple(3);
+      // std::cout << numPrimorialMultiple(3);
+
+      // дан массив чисел. вернуть пары чисел, которые при вычитании дадут число 2.
+      std::vector<std::pair<int, int>> temp = twos_difference_pair({4,1,2,3});
+      for(auto i : temp)
+            std::cout << i.first << "  " << i.second << std::endl;
 };
+
+std::vector<std::pair<int, int>> twos_difference_pair(const std::vector<int> &vec)
+{
+      std::vector<int> input = vec;
+      std::vector<std::pair<int, int>> result;
+
+      // сортировка вектора
+      std::sort(input.begin(), input.end());
+
+      for (size_t i = 0; i < input.size(); i++)
+      {     
+            for (size_t j = i + 1; j < input.size(); j++)
+            {
+                  // разница между двумя числами.
+                  int diff = input[j] - input[i];
+                  //если разница 2, то добавляем пару в результат.
+                  if(diff == 2)
+                  {
+                        result.push_back({input[i],input[j]});
+                        break;
+                  }
+                  // если разница между числами больше 2, то сразу пропускаем, т.к. массив отсортирован и дальше разница будет ещё больше.
+                  if(diff > 2)
+                  {
+                        break;
+                  }
+            }
+      }
+      
+      return result;
+}
 
 unsigned long long numPrimorialMultiple (unsigned short int number)
 {

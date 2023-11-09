@@ -76,3 +76,7 @@ unsigned long long numPrimorialMultiple (unsigned short int number);
 bool primalCheckMultiple(unsigned long long numPrimor);
 
 std::vector<std::pair<int, int>> twos_difference_pair(const std::vector<int> &vec);
+
+bool compareQuad(std::vector<int>&a, std::vector<int>&b);
+
+std::vector<char> uniqueInStroka(const std::string& iterable);

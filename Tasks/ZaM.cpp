@@ -3,6 +3,7 @@
 #include <algorithm>
 #include <math.h>
 #include <map>
+#include <unordered_map>
 #include <iterator>    
 #include <sstream>
 #include <regex>
@@ -141,10 +142,47 @@ void zaMainM()
       // std::cout << numPrimorialMultiple(3);
 
       // дан массив чисел. вернуть пары чисел, которые при вычитании дадут число 2.
-      std::vector<std::pair<int, int>> temp = twos_difference_pair({4,1,2,3});
+      // std::vector<std::pair<int, int>> temp = twos_difference_pair({4,1,2,3});
+      // for(auto i : temp)
+      //       std::cout << i.first << "  " << i.second << std::endl;
+
+      // даны 2 вектора. узнать являются ли числа одного вектора квадратами чисел другого вектора
+      // std::vector<int> a = {121, 144, 19, 161, 19, 144, 19, 11};
+      // std::vector<int> b = {14641, 20736, 361, 25921, 361, 20736, 361, 121};
+      // std::cout << compareQuad(b,a);
+
+      // вернуть вектор с символами, убрав множественные повторения.
+      std::vector<char> temp = uniqueInStroka("ZZAAAABBBEECCDAABBB");
       for(auto i : temp)
-            std::cout << i.first << "  " << i.second << std::endl;
+            std::cout << i;
 };
+
+std::vector<char> uniqueInStroka(const std::string& iterable)
+{
+      std::vector<char> result;
+
+      for(auto i : iterable)
+      {
+            if(result.empty() || result.back() != i)
+                  result.push_back(i);
+      }
+
+      return result;
+}
+
+bool compareQuad(std::vector<int>&a, std::vector<int>&b)
+{      
+      for(auto &i : a)
+            i = i * i;
+
+      std::sort(a.begin(),a.end());
+      std::sort(b.begin(),b.end());
+      
+      if(a == b)
+            return true;
+      else
+            return false;
+}
 
 std::vector<std::pair<int, int>> twos_difference_pair(const std::vector<int> &vec)
 {

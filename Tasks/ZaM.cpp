@@ -152,10 +152,49 @@ void zaMainM()
       // std::cout << compareQuad(b,a);
 
       // вернуть вектор с символами, убрав множественные повторения.
-      std::vector<char> temp = uniqueInStroka("ZZAAAABBBEECCDAABBB");
-      for(auto i : temp)
-            std::cout << i;
+      // std::vector<char> temp = uniqueInStroka("ZZAAAABBBEECCDAABBB");
+      // for(auto i : temp)
+      //       std::cout << i;
+
+      // быстрое решение трибоначи (фибоначи из 3).
+      std::vector<int> res = fastTribonacci({1,1,1},10);  // 1 1 1 3 5 9 17 31 57 105
+      for(auto i : res)
+            std::cout << i << " ";
 };
+
+std::vector<int> fastTribonacci(std::vector<int> signature, int n)
+{
+      // проверка некорректного ввода
+      if(signature.size() < 3)
+      {
+            return signature;
+      } 
+      // если n меньше 4, то обрезаем вектор до n элементов.
+      if(n < 4)
+      {
+            signature.resize(n);
+            return signature;
+      }
+
+      // к переменным обращение быстрее чем к вектору по [i].
+      // ещё более лучше сделать массив из n элементов, т.к. к массиву обращение к любому элементу тоже n(1).
+      int first = signature[0];
+      int second = signature[1];
+      int third = signature[2];
+
+      // каждую итерацию складываем переменные, переприсваиваем, и пушим в вектора за O(1).
+      while(signature.size() < n)
+      {
+            int temp = first + second + third;
+            first = second;
+            second = third;
+            third = temp;
+
+            signature.push_back(temp);
+      }
+
+      return signature;
+}
 
 std::vector<char> uniqueInStroka(const std::string& iterable)
 {

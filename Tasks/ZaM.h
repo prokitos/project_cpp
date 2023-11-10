@@ -80,3 +80,5 @@ std::vector<std::pair<int, int>> twos_difference_pair(const std::vector<int> &ve
 bool compareQuad(std::vector<int>&a, std::vector<int>&b);
 
 std::vector<char> uniqueInStroka(const std::string& iterable);
+
+std::vector<int> fastTribonacci(std::vector<int> signature, int n);

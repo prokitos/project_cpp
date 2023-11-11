@@ -82,3 +82,5 @@ bool compareQuad(std::vector<int>&a, std::vector<int>&b);
 std::vector<char> uniqueInStroka(const std::string& iterable);
 
 std::vector<int> fastTribonacci(std::vector<int> signature, int n);
+
+unsigned int countBits(unsigned long long n);

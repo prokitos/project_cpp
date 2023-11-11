@@ -157,10 +157,33 @@ void zaMainM()
       //       std::cout << i;
 
       // быстрое решение трибоначи (фибоначи из 3).
-      std::vector<int> res = fastTribonacci({1,1,1},10);  // 1 1 1 3 5 9 17 31 57 105
-      for(auto i : res)
-            std::cout << i << " ";
+      // std::vector<int> res = fastTribonacci({1,1,1},10);  // 1 1 1 3 5 9 17 31 57 105
+      // for(auto i : res)
+      //       std::cout << i << " ";
+
+      // число в двоичную сс, а потом посчитать количество единиц.
+      std::cout << countBits(1234);  // 1234 = 10011010010 = 5 единиц
 };
+
+
+unsigned int countBits(unsigned long long n)
+{
+      std::string dInt {};
+
+      // если число делится нацело, то 0, иначе 1
+      while(n > 0)
+      {
+            if(n % 2 == 0)
+                  dInt += "0";
+            else
+                  dInt += "1";
+            
+            n = n / 2;
+      }
+      std::reverse(dInt.begin(), dInt.end());   // можно не реверсить. просто для правильного отображения в 2 сс.
+      auto temp = std::count(dInt.begin(), dInt.end(), '1');
+      return temp;
+}
 
 std::vector<int> fastTribonacci(std::vector<int> signature, int n)
 {

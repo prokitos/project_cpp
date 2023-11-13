@@ -167,9 +167,39 @@ void zaMainM()
       // есть вектор чисел. найти сумму последовательности, которая даст максимальную сумму.
             // можно сделать решение в 1 форе. также записывать во временную переменную сумму, если она больше чем была
             //а если сумма в минусе то обнулять и начинать с этого элемента.
-      std::cout << maxSequence({-2, 1, -3, 4, -1, 2, 1, -5, 4});
+      //std::cout << maxSequence({-2, 1, -3, 4, -1, 2, 1, -5, 4});
+
+      // убрать одинаковые символы подряд
+      std::vector<std::string> temp = dup({"ccooddddddewwwaaaaarrrrsssss","piccaninny","hubbubbubboo"});
+      for(auto i : temp)
+            std::cout << i << "  ";
 };
 
+std::vector<std::string> dup(std::vector<std::string> arr)
+{
+      std::vector<std::string> result;
+      for(auto &item : arr)
+      {     
+            for (int i = 1; i < item.length(); i++)
+            {
+                  if(item[i] == item[i - 1])
+                  {
+                        item.erase(item.begin() + i);
+                        i --;
+                  }
+            }
+            
+            result.push_back(item);
+      }
+      return result;
+
+      // for (auto& s : arr)
+      // {
+            // unique откидывает в !конец одинаковые буквы, а через ерейс удаляем начиная с этого !конца
+            //s.erase(std::unique(s.begin(), s.end()),s.end());
+      //}
+      //return arr;
+}
 
 int maxSequence(const std::vector<int>& arr)
 {     

@@ -11,6 +11,7 @@
 #include <chrono>
 #include <bitset>
 #include <iomanip>
+#include <set>
 
 
 void zaMainM()
@@ -170,10 +171,32 @@ void zaMainM()
       //std::cout << maxSequence({-2, 1, -3, 4, -1, 2, 1, -5, 4});
 
       // убрать одинаковые символы подряд
-      std::vector<std::string> temp = dup({"ccooddddddewwwaaaaarrrrsssss","piccaninny","hubbubbubboo"});
+      // std::vector<std::string> temp = dup({"ccooddddddewwwaaaaarrrrsssss","piccaninny","hubbubbubboo"});
+      // for(auto i : temp)
+      //       std::cout << i << "  ";
+
+      // удалить одинаковые элементы со всего вектора, но оставить порядок.  ( 5 1 3 9 6 8 4 7 2 0 )
+      std::vector<int> temp = duplicationDelete({5,1,3,5,1,9,3,6,8,3,4,7,3,1,2,8,0,3,4,5,7,1,2});
       for(auto i : temp)
             std::cout << i << "  ";
 };
+
+std::vector<int> duplicationDelete(std::vector<int> input)
+{
+      std::vector<int> result;
+      std::set<int> temp;
+
+      for(auto i : input)
+      {
+            auto boolTemp = temp.insert(i);
+            if(boolTemp.second == true)
+            {
+                  result.push_back(i);
+            }
+      }
+
+      return result;
+}
 
 std::vector<std::string> dup(std::vector<std::string> arr)
 {

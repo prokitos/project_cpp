@@ -88,3 +88,5 @@ unsigned int countBits(unsigned long long n);
 int maxSequence(const std::vector<int>& arr);
 
 std::vector<std::string> dup(std::vector<std::string> arr);
+
+std::vector<int> duplicationDelete(std::vector<int> input);

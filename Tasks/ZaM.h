@@ -90,3 +90,7 @@ int maxSequence(const std::vector<int>& arr);
 std::vector<std::string> dup(std::vector<std::string> arr);
 
 std::vector<int> duplicationDelete(std::vector<int> input);
+
+void mergeSortMain(int *massiv, int lenght);
+void mergeSorted(int *massiv, int len);
+void mergeMassive(int *main, int *first, int len1, int *second, int len2);

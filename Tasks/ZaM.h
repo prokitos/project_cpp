@@ -94,3 +94,5 @@ std::vector<int> duplicationDelete(std::vector<int> input);
 void mergeSortMain(int *massiv, int lenght);
 void mergeSorted(int *massiv, int len);
 void mergeMassive(int *main, int *first, int len1, int *second, int len2);
+
+std::string uint32_to_ip(uint32_t ip);

@@ -181,11 +181,35 @@ void zaMainM()
       //       std::cout << i << "  ";
 
       // merge sort.
-      int mass[21]{0,7,3,6,3,7,3,9,4,7,1,8,3,5,1,7,8,4,3,0,4};
-      mergeSortMain(mass,std::size(mass));
-      for(auto i : mass)
-            std::cout << i << " ";
+      // int mass[21]{0,7,3,6,3,7,3,9,4,7,1,8,3,5,1,7,8,4,3,0,4};
+      // mergeSortMain(mass,std::size(mass));
+      // for(auto i : mass)
+      //       std::cout << i << " ";
+
+      // число перевести в ip4 адрес.
+      std::cout << uint32_to_ip(2154959208); // 128.114.17.104
 };
+
+std::string uint32_to_ip(uint32_t ip)
+{
+      std::string result {};
+
+      uint32_t maxer[4] = {1, 256, 256*256, 256*256*256};
+      int mass[4] = {0,0,0,0};
+
+      for (int i = 3; i >= 0; i--)
+      {
+            if(ip >= maxer[i])
+            {
+                  mass[i] = ip / maxer[i];
+                  ip = ip % maxer[i];
+            }
+      }
+      
+      result = std::to_string(mass[3]) + "." + std::to_string(mass[2]) + "." + std::to_string(mass[1]) + "." + std::to_string(mass[0]);
+
+      return result;
+}
 
 void mergeSortMain(int *massiv, int lenght)
 {

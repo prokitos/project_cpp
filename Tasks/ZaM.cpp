@@ -187,8 +187,58 @@ void zaMainM()
       //       std::cout << i << " ";
 
       // число перевести в ip4 адрес.
-      std::cout << uint32_to_ip(2154959208); // 128.114.17.104
+      // std::cout << uint32_to_ip(2154959208); // 128.114.17.104
+
+      // найти сумму длинн интервалов. интервалы могут пересекаться
+      std::cout << sum_intervals({{1, 5}});
 };
+
+int sum_intervals(std::vector<std::pair<int, int>> intervals) 
+{
+      int summ = 0;
+  
+      for(auto &i : intervals)
+      {
+            for(auto &j : intervals)
+            {
+                  bool delChecker = false;
+                  // если интервалы пересекаются, и второе число больше чем было
+                  if(i.first >= j.first && i.first <= j.second && i.second > j.second)
+                  {
+                        j.second = i.second;
+                        delChecker = true;
+                  }
+                  // если интервалы пересекаются, и первое число меньше чем было
+                  if(i.second >= j.first && i.second <= j.second && i.first < j.first)
+                  {
+                        j.first = i.first;
+                        delChecker = true;
+                  }
+
+                  // если интервалы пересекаются, и интервалы равны, или один интервал в другом
+                  if(j.first >= i.first && j.second <= i.second && (i.first != j.first && i.second != j.second))
+                  {
+                        j.first = 0;
+                        j.second = 0;
+                  }
+
+                  // удаление интервалов которые попали в критерии
+                  if(delChecker == true)
+                  {
+                        i.first = 0;
+                        i.second = 0;
+                  }
+            }
+      }
+      
+      // сумма интервалов
+      for (auto i : intervals)
+      {
+            summ += i.second - i.first;
+      }
+      
+      return summ;
+}
 
 std::string uint32_to_ip(uint32_t ip)
 {

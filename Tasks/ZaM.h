@@ -96,3 +96,5 @@ void mergeSorted(int *massiv, int len);
 void mergeMassive(int *main, int *first, int len1, int *second, int len2);
 
 std::string uint32_to_ip(uint32_t ip);
+
+int sum_intervals(std::vector<std::pair<int, int>> intervals);

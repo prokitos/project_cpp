@@ -98,3 +98,6 @@ void mergeMassive(int *main, int *first, int len1, int *second, int len2);
 std::string uint32_to_ip(uint32_t ip);
 
 int sum_intervals(std::vector<std::pair<int, int>> intervals);
+
+int sum_min_max(std::vector<int> input);
+int findDifferenceCuboid(std::array<int, 3> a, std::array<int, 3> b);

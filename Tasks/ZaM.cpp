@@ -12,6 +12,7 @@
 #include <bitset>
 #include <iomanip>
 #include <set>
+#include <array>
 
 
 void zaMainM()
@@ -190,8 +191,33 @@ void zaMainM()
       // std::cout << uint32_to_ip(2154959208); // 128.114.17.104
 
       // найти сумму длинн интервалов. интервалы могут пересекаться
-      std::cout << sum_intervals({{1, 5}});
+      // std::cout << sum_intervals({{1, 5}});
+
+      // сумма самого маленького и самого большого числа в векторе
+      // std::cout << sum_min_max({3,6,8,3,6,8,4,2,11});
+
+      // даны 2 массива с 3 элементами каждый. перемножить 3 элемента между собой, и найти разницу 2 массивов.
+      std::cout << findDifferenceCuboid({3, 2, 5},{1,4,4});
 };
+
+int findDifferenceCuboid(std::array<int, 3> a, std::array<int, 3> b)
+{
+      int sum1 = 1;
+      int sum2 = 1;
+      for(auto i : a)
+            sum1 *= i;
+      for(auto i : b)
+            sum2 *= i;
+
+      return sum1 > sum2 ? sum1 - sum2 : sum2 - sum1;
+}
+
+int sum_min_max(std::vector<int> input)
+{
+      auto pair = std::minmax_element(input.begin(), input.end());
+      int summ = *pair.first + *pair.second;
+      return summ;
+}
 
 int sum_intervals(std::vector<std::pair<int, int>> intervals) 
 {

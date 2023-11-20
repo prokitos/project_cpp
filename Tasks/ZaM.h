@@ -101,3 +101,5 @@ int sum_intervals(std::vector<std::pair<int, int>> intervals);
 
 int sum_min_max(std::vector<int> input);
 int findDifferenceCuboid(std::array<int, 3> a, std::array<int, 3> b);
+
+std::string calculateString(std::string calcIt);

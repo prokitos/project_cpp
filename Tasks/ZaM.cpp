@@ -197,8 +197,69 @@ void zaMainM()
       // std::cout << sum_min_max({3,6,8,3,6,8,4,2,11});
 
       // даны 2 массива с 3 элементами каждый. перемножить 3 элемента между собой, и найти разницу 2 массивов.
-      std::cout << findDifferenceCuboid({3, 2, 5},{1,4,4});
+      // std::cout << findDifferenceCuboid({3, 2, 5},{1,4,4});
+
+      // есть строка с буквами, числами и знаками (-+*/). нужно проигнорировать буквы и выполнить мат. действия
+      std::cout << calculateString("sdfsd23454sdf*2342");   // 23454 * 2342 = 54929268
 };
+
+std::string calculateString(std::string calcIt) 
+{
+      // получение математической записи из цифр и знаков.
+      std::string valid {"0123456789+-/*"};
+      std::string temp {};
+      for(auto i : calcIt)
+      {
+            if(std::find(valid.begin(), valid.end(), i) != valid.end())
+            {
+                  temp += i;
+            }
+      }
+
+      // разделение цифр и знаков.
+      std::vector<std::string> mathem;
+      std::string stroka {};
+      for(auto i : temp)
+      {
+            if(i >= '0' && i <= '9')
+            {
+                  stroka += i;
+            }
+            else
+            {
+                  mathem.push_back(stroka);
+                  stroka = "";
+                  stroka += i;
+                  mathem.push_back(stroka);
+                  stroka = "";
+            }
+      }
+      mathem.push_back(stroka);
+
+      // выполнение действий
+      int result = 0;
+      for (size_t i = 0; i < mathem.size(); i++)
+      {
+            if(mathem[i] == "*")
+            {
+                  result += std::stoi(mathem[i - 1]) * std::stoi(mathem[i + 1]);
+            }
+            if(mathem[i] == "/")
+            {
+                  result += std::stoi(mathem[i - 1]) / std::stoi(mathem[i + 1]);
+            }
+            if(mathem[i] == "+")
+            {
+                  result += std::stoi(mathem[i - 1]) + std::stoi(mathem[i + 1]);
+            }
+            if(mathem[i] == "-")
+            {
+                  result += std::stoi(mathem[i - 1]) - std::stoi(mathem[i + 1]);
+            }
+      }
+      
+      return std::to_string(result);
+}
 
 int findDifferenceCuboid(std::array<int, 3> a, std::array<int, 3> b)
 {

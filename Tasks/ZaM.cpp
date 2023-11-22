@@ -15,6 +15,7 @@
 #include <array>
 
 
+
 void zaMainM()
 {
       // приходит строка. нужно добавить в конце цифру 1, или увеличить на 1 уже существующую цифру.
@@ -200,7 +201,13 @@ void zaMainM()
       // std::cout << findDifferenceCuboid({3, 2, 5},{1,4,4});
 
       // есть строка с буквами, числами и знаками (-+*/). нужно проигнорировать буквы и выполнить мат. действия
-      std::cout << calculateString("sdfsd23454sdf*2342");   // 23454 * 2342 = 54929268
+      //std::cout << calculateString("sdfsd23454sdf*2342");   // 23454 * 2342 = 54929268
+
+
+   
+
+
+
 };
 
 std::string calculateString(std::string calcIt) 

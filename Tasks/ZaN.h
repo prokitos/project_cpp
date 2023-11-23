@@ -1,5 +1,7 @@
 #include <string>
+#include <algorithm>
 #include <iostream>
+#include <vector>
 
 void zaMainN();
 
@@ -22,3 +24,6 @@ public:
 private:
     std::string name = "null";
 };
+
+void massMerge();
+void massSpecPrint();

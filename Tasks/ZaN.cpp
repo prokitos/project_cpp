@@ -1,5 +1,6 @@
 #include "ZaN.h"
 
+
 void zaMainN()
 {
 
@@ -19,13 +20,35 @@ void zaMainN()
 
 
       // слить два массива в первый (вместо нулей)
-      massMerge();
+      // massMerge();
       
       // массив из чисел от 1 до 100. оставить в массиве только числа которые делятся на 7 с остатком 3.
-      massSpecPrint();
+      // massSpecPrint();
+
+      // вернуть самую длинную строку, из которой состоит слово.
+      std::cout << longestStringRet({"zone", "ooccc", "theta", "form", "libe", "zas", "theta", "abigail"}, "oocccffuucccjzonajjkkkjyyyabigaileehhtheta");
+      
       
 
 }
+
+std::string longestStringRet(const std::vector<std::string> &strarr, std::string stroka)
+{
+      std::vector<std::string> vec = strarr;
+
+      // сортировка по длине слов.
+      std::sort(vec.begin(), vec.end(), [](std::string a, std::string b){return a.length() > b.length();});
+
+      for(auto i : vec)
+      {     
+            // поиск начинается с самого длинного слова, и если оно есть в строке то вывод, иначе следующее слово.
+            if(stroka.find(i) != std::string::npos)
+                  return i;
+      }
+
+      return "";
+}
+
 
 void massSpecPrint()
 {

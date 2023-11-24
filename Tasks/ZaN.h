@@ -2,6 +2,7 @@
 #include <algorithm>
 #include <iostream>
 #include <vector>
+#include <tuple>
 
 void zaMainN();
 
@@ -25,5 +26,8 @@ private:
     std::string name = "null";
 };
 
+
 void massMerge();
 void massSpecPrint();
+
+std::string longestStringRet(const std::vector<std::string> &strarr, std::string stroka);

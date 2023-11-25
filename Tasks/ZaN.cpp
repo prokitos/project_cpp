@@ -26,10 +26,62 @@ void zaMainN()
       // massSpecPrint();
 
       // вернуть самую длинную строку, из которой состоит слово.
-      std::cout << longestStringRet({"zone", "ooccc", "theta", "form", "libe", "zas", "theta", "abigail"}, "oocccffuucccjzonajjkkkjyyyabigaileehhtheta");
+      // std::cout << longestStringRet({"zone", "ooccc", "theta", "form", "libe", "zas", "theta", "abigail"}, "oocccffuucccjzonajjkkkjyyyabigaileehhtheta");
       
-      
+      // имеются строки состоящие из цифр (0469). найти процент совпадения цифр на одинаковых позициях
+      std::cout << posAverage("466960, 069060, 494940, 060069, 060090, 640009, 496464, 606900, 004000, 944096");
 
+}
+
+double posAverage(const std::string &s)
+{
+      double result = 0;
+      int map[4]{0,0,0,0};
+      int len = 0;
+
+      std::stringstream tempString(s);
+      std::vector<std::string> vec(std::istream_iterator<std::string>(tempString),{});
+
+      // удаление запятых
+      for(auto &i : vec)
+      {
+            auto pos = i.find(',');
+            if(pos < i.length())
+                  i.erase(pos,1);
+      }
+
+      len = vec[0].length();
+
+      // сравнение по буквам
+      for (size_t i = 0; i < len; i++)
+      {     
+            // сравнение по разным векторам
+            for(auto item : vec)
+            {
+                  if(item[i] == '0')
+                        map[0] ++;
+                  if(item[i] == '4')
+                        map[1] ++;
+                  if(item[i] == '6')
+                        map[2] ++;
+                  if(item[i] == '9')
+                        map[3] ++;
+            }
+
+            int max1 = std::max(map[0],map[1]);
+            int max2 = std::max(map[2],map[3]);
+            int max = std::max(max1,max2);
+            result += (max / len) * 100;
+
+            map[0] = 0; map[1] = 0; map[2] = 0; map[3] = 0;
+      }
+
+      result = result / len;
+      
+      // 10 элементов
+      // 
+
+      return result;
 }
 
 std::string longestStringRet(const std::vector<std::string> &strarr, std::string stroka)

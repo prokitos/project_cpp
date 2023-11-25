@@ -3,6 +3,9 @@
 #include <iostream>
 #include <vector>
 #include <tuple>
+#include <iterator>
+#include <sstream>
+#include <map>
 
 void zaMainN();
 
@@ -31,3 +34,5 @@ void massMerge();
 void massSpecPrint();
 
 std::string longestStringRet(const std::vector<std::string> &strarr, std::string stroka);
+
+double posAverage(const std::string &s);

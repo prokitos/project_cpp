@@ -36,3 +36,5 @@ void massSpecPrint();
 std::string longestStringRet(const std::vector<std::string> &strarr, std::string stroka);
 
 double posAverage(const std::string &s);
+
+bool scramble(const std::string& s1, const std::string& s2);

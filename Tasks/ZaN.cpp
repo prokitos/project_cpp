@@ -29,9 +29,44 @@ void zaMainN()
       // std::cout << longestStringRet({"zone", "ooccc", "theta", "form", "libe", "zas", "theta", "abigail"}, "oocccffuucccjzonajjkkkjyyyabigaileehhtheta");
       
       // имеются строки состоящие из цифр (0469). найти процент совпадения цифр на одинаковых позициях
-      std::cout << posAverage("466960, 069060, 494940, 060069, 060090, 640009, 496464, 606900, 004000, 944096");
+      //std::cout << posAverage("6900690040, 4690606946, 9990494604");
 
+      // даны 2 строки в ловеркейсе. если из букв первой строки можно собрать вторую, то вернуть true.
+      // std::cout << scramble("rkqodlw", "world");         // true ...  есть все буквы
+      std::cout << scramble("katas", "steak");              // false...  нет буквы e
 }
+
+bool scramble(const std::string& s1, const std::string& s2)
+{
+      std::map<char,int> first;
+      std::map<char,int> second;
+
+      // подсчет всех букв в первой строке
+      for(auto i : s1)
+      {
+            first[i] ++;
+      }
+      // подсчет всех букв во второй строке
+      for(auto i : s2)
+      {
+            second[i] ++;
+      }
+
+      // сравнение полученных букв
+      for(auto i : second)
+      {
+            char bukva = i.first;
+            int chislo = i.second;
+
+            // если в первой строке было меньше таких букв, либо 0 (вообще не было), то возвращаем что невозможно собрать такую строку
+            if(chislo > first[bukva])
+                  return false;
+      }
+
+      // иначе если всех букв хватило (ни разу не зашло внутрь того условия) то можно собрать такую строку 
+      return true;
+}
+
 
 double posAverage(const std::string &s)
 {
@@ -51,6 +86,7 @@ double posAverage(const std::string &s)
       }
 
       len = vec[0].length();
+      double charCounter = 0;
 
       // сравнение по буквам
       for (size_t i = 0; i < len; i++)
@@ -68,21 +104,38 @@ double posAverage(const std::string &s)
                         map[3] ++;
             }
 
-            int max1 = std::max(map[0],map[1]);
-            int max2 = std::max(map[2],map[3]);
-            int max = std::max(max1,max2);
-            result += (max / len) * 100;
+            // сколько разных чисел попадалось
+            int count = 0;
+            if(map[0] > 0)
+                  count ++;
+            if(map[1] > 0)
+                  count ++;
+            if(map[2] > 0)
+                  count ++;
+            if(map[3] > 0)
+                  count ++;
+
+            // если одинаковых цифр 2 и больше, то прибавляем 
+            if(map[0] > 1)
+                  charCounter += map[0] / count;
+            if(map[1] > 1)
+                  charCounter += map[1] / count;
+            if(map[2] > 1)
+                  charCounter += map[2] / count;
+            if(map[3] > 1)
+                  charCounter += map[3] / count;
 
             map[0] = 0; map[1] = 0; map[2] = 0; map[3] = 0;
       }
 
-      result = result / len;
+      double charAllCount = len * vec.size();
+      result = (charCounter / charAllCount ) * 100;
       
-      // 10 элементов
-      // 
-
       return result;
 }
+
+
+
 
 std::string longestStringRet(const std::vector<std::string> &strarr, std::string stroka)
 {

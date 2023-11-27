@@ -33,7 +33,10 @@ void zaMainN()
 
       // даны 2 строки в ловеркейсе. если из букв первой строки можно собрать вторую, то вернуть true.
       // std::cout << scramble("rkqodlw", "world");         // true ...  есть все буквы
-      std::cout << scramble("katas", "steak");              // false...  нет буквы e
+      // std::cout << scramble("katas", "steak");              // false...  нет буквы e
+
+      // тест std алгоритмов
+      algorithmTest();
 }
 
 bool scramble(const std::string& s1, const std::string& s2)
@@ -218,3 +221,53 @@ void operatorTest::print()
 };
 
 
+void algorithmTest()
+{
+      // найти позицию пробела в строе
+      // std::string stroka = "basic text";
+      // if( stroka.find(" ") != std::string::npos )
+      // {
+      //       auto pos = stroka.find(" ");
+      //       std::cout << pos << std::endl;
+      // }
+      // else
+      // {
+      //       std::cout << "нет пробела" << std::endl;
+      // }
+
+      // есть ли число в векторе, и на какой позиции
+      // std::vector<int> vec {0,1,2,9,3,4,5,6,7,8,9,2,4,9};
+      // int searchNum = 9;
+      // if( std::find(std::begin(vec), std::end(vec), searchNum) != std::end(vec) )
+      // {
+      //       auto pos = std::find(std::begin(vec), std::end(vec), searchNum);
+      //       std::cout << *pos << "  at pos " << pos - vec.begin() << std::endl;
+      // }
+
+      // найти все позиции числа 9 в векторе.
+      // std::vector<int> vec {0,1,2,9,3,4,5,6,7,8,9,2,4,9};
+      // int searchNum = 9;
+      // if( std::find(std::begin(vec), std::end(vec), searchNum) != std::end(vec) )
+      // {
+      //       auto realPos = 0;
+      //       auto pos = std::find(std::begin(vec), std::end(vec), searchNum);
+      //       while(pos != vec.end())
+      //       {
+      //             realPos = pos - vec.begin();
+      //             std::cout << *pos << "  at pos " << realPos << std::endl;
+      //             pos = std::find(pos + 1, std::end(vec), searchNum);
+      //       }
+      // }
+
+      // найти первое нечетное число
+      // std::vector<int> vec {1,2,3,4,5,6,7,8,9,2,4,9};
+      // auto pos = std::find_if(vec.begin(),vec.end(),[](int x){return x % 2 == 0;});
+      // std::cout << *pos << "  at pos " << pos - vec.begin() << std::endl;
+
+      // умножить все числа в векторе на 2
+      // std::vector<int> vec {1,2,3,4,5,6};    // можно вставить результат в другой вектор
+      // std::transform(vec.begin(), vec.end(), vec.begin(), [](int x){return x * 2;});
+      // for(auto i : vec)
+      //       std::cout << i << "  ";
+
+}

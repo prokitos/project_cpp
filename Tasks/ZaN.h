@@ -6,6 +6,8 @@
 #include <iterator>
 #include <sstream>
 #include <map>
+#include <set>
+#include <regex>
 
 void zaMainN();
 

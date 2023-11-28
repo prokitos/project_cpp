@@ -270,4 +270,43 @@ void algorithmTest()
       // for(auto i : vec)
       //       std::cout << i << "  ";
 
+      // все ли числа из вектора 1 есть в векторе 2 ?
+      // std::vector<int> vec1 {5,6,1};
+      // std::vector<int> vec2 {1,1,1,2,3,4,5,6};
+      // std::sort(vec1.begin(), vec1.end());
+      // std::sort(vec2.begin(), vec2.end());
+      // if( std::includes(vec2.begin(), vec2.end(), vec1.begin(), vec1.end()) )
+      //       std::cout << "все элементы есть во втором множестве" << std::endl; 
+      // else
+      //       std::cout << "не все элементы во втором множестве" << std::endl; 
+
+      // найти сколько элементов между цифрами 5
+      // std::vector<int> vec {1,5,1,1,2,3,4,5,6};
+      // int findNumb = 5;
+      // auto iter1 = std::find(vec.begin(), vec.end(), findNumb);
+      // auto iter2 = std::find(iter1 + 1, vec.end(), findNumb);
+      // std::cout << std::distance(iter1, iter2) - 1 << " элементов между цифрами 5";
+
+      // убрать повторяющиеся подряд элементы
+      // std::vector<int> vec {1,1,1,2,3,4,5,6};
+      // auto iter = std::unique(vec.begin(), vec.end());
+      // auto resizeLen = std::distance(vec.begin(), iter);
+      // vec.resize(resizeLen);
+      // for(auto i : vec)
+      //       std::cout << i << " ";
+
+      // убрать любые повторяющиеся элементы в векторе, но оставить порядок. если элементы просто добавлять в set, то порядок сбросится
+      // std::vector<int> vec {1,4,1,7,2,2,3,4,7};
+      // std::vector<int> result;
+      // std::set<int> temp;
+      // for(auto i : vec)
+      // {
+      //       auto boolTemp = temp.insert(i);
+      //       if(boolTemp.second == true)
+      //       {
+      //             result.push_back(i);
+      //       }
+      // }
+      // for(auto i : result)
+      //       std::cout << i << " ";
 }

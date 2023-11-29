@@ -36,7 +36,11 @@ void zaMainN()
       // std::cout << scramble("katas", "steak");              // false...  нет буквы e
 
       // тест std алгоритмов
-      algorithmTest();
+      //algorithmTest();
+
+      // тест regex
+      regexTest();
+
 }
 
 bool scramble(const std::string& s1, const std::string& s2)
@@ -309,4 +313,60 @@ void algorithmTest()
       // }
       // for(auto i : result)
       //       std::cout << i << " ";
+
+}
+
+void regexTest()
+{
+      // показать совпадения в тексте по заданному regex
+      // std::string stroka = "I am looking for texted";
+      // std::regex reg("tex[a-zA-Z]+");
+      // std::smatch output;
+      // std::regex_search(stroka, output, reg);
+      // for (auto x : output)
+      //       std::cout << x << " ";
+
+      // добавить точки перед большими буквами.
+      // std::string stroka = "this is a house Amazing time to work Live with apparat.";
+      // std::regex reg(("( )([A-Z])"));
+      // stroka = std::regex_replace(stroka, reg, ".$1$2");
+      // std::cout << stroka;
+
+      // убрать все гласные из строки
+      // std::string stroka = "test vowel";
+      // std::regex vowels("[aeiouAEIOU]");
+      // stroka = std::regex_replace(stroka, vowels, "");
+      // std::cout << stroka;
+
+      // перенести каждую первую букву в конец слова.
+      // std::string stroka = "this is a house";
+      // std::regex reg(("(\\w)(\\w*)"));
+      // stroka = std::regex_replace(stroka, reg, "$2$1");
+      // std::cout << stroka;
+
+      // вывести только номер телефона из строки
+      // std::string stroka = "this is 8-700-665-*** a house";
+      // std::regex reg("[^-|.|0-9|+|*|/]");     
+      // stroka = std::regex_replace (stroka,reg,"");
+      // std::cout << stroka;
+
+      // преобразовать числа в номер телефона
+      // std::string stroka = "88005553535";
+      // std::regex vowels("(.)(...)(...)(..)(..)");
+      // stroka = std::regex_replace(stroka, vowels, "$1 ($2) $3-$4-$5");
+      // std::cout << stroka;
+
+      // убрать пробелы перед точками, после точек, и множественные точки. потом добавить пробелы обратно
+      // std::string str = "typical strange text . . . erase dots .";
+      // std::regex vowels ("( +)\\.");
+      // str = std::regex_replace(str, vowels, ".");
+      // vowels = ("\\.( +)");
+      // str = std::regex_replace(str, vowels, ".");
+      // vowels = ("\\.+");
+      // str = std::regex_replace(str, vowels, ".");
+      // vowels = ("(\\.)");
+      // str = std::regex_replace(str, vowels, "$1 ");
+      // std::cout << str;
+
+      
 }

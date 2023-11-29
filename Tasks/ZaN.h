@@ -42,3 +42,4 @@ double posAverage(const std::string &s);
 bool scramble(const std::string& s1, const std::string& s2);
 
 void algorithmTest();
+void regexTest();

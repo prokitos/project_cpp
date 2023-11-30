@@ -368,5 +368,32 @@ void regexTest()
       // str = std::regex_replace(str, vowels, "$1 ");
       // std::cout << str;
 
-      
+
+      // заменить гласные на звездочки
+      // std::string text = "Quick brown fox";
+      // std::regex vowel("a|e|i|o|u");
+      // text = std::regex_replace(text,vowel,"*");
+      // std::cout << text;
+
+      // заменить N число пробелов на один пробел
+      // std::string someString = "here      is   some  text";
+      // std::regex reg("\\s+");
+      // std::string output = std::regex_replace(someString, reg, " ");
+      // std::cout << output;
+
+      // обнаружить специальный текст и оставить его без изменений, потом поменять слова местами.
+      // std::string someString = "here is some text aaa bbb";
+      // std::regex reg("(a+).(b+)");
+      // std::string output = std::regex_replace(someString, reg, "$0");
+      // std::cout << output << std::endl;
+      // output = std::regex_replace(someString, reg, "$2$1");
+      // std::cout << output << std::endl;
+
+      // заменить 1-3 цифры подряд на слово "numbers"
+      // std::string someString = "here is 444 and 55555";
+      // std::regex reg("\\d{1,3} ");
+      // std::string output = std::regex_replace(someString, reg, "numbers ");
+      // std::cout << output;
+
+
 }

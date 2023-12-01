@@ -39,8 +39,23 @@ void zaMainN()
       //algorithmTest();
 
       // тест regex
-      regexTest();
+      //regexTest();
 
+      // вернуть сумму чисел меньше указанного числа N, и кратных 3 или 5
+      int N = 10;
+      std::cout << solutionMultiplier(N);  // 3 5 6 9 = 23
+}     
+
+int solutionMultiplier(int number) 
+{
+      int sum = 0;
+      for (int i = 0; i < number; i++)
+      {
+            if(i % 3 == 0 || i % 5 == 0)
+            sum += i;
+      }
+      
+      return sum;
 }
 
 bool scramble(const std::string& s1, const std::string& s2)
@@ -368,7 +383,6 @@ void regexTest()
       // str = std::regex_replace(str, vowels, "$1 ");
       // std::cout << str;
 
-
       // заменить гласные на звездочки
       // std::string text = "Quick brown fox";
       // std::regex vowel("a|e|i|o|u");
@@ -391,9 +405,8 @@ void regexTest()
 
       // заменить 1-3 цифры подряд на слово "numbers"
       // std::string someString = "here is 444 and 55555";
-      // std::regex reg("\\d{1,3} ");
+      // std::regex reg("\\d{1,3}\\D");  // \\d{7,} от 7 до бесконечности цифр     \\d{7} только 7 цифр
       // std::string output = std::regex_replace(someString, reg, "numbers ");
       // std::cout << output;
-
 
 }

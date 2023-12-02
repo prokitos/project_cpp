@@ -42,9 +42,32 @@ void zaMainN()
       //regexTest();
 
       // вернуть сумму чисел меньше указанного числа N, и кратных 3 или 5
-      int N = 10;
-      std::cout << solutionMultiplier(N);  // 3 5 6 9 = 23
+      // int N = 10;
+      // std::cout << solutionMultiplier(N);  // 3 5 6 9 = 23
+
+     // дан массив чисел и число, вывести пару чисел сумма которых дает это число, и вернуть их позиции
+     std::pair<std::size_t, std::size_t> summ = two_sumss({1234, 5678, 9012}, 14690);
+     std::cout << summ.first << "  " << summ.second;
 }     
+
+std::pair<std::size_t, std::size_t> two_sumss(const std::vector<int>& numbers, int target)
+{
+      std::pair<std::size_t, std::size_t> res {0,0};
+
+      for (size_t i = 0; i < numbers.size(); i++)
+      {
+            for (size_t j = 1; j < numbers.size(); j++)
+            {
+                  if(numbers[j] + numbers[i] == target)
+                  {
+                        return {i,j};
+                  }
+            }
+      }
+      
+      return res;
+}
+
 
 int solutionMultiplier(int number) 
 {

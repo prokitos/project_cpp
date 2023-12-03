@@ -48,3 +48,5 @@ void testInt();
 int solutionMultiplier(int number);
 
 std::pair<std::size_t, std::size_t> two_sumss(const std::vector<int>& numbers, int target);
+std::string reverse_wordss(const std::string& str);
+std::vector<std::string> numberFun(const std::vector<std::string> &lines);

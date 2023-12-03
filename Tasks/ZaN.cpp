@@ -46,9 +46,48 @@ void zaMainN()
       // std::cout << solutionMultiplier(N);  // 3 5 6 9 = 23
 
      // дан массив чисел и число, вывести пару чисел сумма которых дает это число, и вернуть их позиции
-     std::pair<std::size_t, std::size_t> summ = two_sumss({1234, 5678, 9012}, 14690);
-     std::cout << summ.first << "  " << summ.second;
+      //      std::pair<std::size_t, std::size_t> summ = two_sumss({1234, 5678, 9012}, 14690);
+      //      std::cout << summ.first << "  " << summ.second;
+
+      // дана строка. вернуть слова в обратном порядке
+      // std::cout << reverse_wordss("hello world!");
+
+      // пронумеровать строки в виде.   1: a     2: b     3: c
+      std::vector<std::string> res = numberFun({"a", "b", "c"});
+      for(auto i : res)
+            std::cout << i << std::endl;
 }     
+
+std::vector<std::string> numberFun(const std::vector<std::string> &lines)
+{
+      std::vector<std::string> newVec = lines;
+      int counter = 1;
+
+      for(auto &i : newVec)
+      {
+            i = std::to_string(counter) + ": " + i;
+            counter ++;
+      }
+
+      return newVec;
+}
+
+std::string reverse_wordss(const std::string& str)
+{
+      std::string result {};
+      std::stringstream tempString(str);
+      std::vector<std::string> vecktor(std::istream_iterator<std::string>(tempString),{});
+
+      for (auto i = vecktor.rbegin(); i < vecktor.rend(); i++)
+      {
+            result += *i;
+            result += " ";
+      }
+      
+      result.pop_back();
+      return result;
+
+}
 
 std::pair<std::size_t, std::size_t> two_sumss(const std::vector<int>& numbers, int target)
 {

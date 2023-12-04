@@ -53,9 +53,25 @@ void zaMainN()
       // std::cout << reverse_wordss("hello world!");
 
       // пронумеровать строки в виде.   1: a     2: b     3: c
-      std::vector<std::string> res = numberFun({"a", "b", "c"});
-      for(auto i : res)
-            std::cout << i << std::endl;
+      // std::vector<std::string> res = numberFun({"a", "b", "c"});
+      // for(auto i : res)
+      //       std::cout << i << std::endl;
+
+      // дано число. найти сумму всех делителей этого числа.
+      std::cout << sumOfDeviders(48); // 1 + 2 + 3 + 4 + 6 + 8 + 12 + 16 + 24 = 76
+}     
+
+int sumOfDeviders(int number)
+{
+      int res = 0;
+
+      for (int i = 2; i <= number / 2; i++)
+      {
+            if(number % i == 0)
+                  res += i;
+      }
+      
+      return res;
 }     
 
 std::vector<std::string> numberFun(const std::vector<std::string> &lines)

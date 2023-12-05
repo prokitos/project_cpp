@@ -58,8 +58,49 @@ void zaMainN()
       //       std::cout << i << std::endl;
 
       // дано число. найти сумму всех делителей этого числа.
-      std::cout << sumOfDeviders(48); // 1 + 2 + 3 + 4 + 6 + 8 + 12 + 16 + 24 = 76
+      // std::cout << sumOfDeviders(48); // 1 + 2 + 3 + 4 + 6 + 8 + 12 + 16 + 24 = 76
+
+      // проверка валидности номера банковской карты по алгоритму луна
+      std::cout << loonAlgorithmCheck(2121);
 }     
+
+bool loonAlgorithmCheck(int number)
+{
+      std::string newNum = std::to_string(number);
+
+      // удвоить каждую вторую цифру, начиная справа на лево. если цифра больше 10, то новое число будет суммой цифр этого числа (18 = 1+8)
+      int iterator = 1;
+      for (int i = newNum.length() - 1; i >= 0; i--)
+      {
+            // каждое второе число
+            if(iterator % 2 == 0)
+            {
+                  int temp = (newNum[i] - '0') * 2;
+
+                  // если больше 9, то суммируем члены числа, и это будет новой цифрой.
+                  if(temp > 9)
+                  {
+                        std::string temper = std::to_string(temp);
+                        temp = temper[0] + temper[1];
+                  }
+
+                  newNum[i] = static_cast<char>(temp + '0');
+            }
+            
+            iterator ++;
+      }
+
+      // найти сумму новых цифр
+      int summ = 0;
+      for(auto i : newNum)
+            summ += i - '0';
+      
+      // если сумма делится на 10 нацело, то номер валидный, иначе такой карты нет
+      if(summ % 10 == 0)
+            return true;
+      else
+            return false;
+}
 
 int sumOfDeviders(int number)
 {

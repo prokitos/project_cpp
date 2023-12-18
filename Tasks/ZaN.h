@@ -53,3 +53,6 @@ std::vector<std::string> numberFun(const std::vector<std::string> &lines);
 int sumOfDeviders(int number);
 
 bool loonAlgorithmCheck(int number);
+
+std::string abbreveatureName(std::string name);
+std::vector<unsigned long long> partsSum(const std::vector<unsigned long long>& ls);

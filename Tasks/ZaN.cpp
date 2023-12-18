@@ -61,8 +61,48 @@ void zaMainN()
       // std::cout << sumOfDeviders(48); // 1 + 2 + 3 + 4 + 6 + 8 + 12 + 16 + 24 = 76
 
       // проверка валидности номера банковской карты по алгоритму луна.  (4 + 1 + 4 + 1) = 10.  10 % 10 = 0.  => valide
-      std::cout << loonAlgorithmCheck(2121);
+      // std::cout << loonAlgorithmCheck(2121);
+
+      // вывести аббревеатуру имени и фамилии
+      //std::cout << abbreveatureName("Sam Harris madraso");
+
+      // сумма частей вектора.  (0,1,2,3,4) = 4+3+2+1+0; 4+3+2+1; 4+3+2; 4+3; 4;
+      std::vector<unsigned long long> temp = partsSum({1, 2, 3, 4, 5, 6});
+      for(auto i : temp)
+            std::cout << i << " ";
+
 }     
+
+std::vector<unsigned long long> partsSum(const std::vector<unsigned long long>& ls)
+{
+      std::vector<unsigned long long> res {};
+      res.resize(ls.size() + 1);
+
+      for(int i = ls.size(); i--;)
+      {
+            res[i] = ls[i];
+            res[i] += res[i + 1];     
+      }
+
+      return res;
+}
+
+std::string abbreveatureName(std::string name)
+{
+      std::string output;
+
+      std::stringstream tempString(name);
+      std::vector<std::string> tempVec(std::istream_iterator<std::string>(tempString),{});
+
+      for(auto i : tempVec)
+      {
+            output.push_back(std::toupper(i[0]));
+            output.push_back('.');
+      }
+      output.pop_back();
+
+      return output;
+}
 
 bool loonAlgorithmCheck(int number)
 {

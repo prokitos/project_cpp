@@ -72,8 +72,8 @@ void zaMainN()
       //       std::cout << i << " ";
 
       // дан список городов и расстояние между ними. нужно посетить N городов и проехать расстояние макисмально близкое к указанному.
-      std::vector<int> ts = {91, 74, 73, 85, 73, 81, 87};
-      std::cout << chooseBestSum(331, 2, ts); // проехать до 163 км через 3 города. вернуть самое близко возможное расстояние.
+      std::vector<int> ts = {50, 55, 56, 57, 58};
+      std::cout << chooseBestSum(163, 3, ts); // проехать до 163 км через 3 города. вернуть самое близко возможное расстояние.
 
       
 
@@ -92,11 +92,10 @@ int recurSearch(int maxIter, int curIter, int maxDist, int curDist, std::vector<
       {
             if(city.size() >= 1)
             {
-            std::vector<int> temp1 = city;
-            temp1.erase(temp1.begin());
-            res1 = recurSearch(maxIter,curIter + 1,maxDist,curDist + city[0],temp1);
+                  std::vector<int> temp1 = city;
+                  temp1.erase(temp1.begin());
+                  res1 = recurSearch(maxIter,curIter + 1,maxDist,curDist + city[0],temp1);
             }
-
 
             for(int i = 1; i < city.size(); i++)
             {

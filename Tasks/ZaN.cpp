@@ -67,11 +67,65 @@ void zaMainN()
       //std::cout << abbreveatureName("Sam Harris madraso");
 
       // сумма частей вектора.  (0,1,2,3,4) = 4+3+2+1+0; 4+3+2+1; 4+3+2; 4+3; 4;
-      std::vector<unsigned long long> temp = partsSum({1, 2, 3, 4, 5, 6});
-      for(auto i : temp)
-            std::cout << i << " ";
+      // std::vector<unsigned long long> temp = partsSum({1, 2, 3, 4, 5, 6});
+      // for(auto i : temp)
+      //       std::cout << i << " ";
+
+      // дан список городов и расстояние между ними. нужно посетить N городов и проехать расстояние макисмально близкое к указанному.
+      std::vector<int> ts = {91, 74, 73, 85, 73, 81, 87};
+      std::cout << chooseBestSum(331, 2, ts); // проехать до 163 км через 3 города. вернуть самое близко возможное расстояние.
+
+      
 
 }     
+
+int globalMax = 0;
+int recurSearch(int maxIter, int curIter, int maxDist, int curDist, std::vector<int> city)
+{
+
+      // результат, и хранение точки с самым первым городом
+      int superRes = 0;
+      int res1 = 0;
+
+      // точка с самым первым гороодом сравнивается со всеми остальными, и потом выводится из функции при нужном условии
+      if(curIter <= maxIter && curDist <= maxDist)
+      {
+            if(city.size() >= 1)
+            {
+            std::vector<int> temp1 = city;
+            temp1.erase(temp1.begin());
+            res1 = recurSearch(maxIter,curIter + 1,maxDist,curDist + city[0],temp1);
+            }
+
+
+            for(int i = 1; i < city.size(); i++)
+            {
+                  std::vector<int> temp2 = city;
+                  temp2.erase(temp2.begin() + i);
+                  int res2 = recurSearch(maxIter,curIter + 1,maxDist,curDist + city[i],temp2);
+
+                  if(res1 > maxDist && res2 <= maxDist)
+                        res1 = res2;
+                  if(res1 <= maxDist && res2 <= maxDist)
+                        res1 = std::max(res1, res2);                  
+            }
+      }
+
+      if(curIter == maxIter)
+      {
+            if(globalMax < curDist && curDist <= maxDist)
+            globalMax = curDist;
+      }
+
+      return res1;
+}
+
+int chooseBestSum(int t, int k, std::vector<int>& ls)
+{
+
+      recurSearch(k,0,t,0,ls);
+      return globalMax;
+}
 
 std::vector<unsigned long long> partsSum(const std::vector<unsigned long long>& ls)
 {

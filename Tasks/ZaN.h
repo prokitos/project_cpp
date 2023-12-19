@@ -56,3 +56,5 @@ bool loonAlgorithmCheck(int number);
 
 std::string abbreveatureName(std::string name);
 std::vector<unsigned long long> partsSum(const std::vector<unsigned long long>& ls);
+
+int chooseBestSum(int t, int k, std::vector<int>& ls);

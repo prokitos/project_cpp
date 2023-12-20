@@ -17,6 +17,7 @@
 #include "Tasks/ZaL.h"
 #include "Tasks/ZaM.h"
 #include "Tasks/ZaN.h"
+#include "Tasks/LC1.h"
 
 using std::cout;
 using std::string;
@@ -46,7 +47,8 @@ int main()
     //zaMainH();
     //zaMainL();
     //zaMainM();
-    zaMainN();
+    //zaMainN();
+    leet1();
 
     return 0;
 }

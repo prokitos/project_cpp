@@ -22,11 +22,72 @@ void leet1()
     // }
 
     // найти сколько индексов совпадает у первого массива и сколько совпадает у второго массива
-    std::vector<int> temp = findIntersectionValues({4,3,2,3,1},{2,2,5,2,3,6});
-    for(auto i : temp)
-        std::cout << i << " ";
+    // std::vector<int> temp = findIntersectionValues({4,3,2,3,1},{2,2,5,2,3,6});
+    // for(auto i : temp)
+    //     std::cout << i << " ";
+
+    // найти первый полиндром в векторе
+    //std::string temp = firstPalindrome("eget","ada","cool");
+    // std::cout << temp;
+
+    // найти сумму уникальных значений
+    // int sum = sumOfUniqueElem({1,2,3,4,5,5});
+    // std::cout << sum;
+
+    // найти за O(n) единственное уникальное число в массиве, остальные встречаются 2 раза.
+    std::cout << singleNumberInVec({2,2,1});
 
 }   
+
+int singleNumberInVec(std::vector<int> nums)
+{
+    int res = 0;
+
+    for(auto i : nums)
+    {
+        // XOR.  0 ^ 4 = 4;   0 ^ 4 ^ 4 = 0;   0 ^ 4 ^ 4 ^ 5 = 5;
+        res = res ^ i;
+    }
+
+    return res;
+
+}
+
+int sumOfUniqueElem(std::vector<int> nums)
+{
+    int sum = 0;
+
+    for(int i = 0; i < nums.size(); i++)
+    {
+        if(std::count(nums.begin(), nums.end(),nums[i]) == 1)
+        sum += nums[i];
+    }
+
+    return sum;
+}
+
+std::string firstPalindrome(std::vector<std::string>& words)
+{
+    for(auto i : words)
+    {
+        int len = i.length();
+        bool res = true;
+
+        for(int j = 0; j < len / 2; j++)
+        {
+            if(i[j] != i[len - j - 1])
+            {
+                res = false;
+                break;
+            }
+        }
+
+        if(res == true)
+        return i;
+    }
+
+    return "";
+}
 
 std::vector<int> findIntersectionValues(std::vector<int> nums1, std::vector<int> nums2)
 {
@@ -50,15 +111,23 @@ std::vector<int> findIntersectionValues(std::vector<int> nums1, std::vector<int>
 
 std::vector<std::vector<int>> flipAndInvertImage(std::vector<std::vector<int>> &image)
 {
+    // улучшенный алгоритм. скорость выполнения больше а затраты памяти меньше.
     for(auto &i : image)
     {  
-        std::reverse(i.begin(),i.end());
-        for(auto &j : i)
+        int iterators = i.size() - 1;
+        int max = i.size() / 2;
+        for(int j = 0; j < i.size(); j++)
         {
-            if(j == 0)
-                j = 1;
+            if(iterators >= max)
+            {
+                std::swap(i[j],i[iterators]);
+                iterators --;
+            }
+
+            if(i[j] == 0)
+                i[j] = 1;
             else
-                j = 0;
+                i[j] = 0;
         }
     }
 

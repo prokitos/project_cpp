@@ -35,9 +35,48 @@ void leet1()
     // std::cout << sum;
 
     // найти за O(n) единственное уникальное число в массиве, остальные встречаются 2 раза.
-    std::cout << singleNumberInVec({2,2,1});
+    // std::cout << singleNumberInVec({2,2,1});
 
+    // дан вектор чисел от 0 До N в разном порядке. найти 1 недостоющее число.
+    //std::cout << missingNumber({3,0,1});
+
+    // найти минимальное стартовое значение (от 1) чтобы при сложении со всеми элементами, число не опускалось ниже 1.
+    std::cout << minStartValue({-3,2,-3,4,2});  // 5 - 3 = 2;  2 + 2 = 4; 4 - 3 = 1; ответ 5
 }   
+
+int minStartValue(std::vector<int> nums) 
+{
+    int nach = 1;
+    int minPeak = 1;
+    int sum = nach;
+
+    for(auto i : nums)
+    {
+        sum += i;
+
+        if(sum < minPeak)
+        {
+            minPeak = sum;
+        }
+    }
+
+    return nach - minPeak + 1;
+}
+
+int missingNumber(std::vector<int> nums)
+{
+    int sum = 0;
+    int max = nums.size();
+
+    for(int i = 1; i < max + 1; i++)
+    {
+        sum -= nums.back();
+        nums.pop_back();
+        sum += i;
+    }
+    
+    return sum;
+}
 
 int singleNumberInVec(std::vector<int> nums)
 {

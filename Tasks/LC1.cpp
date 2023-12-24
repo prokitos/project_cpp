@@ -41,8 +41,35 @@ void leet1()
     //std::cout << missingNumber({3,0,1});
 
     // найти минимальное стартовое значение (от 1) чтобы при сложении со всеми элементами, число не опускалось ниже 1.
-    std::cout << minStartValue({-3,2,-3,4,2});  // 5 - 3 = 2;  2 + 2 = 4; 4 - 3 = 1; ответ 5
+    //std::cout << minStartValue({-3,2,-3,4,2});  // 5 - 3 = 2;  2 + 2 = 4; 4 - 3 = 1; ответ 5
+
+    // найти самый первый "средний" индекс в векторе, чтобы все значения слева и справа от него были равны
+    std::cout << findMiddleIndex({2,3,-1, 8,4});  // за О(2n).  средний индекс 3 с числом 8.     2 + 3 - 1  ==  4.  
 }   
+
+int findMiddleIndex(std::vector<int> nums) 
+{
+    if(nums.size() == 1)
+    return 0;
+
+    int sum = 0;
+    int localSum = 0;
+
+    for(auto i : nums)
+    {
+        sum += i;
+    }
+
+    for(int i = 0; i < nums.size(); i++)
+    {
+        if(sum - localSum - nums[i] == localSum)
+        return i;
+
+        localSum += nums[i];
+    }
+
+    return -1;
+}
 
 int minStartValue(std::vector<int> nums) 
 {

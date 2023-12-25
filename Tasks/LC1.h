@@ -20,3 +20,4 @@ int missingNumber(std::vector<int> nums);
 int minStartValue(std::vector<int> nums);
 
 int findMiddleIndex(std::vector<int> nums);
+int majorityElement(std::vector<int> nums);

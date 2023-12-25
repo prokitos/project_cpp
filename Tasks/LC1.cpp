@@ -45,7 +45,57 @@ void leet1()
 
     // найти самый первый "средний" индекс в векторе, чтобы все значения слева и справа от него были равны
     std::cout << findMiddleIndex({2,3,-1, 8,4});  // за О(2n).  средний индекс 3 с числом 8.     2 + 3 - 1  ==  4.  
+
+    // есть вектор чисел. найти число которое появляется больше всего раз. это число занимает как минимум половину вектора.
+    std::cout << majorityElement({2,2,1,1,1,2,2});  // работает только если одинаковых чиел больше чем половина вектора.
 }   
+
+int majorityElement(std::vector<int> nums)
+{
+    int searcherNums = 0;
+    int searchCount = 0;
+
+    for(auto i : nums)
+    {
+        if(i == searcherNums)
+        {
+            searchCount ++;
+        }
+        if(searchCount == 0)
+        {
+            searcherNums = i;
+        }
+        if(i != searcherNums)
+        {
+            searchCount --;
+        }
+    }
+
+    return searcherNums;
+
+    //     int fCounter = 0;
+    // int sCounter = 0;
+    // int fNum = nums.front();
+    // int sNum = 0;
+
+    // for(auto i : nums)
+    // {
+    //     if(i == fNum)
+    //     {
+    //         fCounter ++;
+    //     }
+    //     else
+    //     {
+    //         if(i != sNum)
+    //         sNum = i;
+    //         else
+    //         sCounter ++;
+    //     }
+    // }
+
+    // return fCounter > sCounter? fNum : sNum;
+
+}
 
 int findMiddleIndex(std::vector<int> nums) 
 {

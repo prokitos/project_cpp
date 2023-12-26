@@ -21,3 +21,5 @@ int minStartValue(std::vector<int> nums);
 
 int findMiddleIndex(std::vector<int> nums);
 int majorityElement(std::vector<int> nums);
+
+int differenceOfSum(std::vector<int> nums);

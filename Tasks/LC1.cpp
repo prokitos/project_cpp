@@ -44,11 +44,33 @@ void leet1()
     //std::cout << minStartValue({-3,2,-3,4,2});  // 5 - 3 = 2;  2 + 2 = 4; 4 - 3 = 1; ответ 5
 
     // найти самый первый "средний" индекс в векторе, чтобы все значения слева и справа от него были равны
-    std::cout << findMiddleIndex({2,3,-1, 8,4});  // за О(2n).  средний индекс 3 с числом 8.     2 + 3 - 1  ==  4.  
+    //std::cout << findMiddleIndex({2,3,-1, 8,4});  // за О(2n).  средний индекс 3 с числом 8.     2 + 3 - 1  ==  4.  
 
     // есть вектор чисел. найти число которое появляется больше всего раз. это число занимает как минимум половину вектора.
-    std::cout << majorityElement({2,2,1,1,1,2,2});  // работает только если одинаковых чиел больше чем половина вектора.
+    //std::cout << majorityElement({2,2,1,1,1,2,2});  // работает только если одинаковых чиел больше чем половина вектора.
+
+    // есть массив чисел. вернуть разницу между суммой чисел и суммой цифр
+    std::cout << differenceOfSum({1,15,6,3});
+
 }   
+
+int differenceOfSum(std::vector<int> nums) 
+{
+    int sum = 0;
+    int minSum = 0;
+
+    for(int i = 0; i < nums.size(); i++)
+    {
+        sum += nums[i];
+        std::string temp = std::to_string(nums[i]);
+        for(auto j = 0; j < temp.length(); j++)
+        {
+            minSum += temp[j] - '0';
+        }
+    }
+
+    return sum - minSum;
+}
 
 int majorityElement(std::vector<int> nums)
 {

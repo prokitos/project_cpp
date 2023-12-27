@@ -23,3 +23,6 @@ int findMiddleIndex(std::vector<int> nums);
 int majorityElement(std::vector<int> nums);
 
 int differenceOfSum(std::vector<int> nums);
+
+std::string removeTrailingZeros(std::string num);
+std::string generateTheString(int n);

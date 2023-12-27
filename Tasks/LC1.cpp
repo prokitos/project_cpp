@@ -50,9 +50,38 @@ void leet1()
     //std::cout << majorityElement({2,2,1,1,1,2,2});  // работает только если одинаковых чиел больше чем половина вектора.
 
     // есть массив чисел. вернуть разницу между суммой чисел и суммой цифр
-    std::cout << differenceOfSum({1,15,6,3});
+    // std::cout << differenceOfSum({1,15,6,3});
+
+    // убрать последние нули из строки.
+    // std::cout << removeTrailingZeros("35457008900");
+
+    // составить строку длинной N, из букв, которые встречаются нечетное количество раз
+    std::cout << generateTheString(5);
 
 }   
+
+std::string generateTheString(int n)
+{
+    int ostatok = - (n % 2 - 1);
+    std::string res = std::string(n - ostatok,'p');
+
+    if(ostatok == 1)
+    res += 'q';
+
+    return res;
+}
+
+std::string removeTrailingZeros(std::string num)
+{
+    char temp = num.back();
+    while(temp == '0')
+    {
+        num.pop_back();
+        temp = num.back();
+    }
+
+    return num;
+}
 
 int differenceOfSum(std::vector<int> nums) 
 {

@@ -4,6 +4,7 @@
 #include <algorithm>
 #include <map>
 #include <string>
+#include <bitset>
 
 void leet1();
 
@@ -26,3 +27,5 @@ int differenceOfSum(std::vector<int> nums);
 
 std::string removeTrailingZeros(std::string num);
 std::string generateTheString(int n);
+
+std::string findDifferentBinaryString(std::vector<std::string> nums);

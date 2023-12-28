@@ -56,9 +56,35 @@ void leet1()
     // std::cout << removeTrailingZeros("35457008900");
 
     // составить строку длинной N, из букв, которые встречаются нечетное количество раз
-    std::cout << generateTheString(5);
+    // std::cout << generateTheString(5);
+
+    // в массиве содержатся двоичные строки. вернуть недостающую строку.  {000,001,011,100,101,111}  вернуть 010 или 110
+    std::cout << findDifferentBinaryString({"00","01","10"});
 
 }   
+
+std::string findDifferentBinaryString(std::vector<std::string> nums)
+{
+
+    int len = nums[0].length();
+    for(int i = 0; i < std::pow(2,len); i++)
+    {
+        std::bitset<16> temp(i);
+        std::string searcher = temp.to_string();
+        searcher = searcher.substr(16-len,len);
+
+        if(std::find(nums.begin(), nums.end(), searcher) == nums.end())
+        return searcher;
+    }
+    return " ";
+
+    // решение кантора за O(n). работает только с определенными выходными данными
+    // std::string ans="";
+    // for(int i=0; i<nums.size(); i++) 
+    //     ans+= nums[i][i]=='0' ? '1' : '0';          
+    // return ans;
+}
+
 
 std::string generateTheString(int n)
 {

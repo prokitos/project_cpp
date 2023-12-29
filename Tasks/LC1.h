@@ -29,3 +29,4 @@ std::string removeTrailingZeros(std::string num);
 std::string generateTheString(int n);
 
 std::string findDifferentBinaryString(std::vector<std::string> nums);
+std::string replaceDigits(std::string s);

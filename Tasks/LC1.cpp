@@ -59,9 +59,29 @@ void leet1()
     // std::cout << generateTheString(5);
 
     // в массиве содержатся двоичные строки. вернуть недостающую строку.  {000,001,011,100,101,111}  вернуть 010 или 110
-    std::cout << findDifferentBinaryString({"00","01","10"});
+    // std::cout << findDifferentBinaryString({"00","01","10"});
+
+    // дана строка с символами и числами. заменить числа на буквы.
+    std::cout << replaceDigits("a1c1e1");  // a1c1e1  =  abcdef
 
 }   
+
+std::string replaceDigits(std::string s) 
+{
+    char globalTemp {};
+    for(auto &i : s)
+    {
+        char temp = i - '0';
+        if(temp >= 0 && temp <= 9)
+        {
+            i = globalTemp + temp;
+        }
+
+        globalTemp = i;
+    }
+
+    return s;
+}
 
 std::string findDifferentBinaryString(std::vector<std::string> nums)
 {

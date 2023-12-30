@@ -62,9 +62,27 @@ void leet1()
     // std::cout << findDifferentBinaryString({"00","01","10"});
 
     // дана строка с символами и числами. заменить числа на буквы.
-    std::cout << replaceDigits("a1c1e1");  // a1c1e1  =  abcdef
+    // std::cout << replaceDigits("a1c1e1");  // a1c1e1  =  abcdef
+
+    // сократить строку
+    std::cout << minimizedStringLength("abbc");
 
 }   
+
+int minimizedStringLength(std::string s)
+{
+    // std::map<char,int> maps;
+    // for(auto i : s)
+    // {
+    //     maps[i] ++;
+    // };
+    // return maps.size();
+
+
+
+    std::set<char> temp(s.begin(), s.end());
+    return temp.size();
+}
 
 std::string replaceDigits(std::string s) 
 {

@@ -5,6 +5,7 @@
 #include <map>
 #include <string>
 #include <bitset>
+#include <set>
 
 void leet1();
 
@@ -30,3 +31,6 @@ std::string generateTheString(int n);
 
 std::string findDifferentBinaryString(std::vector<std::string> nums);
 std::string replaceDigits(std::string s);
+
+
+int minimizedStringLength(std::string s);

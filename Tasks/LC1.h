@@ -34,3 +34,4 @@ std::string replaceDigits(std::string s);
 
 
 int minimizedStringLength(std::string s);
+std::vector<int> productExceptSelf(std::vector<int> nums);

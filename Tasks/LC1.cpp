@@ -65,9 +65,57 @@ void leet1()
     // std::cout << replaceDigits("a1c1e1");  // a1c1e1  =  abcdef
 
     // сократить строку
-    std::cout << minimizedStringLength("abbc");
+    // std::cout << minimizedStringLength("abbc");
+
+    // дан массив чисел. вернуть массив с произведением всех чисел, за исключением этого числа.
+    std::vector<int> temp = productExceptSelf({1,2,3,4});  //  -1,-1,0,-3,3  =  0,0,9,0,0
+    for(auto i : temp)
+    std::cout << i << " ";
 
 }   
+
+std::vector<int> productExceptSelf(std::vector<int> nums)
+{
+    std::vector<int> temp;
+    temp.reserve(nums.size());
+
+    for(int i = 0; i < nums.size(); i++)
+    {
+        int summ = 1;
+
+        for(int j = 0; j < nums.size(); j++)
+        {
+            if(i == j)
+            continue;
+
+            summ *= nums[j];
+        }
+        temp.push_back(summ);
+
+    }
+
+    return temp;
+
+    
+    // int n = nums.size();
+    // vector<int> output(n);
+    // output[0] = 1;
+
+    // for(int i=1; i<n; i++)
+    // {
+    //     output[i] = output[i-1] * nums[i-1];
+    // }
+
+    // int right = 1;
+    // for(int i=n-1; i>=0; i--)
+    // {
+    //     output[i] *= right;
+    //     right *= nums[i];
+    // }
+    
+    // return output;
+
+}
 
 int minimizedStringLength(std::string s)
 {

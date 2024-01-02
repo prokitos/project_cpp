@@ -68,11 +68,37 @@ void leet1()
     // std::cout << minimizedStringLength("abbc");
 
     // дан массив чисел. вернуть массив с произведением всех чисел, за исключением этого числа.
-    std::vector<int> temp = productExceptSelf({1,2,3,4});  //  -1,-1,0,-3,3  =  0,0,9,0,0
-    for(auto i : temp)
-    std::cout << i << " ";
+    // std::vector<int> temp = productExceptSelf({1,2,3,4});  //  -1,-1,0,-3,3  =  0,0,9,0,0
+    // for(auto i : temp)
+    // std::cout << i << " ";
+
+    // разделить строку LLRLRLRL на равные подстроки RL. вернуть возможно количество равных подстрок
+    std::cout << balancedStringSplit("RLRRLLRLRL"); // RL RRLL RL RL
 
 }   
+
+int balancedStringSplit(std::string s) 
+{
+    int Lcounter = 0;
+    int Rcounter = 0;
+    int res = 0;
+    // можно создать одну переменную counter которая будет + или - при букве, и res++ если переменная 0
+
+    for(auto i : s)
+    {
+        if(i == 'R')
+        Rcounter ++;
+
+        if(i == 'L')
+        Lcounter ++;
+
+        if(Lcounter == Rcounter && Lcounter != 0)
+        res ++;    
+    
+    }
+
+    return res;
+}
 
 std::vector<int> productExceptSelf(std::vector<int> nums)
 {

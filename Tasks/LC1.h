@@ -37,3 +37,4 @@ int minimizedStringLength(std::string s);
 std::vector<int> productExceptSelf(std::vector<int> nums);
 
 int balancedStringSplit(std::string s);
+int maximum69Number (int num);

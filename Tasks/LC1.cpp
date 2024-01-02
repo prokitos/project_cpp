@@ -73,9 +73,28 @@ void leet1()
     // std::cout << i << " ";
 
     // разделить строку LLRLRLRL на равные подстроки RL. вернуть возможно количество равных подстрок
-    std::cout << balancedStringSplit("RLRRLLRLRL"); // RL RRLL RL RL
+    //std::cout << balancedStringSplit("RLRRLLRLRL"); // RL RRLL RL RL
+
+    // дано число из цифр 6 и 9.  изменить 1 цифру, чтобы получилось макисмально возможное число.
+    std::cout << maximum69Number(9669);
 
 }   
+
+int maximum69Number (int num)
+{
+    std::string temp = std::to_string(num);
+
+    for(auto &i : temp)
+    {
+        if(i == '6')
+        {
+            i = '9';
+            break;
+        }
+    }
+
+    return std::stoi(temp);
+}
 
 int balancedStringSplit(std::string s) 
 {

@@ -89,26 +89,26 @@ int minMaxDifference(int num)
     std::string min = std::to_string(num);
     std::string max = std::to_string(num);
 
-    char minDigit = 0;
-    char maxDigit = 0;
+    char minDigit = 'a';
+    char maxDigit = 'a';
     for(int i = 0; i < temp.length(); i++)
     {
-        if(minDigit != 0 && temp[i] != '0')
+        if(minDigit == 'a' && temp[i] != '0')
         {
             minDigit = temp[i];
         }
-        else
+        if(minDigit == min[i])
         {
-            min[i] = minDigit;
+            min[i] = '0';
         }
 
-        if(maxDigit != 0 && temp[i] != '9')
+        if(maxDigit == 'a' && temp[i] != '9')
         {
             maxDigit = temp[i];
         }
-        else
+        if(maxDigit == max[i])
         {
-            max[i] = maxDigit;
+            max[i] = '9';
         }
     }
 

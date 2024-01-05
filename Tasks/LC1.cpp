@@ -76,9 +76,45 @@ void leet1()
     //std::cout << balancedStringSplit("RLRRLLRLRL"); // RL RRLL RL RL
 
     // дано число из цифр 6 и 9.  изменить 1 цифру, чтобы получилось макисмально возможное число.
-    std::cout << maximum69Number(9669);
+    // std::cout << maximum69Number(9669);
+
+    // дано число. можно переназначить одно число на другое 1 раз. найти разницу между самым большим возможным числом, и самым маленьким
+    std::cout << minMaxDifference(11891); // 1 = 9; max = 99899; 1 = 0; min = 890;  99899 - 890 = 99009;
 
 }   
+
+int minMaxDifference(int num) 
+{   
+    std::string temp = std::to_string(num);
+    std::string min = std::to_string(num);
+    std::string max = std::to_string(num);
+
+    char minDigit = 0;
+    char maxDigit = 0;
+    for(int i = 0; i < temp.length(); i++)
+    {
+        if(minDigit != 0 && temp[i] != '0')
+        {
+            minDigit = temp[i];
+        }
+        else
+        {
+            min[i] = minDigit;
+        }
+
+        if(maxDigit != 0 && temp[i] != '9')
+        {
+            maxDigit = temp[i];
+        }
+        else
+        {
+            max[i] = maxDigit;
+        }
+    }
+
+    return std::stoi(max) - std::stoi(min);
+
+}
 
 int maximum69Number (int num)
 {

@@ -79,9 +79,101 @@ void leet1()
     // std::cout << maximum69Number(9669);
 
     // дано число. можно переназначить одно число на другое 1 раз. найти разницу между самым большим возможным числом, и самым маленьким
-    std::cout << minMaxDifference(11891); // 1 = 9; max = 99899; 1 = 0; min = 890;  99899 - 890 = 99009;
+    //std::cout << minMaxDifference(11891); // 1 = 9; max = 99899; 1 = 0; min = 890;  99899 - 890 = 99009;
+
+    // приходит строка чисел, и одна цифры. удалить одну такую цифру из строки, чтобы осталось максимальное значение
+    //std::cout << removeDigit("123",'1');
+
+    // дано число цифр, и сумма индексов. составить минимально возможное лексиграфическое слово.
+    std::cout << getSmallestString(5,73); // 3 цифры, с суммой индексов 28.  aby;
 
 }   
+
+std::string getSmallestString(int n, int k)
+{
+
+    std::string result {};
+
+
+        // пока оставшееся число цифр больше 0
+        while(n > 0)
+        {   
+            // если индекс букв больше N числа. (26 букв + оставшееся количество чисел). то онимаем 26 и пишем Z
+            if(k - 26 + 1 >= n)
+            {
+                result.push_back('a' + 26 - 1);
+                n --;
+                k -= 26;
+            }
+            else
+            {
+                // если индекс все ещё больше чем количество цифр, но меньше 26, то вычисляем конкретную букву, до сравнивания индеса
+                if(k > n)
+                {
+                    result.push_back('a' + (k - n));
+                    k -= (k - n);
+                }
+                // индекс и количество цифр одинаковы. пишем буквы А
+                else
+                {
+                    result.push_back('a');
+                }
+                
+                k--;
+                n--;
+            }
+                
+
+        }
+
+    // инвертируем строку.
+    std::reverse(result.begin(), result.end());
+
+    return result;
+
+    // std::string result {};
+
+    // while(n > 0)
+    // {
+
+    //     if(k > n)
+    //     {
+    //         result.push_back('a' + std::min((k - n),25));
+    //         k -= std::min((k - n),25);
+    //     }
+    //     else
+    //     {
+    //         result.push_back('a');
+    //     }
+        
+    //     k--;
+    //     n--;
+
+    // }
+
+    // std::reverse(result.begin(), result.end());
+
+    // return result;
+}
+
+std::string removeDigit(std::string number, char digit)
+{
+        std::string temp {};
+
+        for(int i = 0; i < number.length(); i++)
+        {
+            // сравниваем каждое вхождение
+            if(number[i] == digit)
+            {
+                // получение строки без этого числа
+                std::string peace = number.substr(0, i) + number.substr(i+1);
+                // запись во временную переменную большего результата. 
+                temp = std::max(peace,temp);
+            }
+        }
+
+        return temp;
+}
 
 int minMaxDifference(int num) 
 {   

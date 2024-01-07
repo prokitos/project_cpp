@@ -39,3 +39,6 @@ std::vector<int> productExceptSelf(std::vector<int> nums);
 int balancedStringSplit(std::string s);
 int maximum69Number (int num);
 int minMaxDifference(int num);
+
+std::string removeDigit(std::string number, char digit);
+std::string getSmallestString(int n, int k);

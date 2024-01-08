@@ -85,9 +85,61 @@ void leet1()
     //std::cout << removeDigit("123",'1');
 
     // дано число цифр, и сумма индексов. составить минимально возможное лексиграфическое слово.
-    std::cout << getSmallestString(5,73); // 3 цифры, с суммой индексов 28.  aby;
+    //std::cout << getSmallestString(5,73); // 3 цифры, с суммой индексов 28.  aby;
+
+    // дан массив чисел (положительных и отрицательных). вернуть максимально возможное значение, которое можно получить путем перемножения (можно использовать не все).
+    std::cout << maxStrength({3,-1,-5,2,5,-9});  // перемножаем все числа кроме -1, так как оно даст отрицательное итоговое значение, а заменить его другим отрицательным уже не можем
 
 }   
+
+long long maxStrength(std::vector<int> nums)
+{
+    // быстрое по времени решение!!!
+    long sum = 1;
+    long minElem = INT32_MIN;
+    bool positive = false;
+    bool negative = false;
+
+    if(nums.size() == 1)
+        return nums[0];
+
+    // проход по вем положительным и отрицательным числам. нули пропускаем
+    for(auto i : nums)
+    {
+        if(i > 0)
+        {
+            positive = true;
+            sum *= i;
+        }
+            
+        if(i < 0)
+        {
+            negative = true;
+            if(i > minElem)
+            minElem = i;
+
+            sum *= i;
+        }
+    }
+
+    // проверка если мы можем убрать одно отрицательное число и получится плюс. также проверка что не надо было умножать
+    if(sum < 0)
+    {
+        if(sum == minElem && positive == false)
+        return 0;
+    
+        sum = sum / minElem;
+    }
+
+    // проверка что были только нули
+    if(negative == false && positive == false)
+    return 0;
+    
+    return sum;
+}
+
+
+
 
 std::string getSmallestString(int n, int k)
 {

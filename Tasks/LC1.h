@@ -42,3 +42,5 @@ int minMaxDifference(int num);
 
 std::string removeDigit(std::string number, char digit);
 std::string getSmallestString(int n, int k);
+
+long long maxStrength(std::vector<int> nums);

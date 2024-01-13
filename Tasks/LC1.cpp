@@ -88,9 +88,63 @@ void leet1()
     //std::cout << getSmallestString(5,73); // 3 цифры, с суммой индексов 28.  aby;
 
     // дан массив чисел (положительных и отрицательных). вернуть максимально возможное значение, которое можно получить путем перемножения (можно использовать не все).
-    std::cout << maxStrength({3,-1,-5,2,5,-9});  // перемножаем все числа кроме -1, так как оно даст отрицательное итоговое значение, а заменить его другим отрицательным уже не можем
+    //std::cout << maxStrength({3,-1,-5,2,5,-9});  // перемножаем все числа кроме -1, так как оно даст отрицательное итоговое значение, а заменить его другим отрицательным уже не можем
 
+    // есть двумерная карта с клетками, содержащими золото. нужно найти путь чтобы собрать максимальное количество золота, и не заходить на пустые клетки.
+    std::vector<std::vector<int>> temp = {{1,0,7},{2,0,6},{3,4,5},{0,3,0},{9,0,20}};
+    std::cout << getMaximumGold(temp);    // лучший путь через 1 2 3 4 5 6 7, так как это больше чем 20, к которому нет проходу вообще
 }   
+
+int goldRecur(int sum, std::vector<std::vector<int>> &grid, int posMain, int posSub)
+{
+      int max = 0;
+      int temp = 0;
+      
+      if(grid[posMain].size() > posSub + 1 && grid[posMain][posSub + 1] != 0)
+      temp = grid[posMain][posSub + 1];
+      if(temp > max)
+      max = temp;
+
+      if(posSub - 1 > 0 && grid[posMain][posSub - 1] != 0)
+      temp = grid[posMain][posSub - 1];
+      if(temp > max)
+      max = temp;
+
+      if(grid.size() > posMain + 1 && grid[posMain + 1][posSub] != 0)
+      temp = grid[posMain + 1][posSub];
+      if(temp > max)
+      max = temp;
+
+      if(posMain - 1 > 0 && grid[posMain - 1][posSub - 1] != 0)
+      temp = grid[posMain - 1][posSub];
+      if(temp > max)
+      max = temp;
+
+      return max;
+
+}
+
+int getMaximumGold(std::vector<std::vector<int>> &grid)
+{
+      int maximum = 0;
+      int localMax = 0;
+
+      // начало с каждого не нулевого элемента
+      for(int i = 0; i < grid.size(); i++)
+      {
+            for(int j = 0; j < grid[i].size(); j++)
+            {     
+                  // если клетка не нулевая, то пытаться зайти в рекурсию
+                  if(j != 0)
+                  localMax = goldRecur(0,grid,i,j);
+
+                  if(localMax > maximum)
+                  maximum = localMax;
+            }
+      }
+
+      return maximum;
+}
 
 long long maxStrength(std::vector<int> nums)
 {

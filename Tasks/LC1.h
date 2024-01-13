@@ -44,3 +44,5 @@ std::string removeDigit(std::string number, char digit);
 std::string getSmallestString(int n, int k);
 
 long long maxStrength(std::vector<int> nums);
+
+int getMaximumGold(std::vector<std::vector<int>> &grid);

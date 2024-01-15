@@ -46,3 +46,10 @@ std::string getSmallestString(int n, int k);
 long long maxStrength(std::vector<int> nums);
 
 int getMaximumGold(std::vector<std::vector<int>> &grid);
+int getMaximumGoldWhile(std::vector<std::vector<int>> &grid);
+
+struct position
+{
+    int x;
+    int y;
+};

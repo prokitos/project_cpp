@@ -93,7 +93,7 @@ void leet1()
     // есть двумерная карта с клетками, содержащими золото. нужно найти путь чтобы собрать максимальное количество золота, и не заходить на пустые клетки.
     //std::vector<std::vector<int>> temp = {{1,0,7},{2,0,6},{3,4,5},{0,3,0},{9,0,20}};  // == 28  
     std::vector<std::vector<int>> temp = { {0,1,6,20,0}, {0,0,3,0,0}, {16,9,16,8,0}, {14,0,4,20,9} };  // == 92
-    std::cout << getMaximumGoldWhile(temp);    // лучший путь через 1 2 3 4 5 6 7 = 28, так как это больше чем 20, к которому нет проходу вообще
+    std::cout << getMaximumGold(temp);    // лучший путь через 1 2 3 4 5 6 7 = 28, так как это больше чем 20, к которому нет проходу вообще
 
 }   
 
@@ -253,63 +253,30 @@ int getMaximumGoldWhile(std::vector<std::vector<int>> &grid)
 
 
 
-int goldRecur(int sum, std::vector<std::vector<int>> &grid, int posMain, int posSub)
+int goldRecur(std::vector<std::vector<int>> &grid, int i, int j)
 {
+    // выкидываем если пришли плохие значения, и возвращаем ноль из рекурсий если попали в такую ячейку
+    if(i < 0 || i >= grid.size() || j < 0 || j >= grid[i].size() || grid[i][j] == 0)
+        return 0;
 
-      if(grid[posMain][posSub] == 0)
-      return sum;
+    // делаем копию значения и переписываем на 0, что мы уже здесь проходили
+    int curVal = grid[i][j];
+    grid[i][j] = 0;
 
-      sum += grid[posMain][posSub];
-      grid[posMain][posSub] = 0;
+    // теперь идем в 4 направления
+    int up = goldRecur(grid,i+1,j);
+    int down = goldRecur(grid,i-1,j);
+    int left = goldRecur(grid,i,j-1);
+    int right = goldRecur(grid,i,j+1);
+    
+    // возвращаем значение которое было обратно (чтобы не делать копию всего массива, и работать в том же)
+    grid[i][j] = curVal;
 
-      int max = 0;
-      int temp = 0;
-      bool lastDigit = true;
-      
-      if(grid[posMain].size() > posSub + 1 && grid[posMain][posSub + 1] != 0)
-      {
-        lastDigit = false;
-        std::vector<std::vector<int>> tempGrid = grid;
-        temp = goldRecur(sum, tempGrid, posMain, posSub + 1);
-
-        if(temp > max)
-        max = temp;
-      }
-      if(posSub - 1 >= 0 && grid[posMain][posSub - 1] != 0)
-      {
-        lastDigit = false;
-        std::vector<std::vector<int>> tempGrid = grid;
-        temp = goldRecur(sum, tempGrid, posMain, posSub - 1);
-
-        if(temp > max)
-        max = temp;
-      }
-      if(grid.size() > posMain + 1 && grid[posMain + 1][posSub] != 0)
-      {
-        lastDigit = false;
-        std::vector<std::vector<int>> tempGrid = grid;
-        temp = goldRecur(sum, tempGrid, posMain + 1, posSub);
-
-        if(temp > max)
-        max = temp;
-      }
-      if(posMain - 1 >= 0 && grid[posMain - 1][posSub] != 0)
-      {
-        lastDigit = false;
-        std::vector<std::vector<int>> tempGrid = grid;
-        temp = goldRecur(sum , tempGrid, posMain - 1, posSub);
-
-        if(temp > max)
-        max = temp;
-      }
-
-      if(lastDigit == true)
-      {
-        return sum;
-      }
-
-      return max;
-
+    // вовзращаем макс значение которое попалось на одном из путей, и плюсуем наше текущее
+    // из глубокой рекурсии вернем нормально число, потомучто дальше идти он не может, и 0 + curval = curval
+    int max1 = std::max(up,down);
+    int max2 = std::max(left,right);
+    return std::max(max1,max2) + curVal;
 }
 
 int getMaximumGold(std::vector<std::vector<int>> &grid)
@@ -324,7 +291,7 @@ int getMaximumGold(std::vector<std::vector<int>> &grid)
             {     
                   // если клетка не нулевая, то пытаться зайти в рекурсию
                   if(grid[i][j] != 0)
-                  localMax = goldRecur(0,grid,i,j);
+                  localMax = goldRecur(grid,i,j);
 
                   if(localMax > maximum)
                   maximum = localMax;

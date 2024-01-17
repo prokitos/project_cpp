@@ -48,8 +48,4 @@ long long maxStrength(std::vector<int> nums);
 int getMaximumGold(std::vector<std::vector<int>> &grid);
 int getMaximumGoldWhile(std::vector<std::vector<int>> &grid);
 
-struct position
-{
-    int x;
-    int y;
-};
+int maxSatisfaction(std::vector<int> &satisfaction);

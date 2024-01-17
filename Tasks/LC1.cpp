@@ -92,164 +92,42 @@ void leet1()
 
     // есть двумерная карта с клетками, содержащими золото. нужно найти путь чтобы собрать максимальное количество золота, и не заходить на пустые клетки.
     //std::vector<std::vector<int>> temp = {{1,0,7},{2,0,6},{3,4,5},{0,3,0},{9,0,20}};  // == 28  
-    std::vector<std::vector<int>> temp = { {0,1,6,20,0}, {0,0,3,0,0}, {16,9,16,8,0}, {14,0,4,20,9} };  // == 92
-    std::cout << getMaximumGold(temp);    // лучший путь через 1 2 3 4 5 6 7 = 28, так как это больше чем 20, к которому нет проходу вообще
+    // std::vector<std::vector<int>> temp = { {0,1,6,20,0}, {0,0,3,0,0}, {16,9,16,8,0}, {14,0,4,20,9} };  // == 92
+    // std::cout << getMaximumGold(temp);    // лучший путь через 1 2 3 4 5 6 7 = 28, так как это больше чем 20, к которому нет проходу вообще
 
+    // приходит вектор с числами. каждое число это уровень удовлетворения клиента. повар может готовить любые блюда по 1 разу в любом порядке. несколько блюд подряд дают больше удовлетворения.
+    // повар может не готовить блюда вообще, если готовка принесет отрицательное удовлетворение. вернуть максимальное удовлетворение которого можно сделать из этих блюд.
+    std::vector<int> temp = {-1,-8,0,5,-9}; // лучшее это (-1, 0, 5). (-1*1 + 0*2 + 5*3) = 14   
+    std::cout << maxSatisfaction(temp);
 }   
 
-// без рекурсии
-int getMaximumGoldWhile(std::vector<std::vector<int>> &grid)
+int maxSatisfaction(std::vector<int> &satisfaction) 
 {
-    int globalSum = 0;
+    int sum = 0;
+    // сортировка, чтобы меньшие были в начале, а больше в конце
+    std::sort(satisfaction.begin(), satisfaction.end());
 
-    position globalPos;
-    globalPos.x = 0;
-    globalPos.y = 0;
-
-    // проход по всем клеткам. пытаемся начать с каждой клетки
-    while(globalPos.y < grid[globalPos.x].size())
+    // будем перемножать элементы, начиная с i позиции
+    for(int i = 0; i < satisfaction.size(); i++)
     {
-        int localSum = 0;       // локальная сумма для цикла в цикле
-        int localMaxSum = 0;    // локальное хранилище максимальной суммы в данном цикле
-        bool localEnd = false;
-        position localPos;
-        localPos.x = globalPos.x;
-        localPos.y = globalPos.y;
+        int temp = 0;
+        int mnozh = 1;
 
-        // создаем и заполняем карту нулями
-        std::vector<std::vector<int>> mapp;
-        mapp.resize(grid.size());
-        for(int i = 0; i < grid.size(); i++)
+        // начиная от i, перемножаем все элементы до конца
+        for(int j = i; j < satisfaction.size(); j++)
         {
-            mapp[i].resize(grid[i].size());
-            std::fill(mapp[i].begin(),mapp[i].end(),0);
+            temp += satisfaction[j] * mnozh;
+            mnozh ++;
         }
 
-        // пройдем по всему лабиринту, если текущяя клетка не нулевая
-        if(grid[globalPos.x][globalPos.y] != 0)
-        while (localEnd == false)
-        {
-            // если текущая клетка не пустая и мы ещё не были на этой клетке то получаем значение и ставим что уже были на этой клетке.
-            if(grid[localPos.x][localPos.y] != 0 && mapp[localPos.x][localPos.y] == 0)
-            {
-                localSum += grid[localPos.x][localPos.y];
-                mapp[localPos.x][localPos.y] = localSum;
-            }
+        // если при перемножении получилось больше чем было, то перезаписываем, и меняем позицию начала
+        if(temp > sum)
+        sum = temp;
 
-            // записываем максимальную сумму, если она больше чем была
-            if(localSum > localMaxSum)
-                localMaxSum = localSum;
-
-
-            // ищем в какую сторону больше показывает
-            bool cheker = false;
-            int minValue = 0;
-            int directionX = 0;
-            int directionY = 0;
-
-            // если есть влево то идти влево. конец итерации
-            if(localPos.x - 1 >= 0 && mapp[localPos.x - 1][localPos.y] == 0 && grid[localPos.x - 1][localPos.y] != 0 && grid[localPos.x - 1][localPos.y] > minValue)
-            {
-                minValue = grid[localPos.x - 1][localPos.y];
-                cheker = true;
-                directionX = -1;
-                directionY = 0;
-            }
-            // если есть назад то идти назад. конец итерации
-            if(localPos.y - 1 >= 0 && mapp[localPos.x][localPos.y - 1] == 0 && grid[localPos.x][localPos.y - 1] != 0 && grid[localPos.x][localPos.y - 1] > minValue)
-            {
-                minValue = grid[localPos.x][localPos.y - 1];
-                cheker = true;
-                directionX = 0;
-                directionY = -1;
-            }
-            // если есть вперед то идти вперед. конец итерации
-            if(localPos.y + 1 < mapp[localPos.x].size() && mapp[localPos.x][localPos.y + 1] == 0 && grid[localPos.x][localPos.y + 1] != 0 && grid[localPos.x][localPos.y + 1] > minValue)
-            {
-                minValue = grid[localPos.x][localPos.y + 1];
-                cheker = true;
-                directionX = 0;
-                directionY = 1;
-            }
-            // если есть вправо то идти вправо. конец итерации
-            if(localPos.x + 1 < mapp.size() && mapp[localPos.x + 1][localPos.y] == 0 && grid[localPos.x + 1][localPos.y] != 0 && grid[localPos.x + 1][localPos.y] > minValue)
-            {
-                minValue = grid[localPos.x + 1][localPos.y];
-                cheker = true;
-                directionX = 1;
-                directionY = 0;
-            }
-            if(cheker == true)
-            {
-                localPos.x += directionX;
-                localPos.y += directionY;
-                continue;
-            }
-
-            // если на старте, и нет проходов. то заканчиваем цикл
-            if(localPos.x == globalPos.x && localPos.y == globalPos.y)
-            {
-                localEnd = true;
-                continue;
-            }
-
-            // если некуда идти, то идти к глобал стартовой точке.
-            minValue = INT32_MAX;
-            directionX = 0;
-            directionY = 0;
-
-            if(localPos.y + 1 < mapp[localPos.x].size() && mapp[localPos.x][localPos.y + 1] < minValue && mapp[localPos.x][localPos.y + 1] != 0)
-            {
-                directionY = 1;
-                directionX = 0;
-                minValue = mapp[localPos.x][localPos.y + 1];
-            }
-            if(localPos.y - 1 >= 0 && mapp[localPos.x][localPos.y - 1] < minValue && mapp[localPos.x][localPos.y - 1] != 0)
-            {
-                directionY = -1;
-                directionX = 0;
-                minValue = mapp[localPos.x][localPos.y - 1];
-            }
-            if(localPos.x + 1 < mapp.size() && mapp[localPos.x + 1][localPos.y] < minValue && mapp[localPos.x + 1][localPos.y] != 0)
-            {
-                directionY = 0;
-                directionX = 1;
-                minValue = mapp[localPos.x + 1][localPos.y];
-            }
-            if(localPos.x - 1 >= 0 && mapp[localPos.x - 1][localPos.y] < minValue && mapp[localPos.x - 1][localPos.y] != 0)
-            {
-                directionY = 0;
-                directionX = -1;
-                minValue = mapp[localPos.x - 1][localPos.y];
-            }
-
-            // изменяем текущее положение и начинаем цикл заново
-            localPos.x += directionX;
-            localPos.y += directionY;
-
-            if (grid[localPos.x][localPos.y] != 0 && mapp[localPos.x][localPos.y] != 0)
-            {
-                localSum = mapp[localPos.x][localPos.y];
-            }
-
-        }
-        
-
-        // если в цикле было найдена более большая сумма, то заменить
-        if(localMaxSum > globalSum)
-            globalSum = localMaxSum;
-
-        // в конце увеличиваем счетчик по X и Y, тем самым меняем начальную точку
-        globalPos.x ++;
-        if(globalPos.x >= grid.size())
-        {
-            globalPos.x = 0;
-            globalPos.y ++;
-        }
     }
-    
-    return globalSum;
-}
+
+    return sum;
+}   
 
 
 

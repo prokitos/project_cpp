@@ -1,5 +1,6 @@
 #include <iostream>
 #include <vector>
+#include <list>
 #include <cmath>
 #include <algorithm>
 #include <map>
@@ -21,3 +22,6 @@ public:
 
 bool checkTree(TreeNode* root);
 int sumTree(TreeNode* node);
+
+std::vector<int> getAllElements(TreeNode* root1, TreeNode* root2);
+void NodeToList(std::list<int> &curList, TreeNode *curNode);

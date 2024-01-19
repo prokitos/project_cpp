@@ -4,17 +4,88 @@ void leet2()
 {
 
     // проверить что сумма узлов равняется корню.
-    TreeNode *node = new TreeNode;  
-    node->addNode(10);
-    node->addNode(6);
-    node->addNode(3);
-    node->addNode(1);
-    std::cout << checkTree(node);
+    // TreeNode *node = new TreeNode;  
+    // node->addNode(10);
+    // node->addNode(6);
+    // node->addNode(3);
+    // node->addNode(1);
+    // std::cout << checkTree(node);
 
 
+    // даны два бинарных дерева. вернуть вектор отсортированный с самого маленького до самого большого элемента.
+    TreeNode *tree1 = new TreeNode;  
+    tree1->addNode(2);
+    tree1->addNode(1);
+    tree1->addNode(4);
+    TreeNode *tree2 = new TreeNode;  
+    tree2->addNode(1);
+    tree2->addNode(0);
+    tree2->addNode(3);
 
+    std::vector<int> temp = getAllElements(tree1,tree2);
+    for(auto i : temp)
+    std::cout << i << " ";
 
 };
+
+void NodeToList(std::list<int> &curList, TreeNode *curNode)
+{
+    // заходим в левый узел
+    if(curNode->left != NULL)
+    NodeToList(curList, curNode->left);
+
+    // добавляем текущий элемент
+    curList.push_back(curNode->val);
+
+    // заходим в правый узел
+    if(curNode->right != NULL)
+    NodeToList(curList, curNode->right);
+}
+
+std::vector<int> getAllElements(TreeNode* root1, TreeNode* root2)
+{
+    std::list<int> firstList,secondList;
+    std::vector<int> result;
+
+    // добавляем в первый и во второй лист зачения из деревьев
+    NodeToList(firstList,root1);
+    NodeToList(secondList,root2);
+
+    // добавляем по очереди значения в вектор.
+    int maxSize = firstList.size() + secondList.size();
+    result.reserve(maxSize);
+    for(int i = 0; i < maxSize; i ++)
+    {  
+        // если первый лист закончился, то берем из второго листа
+        if(firstList.size() == 0)
+        {
+            result.push_back(secondList.front());
+            secondList.pop_front();
+            continue;
+        }
+        // если второй лист закончился, то берем из первого листа
+        if(secondList.size() == 0)
+        {
+            result.push_back(firstList.front());
+            firstList.pop_front();
+            continue;
+        }
+
+        // если значение в первом листе меньше, то берем из него,иначе берем из второго
+        if(firstList.front() < secondList.front())
+        {
+            result.push_back(firstList.front());
+            firstList.pop_front();
+        }
+        else
+        {
+            result.push_back(secondList.front());
+            secondList.pop_front();
+        }
+    }
+
+    return result;
+}
 
 void TreeNode::addNode(int val)
 {

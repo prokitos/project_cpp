@@ -26,17 +26,55 @@ void leet2()
     // std::cout << i << " ";
 
     // найти самое большее значение в каждой строке дерева.
+    // TreeNode *tree1 = new TreeNode;  
+    // tree1->addNode(3);
+    // tree1->addNode(1);
+    // tree1->addNode(4);
+    // tree1->addNode(2);
+    // tree1->addNode(7);
+    // std::vector<int> temp = largestValues(tree1);
+    // for(auto i : temp)
+    // std::cout << i << " ";
+
+    // проверить одинаковые ли деревья
     TreeNode *tree1 = new TreeNode;  
-    tree1->addNode(3);
+    tree1->addNode(2);
     tree1->addNode(1);
     tree1->addNode(4);
-    tree1->addNode(2);
-    tree1->addNode(7);
-    std::vector<int> temp = largestValues(tree1);
-    for(auto i : temp)
-    std::cout << i << " ";
-
+    TreeNode *tree2 = new TreeNode;  
+    tree2->addNode(2);
+    tree2->addNode(1);
+    tree2->addNode(4);
+    
+    std::cout << isSameTree(tree1, tree2);
 };
+
+bool checkNodeSame(TreeNode* node1, TreeNode* node2)
+{
+    bool temp = true;
+
+    if(node1 == NULL && node2 == NULL)
+    return true;
+    if(node1 == NULL || node2 == NULL)
+    return false;
+    if(node1->val != node2->val)
+    return false;
+
+    temp = checkNodeSame(node1->left,node2->left);
+    if(temp == false)
+    return false;
+    
+    temp = checkNodeSame(node1->right,node2->right);
+    if(temp == false)
+    return false;
+
+    return true;
+}
+
+bool isSameTree(TreeNode* p, TreeNode* q)
+{
+    return checkNodeSame(p,q);
+}
 
 void addMaxDepth(std::vector<int> &curVec, TreeNode* curNode, int depth)
 {

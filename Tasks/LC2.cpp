@@ -37,17 +37,72 @@ void leet2()
     // std::cout << i << " ";
 
     // проверить одинаковые ли деревья
-    TreeNode *tree1 = new TreeNode;  
-    tree1->addNode(2);
-    tree1->addNode(1);
-    tree1->addNode(4);
-    TreeNode *tree2 = new TreeNode;  
-    tree2->addNode(2);
-    tree2->addNode(1);
-    tree2->addNode(4);
-    
-    std::cout << isSameTree(tree1, tree2);
+    // TreeNode *tree1 = new TreeNode;  
+    // tree1->addNode(2);
+    // tree1->addNode(1);
+    // tree1->addNode(4);
+    // TreeNode *tree2 = new TreeNode;  
+    // tree2->addNode(2);
+    // tree2->addNode(1);
+    // tree2->addNode(4);
+    // std::cout << isSameTree(tree1, tree2);
+
+    // дан вектор отсортированных цифр. найти сколько есть троек чисел, которые при вычитании дают число diff.
+    std::vector<int> temp = {0,1,4,6,7,10};
+    std::cout << arithmeticTriplets(temp,3); // (10 - 7 - 4) и (7 - 4 - 1) = 2 тройки
+
 };
+
+int arithmeticTriplets(std::vector<int> &nums, int diff)
+{
+    // // обычный способ, (n^2)
+    // int res = 0;
+    // // проходим по каждой цифре, и смотри есть ли после неё ещё 2, которые получаются при сложении с diff
+    // for(int i = 0; i < nums.size(); i++)
+    // {
+    //     int temp = nums[i];
+    //     int counter = 0;
+    //     for(int j = i + 1; j < nums.size(); j++)
+    //     {
+    //         // если нашли вхождение, то заменяем стартовое число поиска, и говорим что на 1 вхождение больше
+    //         if(nums[j] - temp == diff)
+    //         {
+    //             temp = nums[j];
+    //             counter ++;
+    //         }
+    //         // если вхождения два, то значит прибавляем + 1 к результату, так как после числа i есть 2 числа с промежутком diff
+    //         if(counter == 2)
+    //         {
+    //             res ++;
+    //             break;
+    //         }
+    //     }
+    // }
+    // return res;
+
+
+    // // через map, (2n)
+    int res = 0;
+    int last = nums.back();
+    std::map<int,int> dictionary;
+
+    // заполняем словать числами из вектора, и даем им значение 1
+    for(auto i : nums)
+    {
+        dictionary[i] = 1;
+    }
+
+    // берем каждое число из вектора, и смотрим есть ли в словаре через diff и через diff + diff значения. если есть, значит такие числа существуют, и результат + 1
+    for(auto i : nums)
+    {
+        if(dictionary[i + diff] > 0 && dictionary[i + diff + diff] > 0)
+        {
+            res ++;
+        }
+    }
+
+    return res;
+}
 
 bool checkNodeSame(TreeNode* node1, TreeNode* node2)
 {

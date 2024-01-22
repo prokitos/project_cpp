@@ -28,3 +28,5 @@ void NodeToList(std::list<int> &curList, TreeNode *curNode);
 
 std::vector<int> largestValues(TreeNode* root);
 bool isSameTree(TreeNode* p, TreeNode* q);
+
+int arithmeticTriplets(std::vector<int> &nums, int diff);

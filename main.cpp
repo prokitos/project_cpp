@@ -19,6 +19,7 @@
 #include "Tasks/ZaN.h"
 #include "Tasks/LC1.h"
 #include "Tasks/LC2.h"
+#include "Tasks/dictionaryException.h"
 
 using std::cout;
 using std::string;
@@ -50,7 +51,8 @@ int main()
     //zaMainM();
     //zaMainN();
     //leet1();
-    leet2();
+    //leet2();
+    dictionaryWithException();
 
     return 0;
 }
